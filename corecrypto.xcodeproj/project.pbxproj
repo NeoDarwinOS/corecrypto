@@ -127,6 +127,7 @@
 		42D6AB6C2FF298E900FAAD94 /* ccsha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAD42FF2946200FAAD94 /* ccsha1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB6D2FF298F100FAAD94 /* ccsha1_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAD52FF2946200FAAD94 /* ccsha1_internal.h */; };
 		42D6AB6F2FF2992E00FAAD94 /* corecrypto_kext_if.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AB6E2FF2992E00FAAD94 /* corecrypto_kext_if.h */; };
+		42D6AB772FF29D6200FAAD94 /* register_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AB762FF29D5E00FAAD94 /* register_crypto.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,6 +203,9 @@
 		42D6AB2F2FF296C300FAAD94 /* corecrypto.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = corecrypto.c; sourceTree = "<group>"; };
 		42D6AB302FF296C300FAAD94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D6AB6E2FF2992E00FAAD94 /* corecrypto_kext_if.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = corecrypto_kext_if.h; sourceTree = "<group>"; };
+		42D6AB732FF29CD500FAAD94 /* corecrypto_kext.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = corecrypto_kext.xcconfig; sourceTree = "<group>"; };
+		42D6AB752FF29D4D00FAAD94 /* random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
+		42D6AB762FF29D5E00FAAD94 /* register_crypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = register_crypto.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				42D6AA5D2FEF35E500FAAD94 /* corecrypto.xcconfig */,
+				42D6AB732FF29CD500FAAD94 /* corecrypto_kext.xcconfig */,
 			);
 			path = xcconfig;
 			sourceTree = "<group>";
@@ -553,9 +558,43 @@
 			path = corecrypto_kext;
 			sourceTree = "<group>";
 		};
+		42D6AB702FF29C6C00FAAD94 /* EXTERNAL_HEADERS */ = {
+			isa = PBXGroup;
+			children = (
+				42D6AB742FF29D2100FAAD94 /* prng */,
+				42D6AB712FF29C7500FAAD94 /* libkern */,
+			);
+			path = EXTERNAL_HEADERS;
+			sourceTree = "<group>";
+		};
+		42D6AB712FF29C7500FAAD94 /* libkern */ = {
+			isa = PBXGroup;
+			children = (
+				42D6AB722FF29C7B00FAAD94 /* crypto */,
+			);
+			path = libkern;
+			sourceTree = "<group>";
+		};
+		42D6AB722FF29C7B00FAAD94 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				42D6AB762FF29D5E00FAAD94 /* register_crypto.h */,
+			);
+			path = crypto;
+			sourceTree = "<group>";
+		};
+		42D6AB742FF29D2100FAAD94 /* prng */ = {
+			isa = PBXGroup;
+			children = (
+				42D6AB752FF29D4D00FAAD94 /* random.h */,
+			);
+			path = prng;
+			sourceTree = "<group>";
+		};
 		F0AA37662FEE71DC00D71546 = {
 			isa = PBXGroup;
 			children = (
+				42D6AB702FF29C6C00FAAD94 /* EXTERNAL_HEADERS */,
 				42D6AA602FEF57FB00FAAD94 /* LICENSE */,
 				42D6AADF2FF2946200FAAD94 /* cmake */,
 				42D6AAE02FF2946200FAAD94 /* CMakeLists.txt */,
@@ -604,6 +643,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D6AB772FF29D6200FAAD94 /* register_crypto.h in Headers */,
 				42D6AB3D2FF2982E00FAAD94 /* ccaes.h in Headers */,
 				42D6AB512FF2986200FAAD94 /* ccdigest_priv.h in Headers */,
 				42D6AB632FF2987D00FAAD94 /* ccmode_factory.h in Headers */,
@@ -943,6 +983,7 @@
 		};
 		42D6AB2D2FF296BB00FAAD94 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42D6AB732FF29CD500FAAD94 /* corecrypto_kext.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1021,6 +1062,7 @@
 		};
 		42D6AB2E2FF296BB00FAAD94 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42D6AB732FF29CD500FAAD94 /* corecrypto_kext.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
