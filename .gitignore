@@ -1,3 +1,5 @@
 .DS_Store
 corecrypto.xcodeproj/project.xcworkspace
 corecrypto.xcodeproj/xcuserdata
+.cache
+build

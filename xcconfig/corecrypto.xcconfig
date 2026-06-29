@@ -1,0 +1,15 @@
+//
+// Copyright (C) 2026, Samuel Zormeister.
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/cc/include
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/ccaes/include
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/ccasn1/include
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/ccdigest/include
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/ccmode/include
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/ccn/include
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/ccsha1/include

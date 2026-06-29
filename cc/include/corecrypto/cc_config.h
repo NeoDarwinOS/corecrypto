@@ -22,6 +22,22 @@
  *     - CC_SHARED_LIBRARY
  */
 
+/*
+ * API NOTES:
+ *
+ * The symbols in the SDK's .tbd are actually just the symbols it exports nicely, which gives us a reference point as
+ * for what symbols are required to build in each version.
+ *
+ * Apple likes to freeball their own crypto library, which means that each release sucks in terms of
+ * compatibility with prior versions.
+ *
+ * The overall ABI seems to have stabilized again, but this project targets Darwin 19 and 20 compatibility, not 21 and newer,
+ * which have... issues, to say the least.
+ *
+ * Darwin 21 as a goal would be nice, but there are other cornerstones that need to be achieved before kernelspace work
+ * can begin properly.
+ */
+
 #if defined(DEBUG) && DEBUG
     #define CORECRYPTO_DEBUG    1
 #else
@@ -64,9 +80,9 @@
 
 /* Configure the size of cc units, which is usually the register size. */
 #if CC_ARCH_X86_64 || CC_ARCH_ARM64
-    #define CCN_UNIT_SIZE   8
+    #define CC_UNIT_SIZE    8
 #elif CC_ARCH_I386 || CC_ARCH_ARM
-    #define CCN_UNIT_SIZE   4
+    #define CC_UNIT_SIZE    4
 #else
     #error unsupported architecture
 #endif
@@ -102,6 +118,12 @@
 #endif // defined(__has_include)
 
 #if defined (__has_attribute)
+    #if __has_attribute(const)
+        #define CC_CONST __attribute__((__const__))
+    #else
+        #define CC_CONST
+    #endif
+
     #if __has_attribute(noreturn)
         #define CC_NORETURN __attribute__((__noreturn__))
     #else
@@ -121,8 +143,74 @@
         #define CC_NONNULL(x)
         #define CC_NONNULL_ALL
     #endif
-#else
 
+    #if __has_attribute(pure)
+        #define CC_PURE __attribute__((__pure__))
+    #else
+        #define CC_PURE
+    #endif
+
+    #if __has_attribute(mode)
+        #if CC_ARCH_X86_64 || CC_ARCH_ARM64
+            #define CC_UNIT_ALLOW_UINT128_DUNIT 1
+        #else
+            #define CC_UNIT_ALLOW_UINT128_DUNIT 0
+        #endif
+    #else
+        #define CC_UNIT_ALLOW_UINT128_DUNIT 0
+    #endif
+
+    #if __has_attribute(visibility)
+        #define CC_PRIVATE extern __attribute__((visibility("hidden")))
+        #define CC_EXPORT extern __attribute__((visibility("default")))
+    #else
+        #define CC_PRIVATE
+        #define CC_EXPORT
+    #endif
+#else
+    #define CC_CONST
+    #define CC_NORETURN
+    #define CC_NOTHROW
+    #define CC_NONNULL(x)
+    #define CC_NONNULL_ALL
+    #define CC_PURE
+    #define CC_UNIT_ALLOW_UINT128_DUNIT 0
+    #define CC_PRIVATE
+    #define CC_EXPORT
+#endif
+
+#if CC_UNIT_SIZE == 8
+    #if __GNUC__
+        #define cc_aligned(x) __attribute__((aligned((x))))
+    #else
+        #error unsupported compiler
+    #endif
+#else
+    #if __GNUC__
+        #define cc_aligned(x) __attribute__ ((aligned((x) > 8 ? 8 : (x))))
+    #else
+        #error unsupported compiler
+    #endif
+#endif
+
+#if defined __BIGGEST_ALIGNMENT__
+    #define CC_MAX_ALIGNMENT __BIGGEST_ALIGNMENT__
+#else
+    #define CC_MAX_ALIGNMENT 16
+#endif
+
+#define CC_INLINE static inline
+
+#if __cplusplus
+    #define CC_BEGIN_DECLS extern "C" {
+    #define CC_END_DECLS }
+#else
+    #define CC_BEGIN_DECLS
+    #define CC_END_DECLS
+#endif
+
+#ifndef CC_SMALL_CODE
+#define CC_SMALL_CODE 0
 #endif
 
 #endif /* __CORECRYPTO_CC_CONFIG_H__ */

@@ -9,6 +9,9 @@
 #ifndef __CORECRYPTO_CC_ERROR_H__
 #define __CORECRYPTO_CC_ERROR_H__
 
+/* Likely going to back the APIs with an integer return code. */
+typedef int cc_error_t;
+
 /* Error result codes */
 #define CCERR_OK                0
 #define CCERR_INTERNAL          -1
@@ -23,8 +26,5 @@
 #define CCERR_OUT_OF_ENTROPY    -10
 #define CCERR_ATFORK            -11
 #define CCERR_OVERFLOW          -12
-
-/* Likely going to back the APIs with an integer return code. */
-typedef int cc_error_t;
 
 #endif /* __CORECRYPTO_CC_ERROR_H__ */
