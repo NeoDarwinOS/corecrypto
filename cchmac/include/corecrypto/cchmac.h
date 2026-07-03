@@ -23,7 +23,7 @@ cc_aligned_struct(8) cchmac_ctx;
 
 typedef cchmac_ctx *cchmac_ctx_t;
 
-#define cchmac_ctx_size(state_size, block_size)         (cc_pad_align(ccdigest_ctx_size(state_size, block_size) + state_size)
+#define cchmac_ctx_size(state_size, block_size)         (cc_pad_align(ccdigest_ctx_size(state_size, block_size) + state_size))
 #define cchmac_ctx_decl(state_size, block_size, name)   cc_ctx_decl(cchmac_ctx, cchmac_ctx_size(state_size, block_size), name)
 #define cchmac_ctx_clear(state_size, block_size, name)  cc_clear(cchmac_ctx_size(state_size, block_size), name)
 
@@ -45,7 +45,7 @@ typedef cchmac_ctx *cchmac_ctx_t;
 #define cchmac_istate64(di, hmac_ctx)   (ccdigest_u64(cchmac_istate(di, hmac_ctx)))
 #define cchmac_istateccn(di, hmac_ctx)  (ccdigest_ccn(cchmac_istate(di, hmac_ctx)))
 
-#define cchmac_ostate(di, hmac_ctx)     ((ccdigest_state_t)(((uint8_t *)hmac_ctx) + cc_pad_align(cchmac_di_size(di))))
+#define cchmac_ostate(di, hmac_ctx)     ((ccdigest_state_t)(((uint8_t *)hmac_ctx) + cc_pad_align(ccdigest_di_size(di))))
 #define cchmac_ostate8(di, hmac_ctx)    (ccdigest_u8(cchmac_ostate(di, hmac_ctx)))
 #define cchmac_ostate16(di, hmac_ctx)   (ccdigest_u16(cchmac_ostate(di, hmac_ctx)))
 #define cchmac_ostate32(di, hmac_ctx)   (ccdigest_u32(cchmac_ostate(di, hmac_ctx)))
