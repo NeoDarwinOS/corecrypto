@@ -132,6 +132,12 @@
 		42D6AB7E2FF3331B00FAAD94 /* cchmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AB7B2FF32E8D00FAAD94 /* cchmac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB802FF3373B00FAAD94 /* cchmac_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AB7F2FF3373B00FAAD94 /* cchmac_init.c */; };
 		42D6AB812FF3373B00FAAD94 /* cchmac_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AB7F2FF3373B00FAAD94 /* cchmac_init.c */; };
+		F01ACDAF2FF7C778006ED2CE /* cchmac_update.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDAE2FF7C778006ED2CE /* cchmac_update.c */; };
+		F01ACDB02FF7C778006ED2CE /* cchmac_update.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDAE2FF7C778006ED2CE /* cchmac_update.c */; };
+		F01ACDB22FF7C7BB006ED2CE /* cchmac_final.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDB12FF7C7BB006ED2CE /* cchmac_final.c */; };
+		F01ACDB32FF7C7BB006ED2CE /* cchmac_final.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDB12FF7C7BB006ED2CE /* cchmac_final.c */; };
+		F01ACDB52FF7C975006ED2CE /* cchmac.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDB42FF7C975006ED2CE /* cchmac.c */; };
+		F01ACDB62FF7C975006ED2CE /* cchmac.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDB42FF7C975006ED2CE /* cchmac.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,7 +207,7 @@
 		42D6AAD92FF2946200FAAD94 /* ccsha1_eay.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccsha1_eay.c; sourceTree = "<group>"; };
 		42D6AADA2FF2946200FAAD94 /* ccsha1_initial_state.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccsha1_initial_state.c; sourceTree = "<group>"; };
 		42D6AADB2FF2946200FAAD94 /* ccsha1_ltc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccsha1_ltc.c; sourceTree = "<group>"; };
-		42D6AADE2FF2946200FAAD94 /* Components.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = Components.cmake; sourceTree = "<group>"; };
+		42D6AADE2FF2946200FAAD94 /* components.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = components.cmake; sourceTree = "<group>"; };
 		42D6AAE02FF2946200FAAD94 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		42D6AB262FF296BB00FAAD94 /* corecrypto.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = corecrypto.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D6AB2F2FF296C300FAAD94 /* corecrypto.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = corecrypto.c; sourceTree = "<group>"; };
@@ -212,6 +218,9 @@
 		42D6AB762FF29D5E00FAAD94 /* register_crypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = register_crypto.h; sourceTree = "<group>"; };
 		42D6AB7B2FF32E8D00FAAD94 /* cchmac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cchmac.h; sourceTree = "<group>"; };
 		42D6AB7F2FF3373B00FAAD94 /* cchmac_init.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cchmac_init.c; sourceTree = "<group>"; };
+		F01ACDAE2FF7C778006ED2CE /* cchmac_update.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cchmac_update.c; sourceTree = "<group>"; };
+		F01ACDB12FF7C7BB006ED2CE /* cchmac_final.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cchmac_final.c; sourceTree = "<group>"; };
+		F01ACDB42FF7C975006ED2CE /* cchmac.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cchmac.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -549,7 +558,7 @@
 		42D6AADF2FF2946200FAAD94 /* cmake */ = {
 			isa = PBXGroup;
 			children = (
-				42D6AADE2FF2946200FAAD94 /* Components.cmake */,
+				42D6AADE2FF2946200FAAD94 /* components.cmake */,
 			);
 			path = cmake;
 			sourceTree = "<group>";
@@ -626,6 +635,9 @@
 			isa = PBXGroup;
 			children = (
 				42D6AB7F2FF3373B00FAAD94 /* cchmac_init.c */,
+				F01ACDAE2FF7C778006ED2CE /* cchmac_update.c */,
+				F01ACDB12FF7C7BB006ED2CE /* cchmac_final.c */,
+				F01ACDB42FF7C975006ED2CE /* cchmac.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -804,6 +816,7 @@
 				42D6AB0D2FF2965800FAAD94 /* ccmode_factory_cbc_encrypt.c in Sources */,
 				42D6AB0E2FF2965800FAAD94 /* ccmode_factory_cbc_decrypt.c in Sources */,
 				42D6AB0F2FF2965800FAAD94 /* cccbc_update.c in Sources */,
+				F01ACDB52FF7C975006ED2CE /* cchmac.c in Sources */,
 				42D6AB102FF2965800FAAD94 /* cccbc_block_size.c in Sources */,
 				42D6AB112FF2965800FAAD94 /* cccbc_init.c in Sources */,
 				42D6AB122FF2965800FAAD94 /* ccmode_cbc_encrypt.c in Sources */,
@@ -836,9 +849,11 @@
 				42D6AB1B2FF2966800FAAD94 /* ccsha1_ltc.c in Sources */,
 				42D6AB072FF2964200FAAD94 /* ccdigest_oid_lookup.c in Sources */,
 				42D6AB082FF2964200FAAD94 /* ccdigest_final_64be.c in Sources */,
+				F01ACDB22FF7C7BB006ED2CE /* cchmac_final.c in Sources */,
 				42D6AB092FF2964200FAAD94 /* ccdigest.c in Sources */,
 				42D6AB0A2FF2964200FAAD94 /* ccdigest_init.c in Sources */,
 				42D6AB802FF3373B00FAAD94 /* cchmac_init.c in Sources */,
+				F01ACDAF2FF7C778006ED2CE /* cchmac_update.c in Sources */,
 				42D6AB0B2FF2964200FAAD94 /* ccdigest_update.c in Sources */,
 				42D6AB0C2FF2964200FAAD94 /* ccdigest_final_64le.c in Sources */,
 			);
@@ -854,11 +869,13 @@
 				42D6AB392FF2981E00FAAD94 /* cc_copy.c in Sources */,
 				42D6AB3A2FF2981E00FAAD94 /* cc_cmp_safe.c in Sources */,
 				42D6AB532FF2987D00FAAD94 /* cccbc_one_shot.c in Sources */,
+				F01ACDB62FF7C975006ED2CE /* cchmac.c in Sources */,
 				42D6AB542FF2987D00FAAD94 /* ccmode_factory_cbc_decrypt.c in Sources */,
 				42D6AB552FF2987D00FAAD94 /* ccmode_cbc_init.c in Sources */,
 				42D6AB562FF2987D00FAAD94 /* ccmode_cbc_encrypt.c in Sources */,
 				42D6AB572FF2987D00FAAD94 /* ccecb_update.c in Sources */,
 				42D6AB582FF2987D00FAAD94 /* ccecb_one_shot.c in Sources */,
+				F01ACDB32FF7C7BB006ED2CE /* cchmac_final.c in Sources */,
 				42D6AB592FF2987D00FAAD94 /* ccmode_factory_cbc_encrypt.c in Sources */,
 				42D6AB812FF3373B00FAAD94 /* cchmac_init.c in Sources */,
 				42D6AB5A2FF2987D00FAAD94 /* cccbc_set_iv.c in Sources */,
@@ -877,6 +894,7 @@
 				42D6AB4D2FF2986200FAAD94 /* ccdigest_oid_lookup.c in Sources */,
 				42D6AB4E2FF2986200FAAD94 /* ccdigest_init.c in Sources */,
 				42D6AB4F2FF2986200FAAD94 /* ccdigest_update.c in Sources */,
+				F01ACDB02FF7C778006ED2CE /* cchmac_update.c in Sources */,
 				42D6AB502FF2986200FAAD94 /* ccdigest.c in Sources */,
 				42D6AB3B2FF2981E00FAAD94 /* cc_abort.c in Sources */,
 				42D6AB3E2FF2983B00FAAD94 /* ccaes_ltc_tab.c in Sources */,
@@ -955,7 +973,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1016,7 +1034,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = corecrypto;
@@ -1085,7 +1103,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				KEXT_FAMILY_NAME = corecrypto;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				MODULE_NAME = dev.neodarwin.kec.corecrypto;
 				MODULE_START = corecrypto_start;
@@ -1158,7 +1176,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				KEXT_FAMILY_NAME = corecrypto;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				MODULE_NAME = dev.neodarwin.kec.corecrypto;
 				MODULE_START = corecrypto_start;
