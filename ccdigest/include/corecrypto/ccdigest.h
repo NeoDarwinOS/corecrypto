@@ -85,7 +85,7 @@ struct ccdigest_info {
     const char *digest_impl_name;
 };
 
-#define ccdigest_di_size(di, name) ccdigest_ctx_size(di->state_size, di->block_size)
+#define ccdigest_di_size(di) ccdigest_ctx_size(di->state_size, di->block_size)
 #define ccdigest_di_decl(di, name) ccdigest_ctx_decl(di->state_size, di->block_size, name)
 #define ccdigest_di_clear(di, name) ccdigest_ctx_clear(di->state_size, di->block_size, name)
 
