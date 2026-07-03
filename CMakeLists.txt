@@ -11,7 +11,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
   add_library(microcrypto STATIC)
 endif()
 
-include(cmake/Components.cmake)
+include(cmake/components.cmake)
 
 foreach(component IN LISTS CORECRYPTO_SHARED_COMPONENTS)
   message("CoreCrypto: Enabling Component - ${component}")
