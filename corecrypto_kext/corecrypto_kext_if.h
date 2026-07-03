@@ -10,6 +10,7 @@
 #define __CORECRYPTO_KEXT_IF_H__
 
 #include <mach/mach_types.h>
+#include <corecrypto/cc_debug.h>
 
 #if defined (__has_include)
     #if __has_include(<libkern/crypto/register_crypto.h>)
@@ -20,6 +21,8 @@
 
 #ifndef __CC_KEXT_HAS_SYSTEM_HEADER__
     #define __CC_KEXT_HAS_SYSTEM_HEADER__ 0
+
+    #include <EXTERNAL_HEADERS/libkern/crypto/register_crypto.h>
 #endif
 
 #if !__CC_KEXT_HAS_SYSTEM_HEADER__

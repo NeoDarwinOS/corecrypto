@@ -12,9 +12,19 @@
 #include <corecrypto/cc.h>
 
 #if CORECRYPTO_DEBUG
-#define cc_debug_abort(cond, msg, code) if (!!(cond)) { cc_abort(msg); }
+    #define cc_debug_abort(cond, msg, code) if (!!(cond)) { cc_abort(msg); }
 #else
-#define cc_debug_abort(cond, msg, code) if (!!(cond)) { return code; }
+    #define cc_debug_abort(cond, msg, code) if (!!(cond)) { return code; }
+#endif
+
+#if CC_PLATFORM_XNU
+#include <pexpert/pexpert.h>
+
+#define cc_debug_log(fmt, x...) kprintf("corecrypto: " fmt "\n", #x)
+#else
+#include <stdlib.h>
+
+#define cc_debug_log(fmt, x...) printf("corecrypto: " fmt "\n", #x)
 #endif
 
 #endif /* __CORECRYPTO_CC_DEBUG_H__ */

@@ -67,7 +67,7 @@
 		42D6AB1E2FF2968A00FAAD94 /* ccasn1.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAA02FF2946200FAAD94 /* ccasn1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB1F2FF2969400FAAD94 /* ccoid_equal.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAA32FF2946200FAAD94 /* ccoid_equal.c */; };
 		42D6AB202FF2969400FAAD94 /* ccoid_size.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAA42FF2946200FAAD94 /* ccoid_size.c */; };
-		42D6AB322FF296C300FAAD94 /* corecrypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AB2F2FF296C300FAAD94 /* corecrypto.c */; };
+		42D6AB322FF296C300FAAD94 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AB2F2FF296C300FAAD94 /* main.c */; };
 		42D6AB342FF2981200FAAD94 /* cc_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AA832FF2946200FAAD94 /* cc_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB352FF2981200FAAD94 /* cc.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AA812FF2946200FAAD94 /* cc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB362FF2981200FAAD94 /* cc_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AA852FF2946200FAAD94 /* cc_error.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -210,7 +210,7 @@
 		42D6AADE2FF2946200FAAD94 /* components.cmake */ = {isa = PBXFileReference; lastKnownFileType = text; path = components.cmake; sourceTree = "<group>"; };
 		42D6AAE02FF2946200FAAD94 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		42D6AB262FF296BB00FAAD94 /* corecrypto.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = corecrypto.kext; sourceTree = BUILT_PRODUCTS_DIR; };
-		42D6AB2F2FF296C300FAAD94 /* corecrypto.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = corecrypto.c; sourceTree = "<group>"; };
+		42D6AB2F2FF296C300FAAD94 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		42D6AB302FF296C300FAAD94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D6AB6E2FF2992E00FAAD94 /* corecrypto_kext_if.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = corecrypto_kext_if.h; sourceTree = "<group>"; };
 		42D6AB732FF29CD500FAAD94 /* corecrypto_kext.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = corecrypto_kext.xcconfig; sourceTree = "<group>"; };
@@ -567,7 +567,7 @@
 			isa = PBXGroup;
 			children = (
 				42D6AB6E2FF2992E00FAAD94 /* corecrypto_kext_if.h */,
-				42D6AB2F2FF296C300FAAD94 /* corecrypto.c */,
+				42D6AB2F2FF296C300FAAD94 /* main.c */,
 				42D6AB302FF296C300FAAD94 /* Info.plist */,
 			);
 			path = corecrypto_kext;
@@ -863,7 +863,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D6AB322FF296C300FAAD94 /* corecrypto.c in Sources */,
+				42D6AB322FF296C300FAAD94 /* main.c in Sources */,
 				42D6AB372FF2981E00FAAD94 /* cc_clear.c in Sources */,
 				42D6AB382FF2981E00FAAD94 /* cc_xor.c in Sources */,
 				42D6AB392FF2981E00FAAD94 /* cc_copy.c in Sources */,

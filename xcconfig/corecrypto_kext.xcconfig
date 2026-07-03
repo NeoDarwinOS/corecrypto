@@ -9,4 +9,4 @@
 #include "corecrypto.xcconfig"
 
 // This is here for the future.
-// HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/EXTERNAL_HEADERS
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)

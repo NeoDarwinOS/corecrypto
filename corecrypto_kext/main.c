@@ -13,6 +13,8 @@ kern_return_t corecrypto_stop(kmod_info_t *ki, void *d);
 
 kern_return_t corecrypto_start(kmod_info_t * ki, void *d)
 {
+    cc_debug_log("kmod has been loaded, hello! :)");
+    
     return KERN_SUCCESS;
 }
 
