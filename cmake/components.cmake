@@ -6,6 +6,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
       ccaes
       ccasn1
       ccdigest
+      ccdrbg
+      cchmac
       ccmode
       ccn
       ccsha1
@@ -106,10 +108,36 @@ set(CORECRYPTO_ccaes_PUBLIC_HEADERS
     )
 
 set(CORECRYPTO_ccaes_SOURCES
+    gladman/aescrypt.c
+    gladman/aeskey.c
+    gladman/aestab.c
+    gladman/ccaes_gladman_cbc_decrypt.c
+    gladman/ccaes_gladman_cbc_encrypt.c
     ltc/ccaes_ltc_ecb_decrypt.c
     ltc/ccaes_ltc_ecb_encrypt.c
     ltc/ccaes_ltc_init.c
     ltc/ccaes_ltc_tab.c
+    ccaes_cbc_decrypt_mode.c
+    ccaes_cbc_encrypt_mode.c
     ccaes_ecb_decrypt_mode.c
     ccaes_ecb_encrypt_mode.c
-    )
+)
+
+set(CORECRYPTO_cchmac_PUBLIC_HEADERS
+    corecrypto/cchmac.h
+)
+
+set(CORECRYPTO_cchmac_SOURCES
+    cchmac.c
+    cchmac_final.c
+    cchmac_init.c
+    cchmac_update.c
+)
+
+set(CORECRYPTO_ccdrbg_PUBLIC_HEADERS
+    corecrypto/ccdrbg.h
+    corecrypto/ccdrbg_impl.h
+)
+
+set(CORECRYPTO_ccdrbg_SOURCES
+)

@@ -10,6 +10,15 @@
 #define __CORECRYPTO_CCN_H__
 
 #include <corecrypto/cc.h>
+#include <corecrypto/cc_memory.h>
+
+/*
+ * If we really want to be technical here, ccn is a component of yet another arbitrary precision integer implementation.
+ *
+ * A "unit" translates to the common term of "limb", and "n" is just the limb count.
+ *
+ * Anyways, said units are arranged in a least-significant to most significant in order.
+ */
 
 #define ccn_sizeof_n(n)         (sizeof(cc_unit) * (n))
 #define ccn_nof(bits)           (((bits) + CC_UNIT_BITS - 1) >> CC_LOG2_BITS_PER_UNIT)
@@ -33,5 +42,9 @@
         (ccn)[ _k >> CC_LOG2_BITS_PER_UNIT] &= ~(CC_UNIT_C(1) << (_k & (CC_UNIT_BITS - 1)));    \
     })
 
+/* Basic operations */
+
+CC_EXPORT
+cc_unit ccn_add(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t);
 
 #endif /* __CORECRYPTO_CCN_H__  */

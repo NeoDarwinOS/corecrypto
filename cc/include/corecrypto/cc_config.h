@@ -102,6 +102,10 @@
     #define CC_ENABLE_SAVE_REGISTERS_ASM    0
 #endif
 
+#if !defined (CC_ENABLE_HEAP_BACKED_WORKSPACES)
+#define CC_ENABLE_HEAP_BACKED_WORKSPACES  1
+#endif
+
 /* This is specific to a certain Darwin variant. I wonder which one that is. */
 #if defined(__has_include)
     #if __has_include(<System/i386/cpu_capabilities.h>)
