@@ -21,6 +21,7 @@ cc_error_t ccmode_cbc_decrypt(const cccbc_ctx *ctx, cccbc_iv *iv, size_t nblocks
     uint8_t buffer[CCMODE_MAX_BLOCK_SIZE];
 
     cc_debug_abort(CCMODE_MAX_BLOCK_SIZE < block_size, "ccmode_cbc_decrypt: block_size > CCMODE_MAX_BLOCK_SIZE", CCERR_PARAMETER);
+    cc_debug_client_abort((out == NULL || in == NULL), "ccmode_cbc_decrypt: null pointer alert", CCERR_PARAMETER);
 
     while (nblocks--) {
         err = ccecb_update(ecb, CCMODE_CBC_KEY_ECB_CTX(ctx), 1, _in, buffer);

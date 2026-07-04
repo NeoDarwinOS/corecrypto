@@ -14,7 +14,7 @@ cc_error_t ccmode_cbc_init(const struct ccmode_cbc *cbc, cccbc_ctx *ctx, size_t 
 {
     cc_error_t err = CCERR_OK;
     const struct ccmode_ecb *ecb = (const struct ccmode_ecb *)cbc->custom;
-    
+
     /* Now, this shouldn't be used by any SPI beyond ccmode_factory_xxx, but just in case... */
     cc_debug_abort(ecb == NULL, "ccmode_cbc_init: ecb field is null.", CCERR_PARAMETER);
 

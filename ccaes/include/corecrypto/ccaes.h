@@ -15,20 +15,33 @@ CC_BEGIN_DECLS
 
 #define CCAES_BLOCK_SIZE 16
 
+#define CCAES_KEY_SIZE_128 16
+#define CCAES_KEY_SIZE_192 24
+#define CCAES_KEY_SIZE_256 32
+
 /*
  * Available implementations
  */
-CC_EXPORT
-const struct ccmode_ecb ccaes_ltc_ecb_decrypt_mode;
+CC_EXPORT const struct ccmode_ecb ccaes_ltc_ecb_decrypt_mode;
+CC_EXPORT const struct ccmode_ecb ccaes_ltc_ecb_encrypt_mode;
 
-CC_EXPORT
-const struct ccmode_ecb ccaes_ltc_ecb_encrypt_mode;
+CC_EXPORT const struct ccmode_cbc ccaes_gladman_cbc_decrypt_mode;
+CC_EXPORT const struct ccmode_cbc ccaes_gladman_cbc_encrypt_mode;
 
+/*
+ * Runtime selectors go here.
+ */
 CC_EXPORT
 const struct ccmode_ecb *ccaes_ecb_decrypt_mode(void);
 
 CC_EXPORT
 const struct ccmode_ecb *ccaes_ecb_encrypt_mode(void);
+
+CC_EXPORT
+const struct ccmode_cbc *ccaes_cbc_decrypt_mode(void);
+
+CC_EXPORT
+const struct ccmode_cbc *ccaes_cbc_encrypt_mode(void);
 
 CC_END_DECLS
 

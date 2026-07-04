@@ -183,6 +183,8 @@ int ccaes_ecb_decrypt(const ccecb_ctx *ctx, size_t nblocks, const void *in, void
     const uint8_t *_ct = in;
     uint8_t *_pt = out;
 
+    cc_debug_client_abort((out == NULL || in == NULL), "ccaes_ecb_decrypt: null pointer alert", CCERR_PARAMETER);
+
     while (nblocks--) {
         ccaes_ltc_ecb_decrypt(_ct, _pt, ctx);
         _ct += CCAES_BLOCK_SIZE;
@@ -197,4 +199,6 @@ const struct ccmode_ecb ccaes_ltc_ecb_decrypt_mode = {
     .block_size = CCAES_BLOCK_SIZE,
     .init = &ccaes_ecb_decrypt_init,
     .ecb = &ccaes_ecb_decrypt,
+
+    .impl_name = "ltc",
 };

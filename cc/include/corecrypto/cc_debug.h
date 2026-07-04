@@ -11,10 +11,20 @@
 
 #include <corecrypto/cc.h>
 
+/*
+ *  FOR DEVELOPMENT: I'm going to be VERY careful with this library and force DEBUG builds to crash on ANY misuse of APIs.
+ *
+ *  DEBUG builds are for debugging after all.
+ */
+#define cc_internal_crash(cond, msg) if (!!(cond)) { cc_abort("BUG IN CORECRYPTO: " msg); }
+#define cc_client_crash(cond, msg) if (!!(cond)) { cc_abort("BUG IN CLIENT OF CORECRYPTO: " msg); }
+
 #if CORECRYPTO_DEBUG
-    #define cc_debug_abort(cond, msg, code) if (!!(cond)) { cc_abort(msg); }
+    #define cc_debug_abort(cond, msg, code) cc_internal_crash(cond, msg)
+    #define cc_debug_client_abort(cond, msg, code) cc_client_crash(cond, msg)
 #else
     #define cc_debug_abort(cond, msg, code) if (!!(cond)) { return code; }
+    #define cc_debug_client_abort(cond, msg, code) if (!!(cond)) { return code; }
 #endif
 
 #if CC_PLATFORM_XNU
@@ -22,7 +32,7 @@
 
 #define cc_debug_log(fmt, x...) kprintf("corecrypto: " fmt "\n", #x)
 #else
-#include <stdlib.h>
+#include <stdio.h>
 
 #define cc_debug_log(fmt, x...) printf("corecrypto: " fmt "\n", #x)
 #endif

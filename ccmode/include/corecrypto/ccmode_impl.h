@@ -51,14 +51,21 @@ cc_aligned_struct(16) ccecb_ctx;
 struct ccmode_ecb {
     size_t size;
     size_t block_size;
+
     cc_error_t (*init)(const struct ccmode_ecb *ecb,
                        ccecb_ctx *ctx,
                        size_t key_size,
                        const void *key);
-    cc_error_t (*ecb)(const ccecb_ctx *ctx,
-                      size_t nblocks,
-                      const void *in,
+
+    cc_error_t (*ecb)(const ccecb_ctx *ctx, size_t nblocks, const void *in,
                       void *out);
+
+    /* These fields are ones we really don't care about- they aren't used anywhere in Security or other frameworks. */
+    void *pad;
+    int pad2;
+
+    /* API NOTE: This is yet another extension */
+    const char *impl_name;
 };
 
 /*
@@ -79,10 +86,12 @@ cc_aligned_struct(16) cccbc_iv;
 struct ccmode_cbc {
     size_t size;
     size_t block_size;
+
     cc_error_t (*init)(const struct ccmode_cbc *cbc,
                        cccbc_ctx *ctx,
                        size_t key_size,
                        const void *key);
+
     cc_error_t (*cbc)(const cccbc_ctx *ctx,
                       cccbc_iv *iv,
                       size_t nblocks,
@@ -90,6 +99,9 @@ struct ccmode_cbc {
                       void *out);
 
     const void *custom;
+
+    /* API NOTE: This is yet another extension */
+    const char *impl_name;
 };
 
 CC_END_DECLS

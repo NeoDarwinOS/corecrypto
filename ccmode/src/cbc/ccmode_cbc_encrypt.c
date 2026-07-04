@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+#include <corecrypto/cc_debug.h>
 #include <corecrypto/cc_priv.h>
 #include <corecrypto/ccmode_internal.h>
 
@@ -17,6 +18,8 @@ cc_error_t ccmode_cbc_encrypt(const cccbc_ctx *ctx, cccbc_iv *iv, size_t nblocks
     uint8_t *_iv = (uint8_t *)iv;
     const uint8_t *_in = (const uint8_t *)in;
     uint8_t *_out = (uint8_t *)out;
+
+    cc_debug_client_abort((out == NULL || in == NULL), "ccmode_cbc_encrypt: null pointer alert", CCERR_PARAMETER);
 
     while (nblocks--) {
         cc_xor(block_size, _out, _in, _iv);
