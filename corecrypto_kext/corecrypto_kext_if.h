@@ -28,7 +28,7 @@
 #endif
 
 #if !__CC_KEXT_HAS_SYSTEM_HEADER__
-#warning Not using registration interface from SDK. This might be iffy.
+    #warning Not using registration interface from SDK. This might be iffy.
 #endif
 
 #endif /* __CORECRYPTO_KEXT_IF_H__ */

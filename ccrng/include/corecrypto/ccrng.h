@@ -11,6 +11,8 @@
 
 #include <corecrypto/cc.h>
 
+CC_BEGIN_DECLS
+
 struct ccrng_state {
     cc_error_t (*generate)(struct ccrng_state *rng,
                            size_t out_length,
@@ -22,5 +24,7 @@ struct ccrng_state *ccrng(cc_error_t *error);
 
 #define ccrng_generate(rng, out_length, out)                            \
     ((rng)->generate((struct ccrng_state *)(rng), (out_length), (out)))
+
+CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCRNG_H__  */

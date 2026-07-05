@@ -11,6 +11,8 @@
 
 #include <corecrypto/ccn.h>
 
+CC_BEGIN_DECLS
+
 typedef struct cczp *cczp_t;
 typedef const struct cczp *cczp_const_t;
 
@@ -23,5 +25,7 @@ struct cczp {
     cczp_funcs_t funcs;
     cc_unit u[];
 };
+
+CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCZP_H__  */

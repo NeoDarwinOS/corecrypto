@@ -11,6 +11,8 @@
 
 #include <corecrypto/cc.h>
 
+CC_BEGIN_DECLS
+
 cc_aligned_struct(16) ccrc4_ctx;
 
 #define ccrc4_ctx_decl(size, name) cc_ctx_decl(ccrc4_ctx, size, name)
@@ -28,5 +30,7 @@ struct ccrc4_info {
                   const void *in,
                   void *out);
 };
+
+CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCRC4_H__  */
