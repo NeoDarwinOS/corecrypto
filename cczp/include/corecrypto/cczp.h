@@ -20,6 +20,7 @@ typedef const struct cczp_funcs *cczp_funcs_t;
 struct cczp {
     cc_size n;
     cc_unit bitlen;
+    cczp_funcs_t funcs;
     cc_unit u[];
 };
 

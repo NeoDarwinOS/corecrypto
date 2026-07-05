@@ -12,6 +12,8 @@
 #include <corecrypto/cc.h>
 #include <corecrypto/cc_memory.h>
 
+CC_BEGIN_DECLS
+
 /*
  * If we really want to be technical here, ccn is a component of yet another arbitrary precision integer implementation.
  *
@@ -44,7 +46,22 @@
 
 /* Basic operations */
 
+/*!
+ * @function ccn_add
+ *
+ * @param   n   The number of units in both s and t
+ *
+ * @param   r   The result of the operation
+ *
+ * @param   s   First operand
+ *
+ * @param   t   Second operand
+ *
+ * @result  The returned cc_unit is the carry from the last add of cc_units
+ */
 CC_EXPORT
 cc_unit ccn_add(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t);
+
+CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCN_H__  */

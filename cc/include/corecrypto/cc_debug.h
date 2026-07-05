@@ -10,6 +10,7 @@
 #define __CORECRYPTO_CC_DEBUG_H__
 
 #include <corecrypto/cc.h>
+#include <corecrypto/cc_priv.h>
 
 /*
  *  FOR DEVELOPMENT: I'm going to be VERY careful with this library and force DEBUG builds to crash on ANY misuse of APIs.

@@ -38,7 +38,6 @@
 #include "aes.h"
 #include "aesopt.h"
 #include "aestab.h"
-#include <strings.h>
 
 /*	Produce object code iff UseGladmanAES is defined.  Otherwise, suppress
 	use of this module, because some other AES implementation is being used.
@@ -146,6 +145,9 @@ cc_error_t ccaes_gladman_encrypt(const cccbc_ctx *ctx, cccbc_iv *in_iv, size_t n
 #if defined( dec_fmvars )
     dec_fmvars; /* declare variables for fwd_mcol() if needed */
 #endif
+    
+    /* fix a compiler warning... */
+    b00 = 0; b01 = 0; b02=0; b03 = 0;
 
 #if defined( AES_ERR_CHK )
     if( cx->rn != 10 && cx->rn != 12 && cx->rn != 14 )
@@ -460,6 +462,8 @@ cc_error_t ccaes_gladman_decrypt(const cccbc_ctx *ctx, cccbc_iv *in_iv, size_t n
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
+    
+    return CCERR_OK;
 }
 
 #endif

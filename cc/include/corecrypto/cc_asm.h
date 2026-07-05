@@ -28,8 +28,8 @@
 #endif
 
 /*
-* TODO: Convenience macros for reg save/restore
-*/
+ * TODO: Convenience macros for reg save/restore
+ */
 
 #endif
 

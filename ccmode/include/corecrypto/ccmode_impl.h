@@ -104,6 +104,28 @@ struct ccmode_cbc {
     const char *impl_name;
 };
 
+/*
+ * CTR - 'Counter Mode'
+ *
+ * CTR mode is used for various auxiliary functions. PRNGs.
+ */
+cc_aligned_struct(16) ccctr_ctx;
+
+
+/*
+ * GCM - 'Galois Counter Mode'
+ *
+ * GCM is used as an all-encompassing AEAD for networking security.
+ */
+cc_aligned_struct(16) ccgcm_ctx;
+
+/*
+ * XTS - 'XEX Tweakable Block Ciphertext Stealing'
+ *
+ * XTS is THE full-disk encryption algorithm. I think we know why we need this.
+ */
+cc_aligned_struct(16) ccxts_ctx;
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCMODE_IMPL_H__ */

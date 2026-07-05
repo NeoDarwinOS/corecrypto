@@ -9,8 +9,10 @@
 #ifndef __CORECRYPTO_KEXT_IF_H__
 #define __CORECRYPTO_KEXT_IF_H__
 
-#include <mach/mach_types.h>
 #include <corecrypto/cc_debug.h>
+#include <corecrypto/ccaes.h>
+#include <corecrypto/ccsha1.h>
+#include <mach/mach_types.h>
 
 #if defined (__has_include)
     #if __has_include(<libkern/crypto/register_crypto.h>)
