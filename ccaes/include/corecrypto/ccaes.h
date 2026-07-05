@@ -13,11 +13,11 @@
 
 CC_BEGIN_DECLS
 
-#define CCAES_BLOCK_SIZE 16
+#define CCAES_BLOCK_SIZE    16
 
-#define CCAES_KEY_SIZE_128 16
-#define CCAES_KEY_SIZE_192 24
-#define CCAES_KEY_SIZE_256 32
+#define CCAES_KEY_SIZE_128  16
+#define CCAES_KEY_SIZE_192  24
+#define CCAES_KEY_SIZE_256  32
 
 /*
  * Available implementations
