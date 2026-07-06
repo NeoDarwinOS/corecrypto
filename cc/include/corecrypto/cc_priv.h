@@ -137,7 +137,7 @@ CC_INLINE uint32_t cc_ror(uint32_t w, int i)
 #endif
 
 /*
- * NOTE FOR THE FUTURE: arm64 has a built in ror instruction whic32h can be leveraged here.
+ * NOTE FOR THE FUTURE: arm64 has a built in ror instruction which can be leveraged here.
  */
 #if (CC_ARCH_X86_64 && CC_ENABLE_ASM)
 CC_INLINE uint64_t cc_rol64(uint64_t w, int i)
@@ -159,19 +159,19 @@ CC_INLINE uint64_t cc_ror64(uint64_t w, int i)
 }
 
 #define cc_rol64c(w, i) ({                      \
-    uint32_t _w = w;                            \
+    uint64_t _w = w;                            \
     __asm__ __volatile__ ("rolq %2,%0"          \
                          :"=r" (_w)             \
                          :"0" (_w),"i" (i));    \
-    _word;                                      \
+    _w;                                         \
 })
 
 #define cc_ror64c(w, i) ({                      \
-    uint32_t _w = w;                            \
+    uint64_t _w = w;                            \
     __asm__ __volatile__ ("rorq %2,%0"          \
                          :"=r" (_w)             \
                          :"0" (_w),"i" (i));    \
-    _word;                                      \
+    _w;                                         \
 })
 
 #else
@@ -291,14 +291,14 @@ CC_INLINE CC_CONST uint32_t cc_clz64(uint64_t w)
     } while(0)
 
 #define cc_load64_le(x, y) do {             \
-        x = (((uint8_t *)y)[7] << 56) |     \
-            (((uint8_t *)y)[6] << 48) |     \
-            (((uint8_t *)y)[5] << 40) |     \
-            (((uint8_t *)y)[4] << 32) |     \
-            (((uint8_t *)y)[3] << 24) |     \
-            (((uint8_t *)y)[2] << 16) |     \
-            (((uint8_t *)y)[1] << 8) |      \
-            (((uint8_t *)y)[0]);            \
+        x = ((uint64_t)(((uint8_t *)y)[7]) << 56) |     \
+            ((uint64_t)(((uint8_t *)y)[6]) << 48) |     \
+            ((uint64_t)(((uint8_t *)y)[5]) << 40) |     \
+            ((uint64_t)(((uint8_t *)y)[4]) << 32) |     \
+            ((uint64_t)(((uint8_t *)y)[3]) << 24) |     \
+            ((uint64_t)(((uint8_t *)y)[2]) << 16) |     \
+            ((uint64_t)(((uint8_t *)y)[1]) << 8) |      \
+            ((uint64_t)(((uint8_t *)y)[0]));            \
     } while(0)
 
 CC_PRIVATE

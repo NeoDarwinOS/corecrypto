@@ -5,12 +5,18 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
       cc
       ccaes
       ccasn1
+      ccchacha20poly1305
       ccdigest
       ccdrbg
       cchmac
       ccmode
       ccn
+      ccrc4
+      ccrng
+      ccrsa
       ccsha1
+      ccsha2
+      cczp
       )
   set(CORECRYPTO_STATIC_COMPONENTS cc;ccn;ccmode)
   set(CORECRYPTO_MICRO_COMPONENTS
@@ -140,4 +146,29 @@ set(CORECRYPTO_ccdrbg_PUBLIC_HEADERS
 )
 
 set(CORECRYPTO_ccdrbg_SOURCES
+)
+
+set(CORECRYPTO_ccsha2_PUBLIC_HEADERS
+    corecrypto/ccsha2.h
+)
+
+set(CORECRYPTO_ccsha2_SOURCES
+    ccsha2_selectors.c
+    ccsha224_initial_state.c
+    ccsha224_ltc_di.c
+    ccsha256_K.c
+    ccsha256_ltc_compress.c
+    ccsha256_initial_state.c
+    ccsha256_ltc_di.c
+    ccsha512_final.c
+    ccsha512_K.c
+    ccsha384_initial_state.c
+    ccsha384_ltc_di.c
+    ccsha512_224_initial_state.c
+    ccsha512_224_ltc_di.c
+    ccsha512_256_initial_state.c
+    ccsha512_256_ltc_di.c
+    ccsha512_ltc_compress.c
+    ccsha512_initial_state.c
+    ccsha512_ltc_di.c
 )

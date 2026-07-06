@@ -28,7 +28,7 @@
  *
  * Anyways, the bitshift right now works in bits. I need to reduce the bitshift size
  */
-#define CCDRBG_MAX_ENTROPY_SIZE             (1 << 30)
+#define CCDRBG_MAX_ENTROPY_SIZE             (1 << 19)
 #define CCDRBG_MAX_ADDITIONALINPUT_SIZE     (1 << 30)
 
 #endif /* __CORECRYPTO_CCDRBG_H__  */
