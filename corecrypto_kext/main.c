@@ -25,8 +25,8 @@ void cc_kernel_populate_registration(void)
     
     corecrypto_registration_if.cchmac_init_fn = &cchmac_init;
     corecrypto_registration_if.cchmac_update_fn = &cchmac_update;
-    corecrypto_registration_if.cchmac_final_fn = &cchmac_final;
-    corecrypto_registration_if.cchmac_fn = &cchmac;
+    corecrypto_registration_if.cchmac_final_fn = (cchmac_final_fn_t)&cchmac_final;
+    corecrypto_registration_if.cchmac_fn = (cchmac_fn_t)&cchmac;
     
     /* MISSING COMPONENTS: ccaes in ctr, xts and gcm */
     corecrypto_registration_if.ccaes_ecb_encrypt = ccaes_ecb_encrypt_mode();
