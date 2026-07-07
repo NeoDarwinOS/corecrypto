@@ -12,6 +12,7 @@
 #include <corecrypto/cc_debug.h>
 #include <corecrypto/ccaes.h>
 #include <corecrypto/ccsha1.h>
+#include <corecrypto/ccsha2.h>
 #include <mach/mach_types.h>
 
 #if defined (__has_include)

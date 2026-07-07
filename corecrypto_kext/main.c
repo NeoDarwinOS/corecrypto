@@ -20,8 +20,11 @@ void cc_kernel_populate_registration(void)
     corecrypto_registration_if.ccdigest_final_fn = &ccdigest_final;
     corecrypto_registration_if.ccdigest_fn = &ccdigest;
 
-    /* MISSING COMPONENTS: ccmd5, ccsha256, ccsha384, ccsha512 */
+    /* MISSING COMPONENTS: ccmd5 */
     corecrypto_registration_if.ccsha1_di = ccsha1_di();
+    corecrypto_registration_if.ccsha256_di = ccsha256_di();
+    corecrypto_registration_if.ccsha384_di = ccsha384_di();
+    corecrypto_registration_if.ccsha512_di = ccsha512_di();
     
     corecrypto_registration_if.cchmac_init_fn = &cchmac_init;
     corecrypto_registration_if.cchmac_update_fn = &cchmac_update;
