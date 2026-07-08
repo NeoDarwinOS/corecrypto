@@ -21,6 +21,19 @@ cc_error_t ccpost_aes_ecb_validate(void);
 
 #define cc_post_log(fmt, x...) kprintf("CCPOST: " fmt "\n", ##x)
 #define cc_post_func_log(fmt, x...) kprintf("CCPOST[" __FUNCTION__ "]: " fmt "\n", ##x)
+#define cc_post_func_hex_log(fmt, length, buffer) {     \
+        kprintf("CCPOST[%s]: " fmt "\n", __FUNCTION__); \
+        size_t len = length;                            \
+        size_t i = 0;                                   \
+        while (len--) {                                 \
+            kprintf("%02x ", buffer[i]);                \
+            i++;                                        \
+                                                        \
+            if ((len % 8) == 0) {                       \
+                kprintf("\n");                          \
+            }                                           \
+        }                                               \
+    }
 #else
 #include <stdio.h>
 
