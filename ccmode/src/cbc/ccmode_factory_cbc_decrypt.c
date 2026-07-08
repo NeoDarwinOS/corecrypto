@@ -18,4 +18,6 @@ void ccmode_factory_cbc_decrypt(struct ccmode_cbc *cbc, const struct ccmode_ecb 
     cbc->init = &ccmode_cbc_init;
     cbc->cbc = &ccmode_cbc_decrypt;
     cbc->custom = ecb;
+
+    cbc->impl_name = "factory";
 }

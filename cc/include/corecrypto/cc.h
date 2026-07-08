@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdarg.h>
+#include <string.h>
 
 #if CORECRYPTO_DEBUG
     #if CC_PLATFORM_XNU

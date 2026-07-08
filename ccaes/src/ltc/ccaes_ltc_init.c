@@ -69,10 +69,10 @@ static cc_error_t ccaes_ltc_init(const unsigned char *key, int keylen, int num_r
     /* setup the forward key */
     i                 = 0;
     rk                = skey->eK;
-    cc_load32_le(rk[0], key     );
-    cc_load32_le(rk[1], key +  4);
-    cc_load32_le(rk[2], key +  8);
-    cc_load32_le(rk[3], key + 12);
+    cc_load32_be(rk[0], key     );
+    cc_load32_be(rk[1], key +  4);
+    cc_load32_be(rk[2], key +  8);
+    cc_load32_be(rk[3], key + 12);
     if (keylen == 16) {
         j = 44;
         for (;;) {
@@ -88,8 +88,8 @@ static cc_error_t ccaes_ltc_init(const unsigned char *key, int keylen, int num_r
         }
     } else if (keylen == 24) {
         j = 52;
-        cc_load32_le(rk[4], key + 16);
-        cc_load32_le(rk[5], key + 20);
+        cc_load32_be(rk[4], key + 16);
+        cc_load32_be(rk[5], key + 20);
         for (;;) {
 #ifdef _MSC_VER
             temp = skey->eK[rk - skey->eK + 5];
@@ -109,10 +109,10 @@ static cc_error_t ccaes_ltc_init(const unsigned char *key, int keylen, int num_r
         }
     } else if (keylen == 32) {
         j = 60;
-        cc_load32_le(rk[4], key + 16);
-        cc_load32_le(rk[5], key + 20);
-        cc_load32_le(rk[6], key + 24);
-        cc_load32_le(rk[7], key + 28);
+        cc_load32_be(rk[4], key + 16);
+        cc_load32_be(rk[5], key + 20);
+        cc_load32_be(rk[6], key + 24);
+        cc_load32_be(rk[7], key + 28);
         for (;;) {
 #ifdef _MSC_VER
             temp = skey->eK[rk - skey->eK + 7];

@@ -273,10 +273,10 @@ CC_INLINE CC_CONST uint32_t cc_clz64(uint64_t w)
     } while(0)
 
 #define cc_load32_le(x, y) do {             \
-        x = (((uint8_t *)y)[3] << 24) |     \
-            (((uint8_t *)y)[2] << 16) |     \
-            (((uint8_t *)y)[1] << 8) |      \
-            (((uint8_t *)y)[0]);            \
+        x = ((uint32_t)(((uint8_t *)y)[3]) << 24) |     \
+            ((uint32_t)(((uint8_t *)y)[2]) << 16) |     \
+            ((uint32_t)(((uint8_t *)y)[1]) << 8) |      \
+            ((uint32_t)(((uint8_t *)y)[0]));            \
     } while(0)
 
 #define cc_store64_le(x, y) do {                                \

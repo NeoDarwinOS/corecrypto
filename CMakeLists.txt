@@ -34,3 +34,32 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     endforeach()
   endforeach()
 endif()
+
+add_library(corecrypto_test)
+
+target_link_libraries(corecrypto_test PRIVATE corecrypto)
+
+target_include_directories(corecrypto_test PRIVATE
+    ${CMAKE_SOURCE_DIR}/cc/include
+    ${CMAKE_SOURCE_DIR}/ccdigest/include
+    ${CMAKE_SOURCE_DIR}/ccmode/include
+    ${CMAKE_SOURCE_DIR}/cctest/include
+)
+
+target_sources(corecrypto_test PRIVATE
+    ${CMAKE_SOURCE_DIR}/cctest/src/cctest_base.c
+    ${CMAKE_SOURCE_DIR}/cctest/src/cctest_symmetric.c
+)
+
+add_executable(cc_boot_post)
+
+target_link_libraries(cc_boot_post PRIVATE corecrypto)
+
+target_include_directories(cc_boot_post PRIVATE
+    ${CMAKE_SOURCE_DIR}/cc/include
+    ${CMAKE_SOURCE_DIR}/ccpost/include
+)
+
+target_sources(cc_boot_post PRIVATE
+    ${CMAKE_SOURCE_DIR}/cc_boot_post/src/cc_boot_post.c
+)

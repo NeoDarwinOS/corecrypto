@@ -11,6 +11,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
       cchmac
       ccmode
       ccn
+      ccpost
       ccrc4
       ccrng
       ccrsa
@@ -24,6 +25,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
       ccasn1
       ccdigest
       ccsha1
+      ccsha2
       )
   message("CoreCrypto: Using Linux configuration for build.")
 endif()
@@ -171,4 +173,13 @@ set(CORECRYPTO_ccsha2_SOURCES
     ccsha512_ltc_compress.c
     ccsha512_initial_state.c
     ccsha512_ltc_di.c
+)
+
+set(CORECRYPTO_ccpost_PUBLIC_HEADERS
+    corecrypto/ccpost.h
+)
+
+set(CORECRYPTO_ccpost_SOURCES
+    ccpost_aes_ecb_validate.c
+    ccpost_validate.c
 )

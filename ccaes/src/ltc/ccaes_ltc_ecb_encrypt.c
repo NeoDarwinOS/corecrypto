@@ -36,12 +36,12 @@ cc_error_t ccaes_ltc_ecb_encrypt(const unsigned char *pt, unsigned char *ct, con
      * map byte array block to cipher state
      * and add initial round key:
      */
-    cc_load32_le(s0, pt      ); s0 ^= rk[0];
-    cc_load32_le(s1, pt  +  4); s1 ^= rk[1];
-    cc_load32_le(s2, pt  +  8); s2 ^= rk[2];
-    cc_load32_le(s3, pt  + 12); s3 ^= rk[3];
+    cc_load32_be(s0, pt      ); s0 ^= rk[0];
+    cc_load32_be(s1, pt  +  4); s1 ^= rk[1];
+    cc_load32_be(s2, pt  +  8); s2 ^= rk[2];
+    cc_load32_be(s3, pt  + 12); s3 ^= rk[3];
 
-#ifdef LTC_SMALL_CODE
+#if CC_SMALL_CODE
 
     for (r = 0; ; r++) {
         rk += 4;
@@ -83,12 +83,7 @@ cc_error_t ccaes_ltc_ecb_encrypt(const unsigned char *pt, unsigned char *ct, con
      */
     r = Nr >> 1;
     for (;;) {
-        t0 =
-        Te0(cc_byte(s0, 3)) ^
-        Te1(cc_byte(s1, 2)) ^
-        Te2(cc_byte(s2, 1)) ^
-        Te3(cc_byte(s3, 0)) ^
-        rk[4];
+        t0 = Te0(cc_byte(s0, 3)) ^ Te1(cc_byte(s1, 2)) ^ Te2(cc_byte(s2, 1)) ^ Te3(cc_byte(s3, 0)) ^ rk[4];
         t1 =
         Te0(cc_byte(s1, 3)) ^
         Te1(cc_byte(s2, 2)) ^
@@ -151,28 +146,28 @@ cc_error_t ccaes_ltc_ecb_encrypt(const unsigned char *pt, unsigned char *ct, con
     (Te4_1[cc_byte(t2, 1)]) ^
     (Te4_0[cc_byte(t3, 0)]) ^
     rk[0];
-    cc_store32_le(s0, ct);
+    cc_store32_be(s0, ct);
     s1 =
     (Te4_3[cc_byte(t1, 3)]) ^
     (Te4_2[cc_byte(t2, 2)]) ^
     (Te4_1[cc_byte(t3, 1)]) ^
     (Te4_0[cc_byte(t0, 0)]) ^
     rk[1];
-    cc_store32_le(s1, ct+4);
+    cc_store32_be(s1, ct+4);
     s2 =
     (Te4_3[cc_byte(t2, 3)]) ^
     (Te4_2[cc_byte(t3, 2)]) ^
     (Te4_1[cc_byte(t0, 1)]) ^
     (Te4_0[cc_byte(t1, 0)]) ^
     rk[2];
-    cc_store32_le(s2, ct+8);
+    cc_store32_be(s2, ct+8);
     s3 =
     (Te4_3[cc_byte(t3, 3)]) ^
     (Te4_2[cc_byte(t0, 2)]) ^
     (Te4_1[cc_byte(t1, 1)]) ^
     (Te4_0[cc_byte(t2, 0)]) ^
     rk[3];
-    cc_store32_le(s3, ct+12);
+    cc_store32_be(s3, ct+12);
 
     return CCERR_OK;
 }

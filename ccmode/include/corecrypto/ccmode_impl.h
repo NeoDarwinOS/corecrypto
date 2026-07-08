@@ -105,6 +105,16 @@ struct ccmode_cbc {
 };
 
 /*
+ * CFB - 'Cipher Feedback Mode'
+ *
+ *
+ */
+
+/*
+ * OFB - 'Output Feedback Mode'
+ */
+
+/*
  * CTR - 'Counter Mode'
  *
  * CTR mode is used for various auxiliary functions. PRNGs.

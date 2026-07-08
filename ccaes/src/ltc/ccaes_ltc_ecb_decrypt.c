@@ -36,10 +36,10 @@ cc_error_t ccaes_ltc_ecb_decrypt(const unsigned char *ct, unsigned char *pt, con
      * map byte array block to cipher state
      * and add initial round key:
      */
-    cc_load32_le(s0, ct      ); s0 ^= rk[0];
-    cc_load32_le(s1, ct  +  4); s1 ^= rk[1];
-    cc_load32_le(s2, ct  +  8); s2 ^= rk[2];
-    cc_load32_le(s3, ct  + 12); s3 ^= rk[3];
+    cc_load32_be(s0, ct      ); s0 ^= rk[0];
+    cc_load32_be(s1, ct  +  4); s1 ^= rk[1];
+    cc_load32_be(s2, ct  +  8); s2 ^= rk[2];
+    cc_load32_be(s3, ct  + 12); s3 ^= rk[3];
 
 #if CC_SMALL_CODE
     for (r = 0; ; r++) {
@@ -151,28 +151,28 @@ cc_error_t ccaes_ltc_ecb_decrypt(const unsigned char *ct, unsigned char *pt, con
     (Td4[cc_byte(t2, 1)] & 0x0000ff00) ^
     (Td4[cc_byte(t1, 0)] & 0x000000ff) ^
     rk[0];
-    cc_store32_le(s0, pt);
+    cc_store32_be(s0, pt);
     s1 =
     (Td4[cc_byte(t1, 3)] & 0xff000000) ^
     (Td4[cc_byte(t0, 2)] & 0x00ff0000) ^
     (Td4[cc_byte(t3, 1)] & 0x0000ff00) ^
     (Td4[cc_byte(t2, 0)] & 0x000000ff) ^
     rk[1];
-    cc_store32_le(s1, pt+4);
+    cc_store32_be(s1, pt+4);
     s2 =
     (Td4[cc_byte(t2, 3)] & 0xff000000) ^
     (Td4[cc_byte(t1, 2)] & 0x00ff0000) ^
     (Td4[cc_byte(t0, 1)] & 0x0000ff00) ^
     (Td4[cc_byte(t3, 0)] & 0x000000ff) ^
     rk[2];
-    cc_store32_le(s2, pt+8);
+    cc_store32_be(s2, pt+8);
     s3 =
     (Td4[cc_byte(t3, 3)] & 0xff000000) ^
     (Td4[cc_byte(t2, 2)] & 0x00ff0000) ^
     (Td4[cc_byte(t1, 1)] & 0x0000ff00) ^
     (Td4[cc_byte(t0, 0)] & 0x000000ff) ^
     rk[3];
-    cc_store32_le(s3, pt+12);
+    cc_store32_be(s3, pt+12);
 
     return CCERR_OK;
 }
