@@ -11,6 +11,7 @@
 
 #include <corecrypto/cc_debug.h>
 #include <corecrypto/ccaes.h>
+#include <corecrypto/ccmd5.h>
 #include <corecrypto/ccpost.h>
 #include <corecrypto/ccsha1.h>
 #include <corecrypto/ccsha2.h>
