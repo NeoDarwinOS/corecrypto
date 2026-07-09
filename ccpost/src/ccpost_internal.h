@@ -16,13 +16,16 @@
 CC_PRIVATE
 cc_error_t ccpost_aes_ecb_validate(void);
 
+CC_PRIVATE
+cc_error_t ccpost_aes_cbc_validate(void);
+
 #if CC_PLATFORM_XNU
 #include <pexpert/pexpert.h>
 
 #define cc_post_log(fmt, x...) kprintf("CCPOST: " fmt "\n", ##x)
-#define cc_post_func_log(fmt, x...) kprintf("CCPOST[" __FUNCTION__ "]: " fmt "\n", ##x)
+#define cc_post_func_log(fmt, x...) kprintf("CCPOST [%s]: " fmt "\n", __FUNCTION__, ##x)
 #define cc_post_func_hex_log(fmt, length, buffer) {     \
-        kprintf("CCPOST[%s]: " fmt "\n", __FUNCTION__); \
+        kprintf("CCPOST [%s]: " fmt "\n", __FUNCTION__);\
         size_t len = length;                            \
         size_t i = 0;                                   \
         while (len--) {                                 \
@@ -39,10 +42,10 @@ cc_error_t ccpost_aes_ecb_validate(void);
 
 #define cc_post_log(fmt, x...) printf("CCPOST: " fmt "\n", ##x)
 
-#define cc_post_func_log(fmt, x...) printf("CCPOST[%s]: " fmt "\n", __FUNCTION__, ##x)
+#define cc_post_func_log(fmt, x...) printf("CCPOST [%s]: " fmt "\n", __FUNCTION__, ##x)
 
 #define cc_post_func_hex_log(fmt, length, buffer) {     \
-        printf("CCPOST[%s]: " fmt "\n", __FUNCTION__);  \
+        printf("CCPOST [%s]: " fmt "\n", __FUNCTION__); \
         size_t len = length;                            \
         size_t i = 0;                                   \
         while (len--) {                                 \
