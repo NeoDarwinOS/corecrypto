@@ -145,7 +145,7 @@ cc_error_t ccaes_gladman_encrypt(const cccbc_ctx *ctx, cccbc_iv *in_iv, size_t n
 #if defined( dec_fmvars )
     dec_fmvars; /* declare variables for fwd_mcol() if needed */
 #endif
-    
+
     /* fix a compiler warning... */
     b00 = 0; b01 = 0; b02=0; b03 = 0;
 
@@ -335,7 +335,7 @@ cc_error_t ccaes_gladman_decrypt(const cccbc_ctx *ctx, cccbc_iv *in_iv, size_t n
 	dtables(t_il);
 #endif
 	int cbcEnable = (cx->cbcEnable || in_iv) ? 1 : 0;
-	unsigned char lastIv[AES_BLOCK_SIZE];
+	uint8_t lastIv[AES_BLOCK_SIZE];
 
 	/* fix a compiler warning... */
 	b00 = 0; b01 = 0; b02=0; b03 = 0;
@@ -462,7 +462,7 @@ cc_error_t ccaes_gladman_decrypt(const cccbc_ctx *ctx, cccbc_iv *in_iv, size_t n
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
-    
+
     return CCERR_OK;
 }
 

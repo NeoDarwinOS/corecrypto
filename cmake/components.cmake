@@ -180,6 +180,7 @@ set(CORECRYPTO_ccpost_PUBLIC_HEADERS
 )
 
 set(CORECRYPTO_ccpost_SOURCES
+    ccpost_aes_cbc_validate.c
     ccpost_aes_ecb_validate.c
     ccpost_validate.c
 )

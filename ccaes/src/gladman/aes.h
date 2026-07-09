@@ -105,14 +105,12 @@ extern "C"
 typedef struct
 {   aes_32t ks[KS_LENGTH];
     aes_32t rn;
-	uint8_t chainBuf[AES_BLOCK_SIZE];
 	aes_32t cbcEnable;
 } ccaes_gladman_encrypt_ctx;
 
 typedef struct
 {   aes_32t ks[KS_LENGTH];
     aes_32t rn;
-	uint8_t chainBuf[AES_BLOCK_SIZE];
 	aes_32t cbcEnable;
 } ccaes_gladman_decrypt_ctx;
 

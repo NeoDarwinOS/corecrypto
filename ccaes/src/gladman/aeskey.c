@@ -124,10 +124,6 @@ aes_rval ccaes_gladman_encrypt_key128(const unsigned char *key, ccaes_gladman_en
 #endif
     kel4(cx->ks, 9);
     cx->rn = 10;
-	#if CC_AES_USE_HARDWARE
-	bcopy(key, cx->keyBytes, 16);
-	cx->keyLength = 16;
-	#endif
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
@@ -162,10 +158,6 @@ aes_rval ccaes_gladman_encrypt_key192(const unsigned char *key, ccaes_gladman_en
 #endif
     kel6(cx->ks, 7);
     cx->rn = 12;
-	#if CC_AES_USE_HARDWARE
-	bcopy(key, cx->keyBytes, 24);
-	cx->keyLength = 24;
-	#endif
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
@@ -201,10 +193,6 @@ aes_rval ccaes_gladman_encrypt_key256(const unsigned char *key, ccaes_gladman_en
 #endif
     kel8(cx->ks, 6);
     cx->rn = 14;
-	#if CC_AES_USE_HARDWARE
-	bcopy(key, cx->keyBytes, 32);
-	cx->keyLength = 32;
-	#endif
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
@@ -355,10 +343,6 @@ aes_rval ccaes_gladman_decrypt_key128(const unsigned char *key, ccaes_gladman_de
      kd4(cx->ks, 8); kdl4(cx->ks, 9);
 #endif
     cx->rn = 10;
-	#if CC_AES_USE_HARDWARE
-	bcopy(key, cx->keyBytes, 16);
-	cx->keyLength = 16;
-	#endif
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
@@ -401,10 +385,6 @@ aes_rval ccaes_gladman_decrypt_key192(const unsigned char *key, ccaes_gladman_de
     kd6(cx->ks, 6); kdl6(cx->ks, 7);
 #endif
     cx->rn = 12;
-	#if CC_AES_USE_HARDWARE
-	bcopy(key, cx->keyBytes, 24);
-	cx->keyLength = 24;
-	#endif
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
@@ -452,10 +432,6 @@ aes_rval ccaes_gladman_decrypt_key256(const unsigned char *key, ccaes_gladman_de
     kdl8(cx->ks, 6);
 #endif
     cx->rn = 14;
-	#if CC_AES_USE_HARDWARE
-	bcopy(key, cx->keyBytes, 32);
-	cx->keyLength = 32;
-	#endif
 #if defined( AES_ERR_CHK )
     return aes_good;
 #endif
