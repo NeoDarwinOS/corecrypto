@@ -9,7 +9,7 @@
 #include "ccpost_internal.h"
 
 #define CCPOST_RUN_FUNCTION(x) ({            \
-        cc_post_log(#x " ENTER");            \
+        cc_post_log(#x " BEGIN");            \
         cc_error_t err = x();               \
         if (err) {                          \
             cc_post_log(#x " FAIL");         \
