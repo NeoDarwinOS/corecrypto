@@ -25,20 +25,18 @@ static uint8_t aes_256_iv[] = "\x85\x1e\x87\x64\x77\x6e\x67\x96\xaa\xb7\x22\xdb\
 static uint8_t aes_256_plaintext[] = "\x62\x82\xb8\xc0\x5c\x5c\x15\x30\xb9\x7d\x48\x16\xca\x43\x47\x62";
 static uint8_t aes_256_ciphertext[] = "\x6a\xcc\x04\x14\x2e\x10\x0a\x65\xf5\x1b\x97\xad\xf5\x17\x2c\x41";
 
-static uint8_t output[16];
-
 cc_error_t ccpost_aes_cbc_validate_encrypt(void)
 {
-    cc_clear(CCAES_BLOCK_SIZE, output);
+    uint8_t output[16];
 
     /* Run AES-128 validation */
     cc_post_func_log("AES-128 encrypt validation enter");
-    if (cccbc_one_shot(ccaes_cbc_encrypt_mode(), CCAES_KEY_SIZE_128, &aes_128_key, 1, &aes_128_iv, &aes_128_plaintext, output) != CCERR_OK) {
+    if (cccbc_one_shot(ccaes_cbc_encrypt_mode(), CCAES_KEY_SIZE_128, aes_128_key, 1, aes_128_iv, aes_128_plaintext, output) != CCERR_OK) {
         return CCERR_INTEGRITY;
     }
 
     if (cc_cmp_safe(CCAES_BLOCK_SIZE, aes_128_ciphertext, output) != 0) {
-        cc_post_func_hex_log("output", CCAES_BLOCK_SIZE, output);
+        cc_post_func_hex_log("output", CCAES_BLOCK_SIZE, (&output[0]));
         return CCERR_INTEGRITY;
     }
 
