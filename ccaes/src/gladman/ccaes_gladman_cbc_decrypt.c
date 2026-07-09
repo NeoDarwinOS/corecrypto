@@ -23,7 +23,7 @@ cc_error_t ccaes_gladman_cbc_decrypt_init(const struct ccmode_cbc *cbc,
         key_size != CCAES_KEY_SIZE_256) {
         cc_debug_client_abort(1, "ccaes_gladman_cbc_decrypt_init: bad key length", CCERR_PARAMETER);
     } else {
-        ccaes_gladman_decrypt_key(key, key_size, cx);
+        ccaes_gladman_decrypt_key(key, (int)key_size, cx);
         cx->cbcEnable = 1;
         return CCERR_OK;
     }

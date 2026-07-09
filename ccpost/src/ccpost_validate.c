@@ -25,7 +25,6 @@
 cc_error_t ccpost_validate(void)
 {
     cc_error_t err = CCERR_OK;
-    size_t nfails;
     cc_post_log("BEGINNING PREFLIGHT TESTS.");
 
     err = CCPOST_RUN_FUNCTION(ccpost_aes_ecb_validate);

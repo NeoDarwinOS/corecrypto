@@ -101,7 +101,7 @@ cc_error_t ccpost_aes_ecb_validate_decrypt(void)
 
 cc_error_t ccpost_aes_ecb_validate(void)
 {
-    cc_error_t res;
+    cc_error_t res = CCERR_OK;
 
     res |= ccpost_aes_ecb_validate_encrypt();
     res |= ccpost_aes_ecb_validate_decrypt();
