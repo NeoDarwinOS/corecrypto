@@ -34,4 +34,21 @@
     #warning Not using registration interface from SDK. This might be iffy.
 #endif
 
+#if defined (__has_include)
+    #if __has_include(<prng/random.h>)
+        #include <prng/random.h>
+        #define __CC_KEXT_HAS_SYSTEM_PRNG__   1
+    #endif
+#endif // defined (__has_include)
+
+#ifndef __CC_KEXT_HAS_SYSTEM_PRNG__
+    #define __CC_KEXT_HAS_SYSTEM_PRNG__ 0
+
+    #include <EXTERNAL_HEADERS/prng/random.h>
+#endif
+
+#if !__CC_KEXT_HAS_SYSTEM_PRNG__
+    #warning Not using PRNG registration interface from SDK. This might be iffy.
+#endif
+
 #endif /* __CORECRYPTO_KEXT_IF_H__ */

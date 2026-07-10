@@ -338,7 +338,7 @@ cc_error_t ccaes_gladman_decrypt(const cccbc_ctx *ctx, cccbc_iv *in_iv, size_t n
 	uint8_t lastIv[AES_BLOCK_SIZE];
 
 	/* fix a compiler warning... */
-	b00 = 0; b01 = 0; b02=0; b03 = 0;
+	// b00 = 0; b01 = 0; b02=0; b03 = 0;
 
 #if defined( dec_imvars )
     dec_imvars; /* declare variables for inv_mcol() if needed */

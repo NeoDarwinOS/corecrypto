@@ -10,3 +10,4 @@
 
 // This is here for the future.
 HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)
+HEADER_SEARCH_PATHS = $(HEADER_SEARCH_PATHS) $(SRCROOT)/cckprng/include
