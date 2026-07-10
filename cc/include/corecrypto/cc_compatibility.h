@@ -16,23 +16,23 @@
 #endif
 
 #if !defined(__MAC_10_15)
-#define __MAC_10_15 101500
+    #define __MAC_10_15 101500
 #endif
 
 #if !defined(__MAC_11_0)
-#define __MAC_11_0 110000
+    #define __MAC_11_0 110000
 #endif
 
 #if !defined(__MAC_12_0)
-#define __MAC_12_0 120000
+    #define __MAC_12_0 120000
 #endif
 
 #if !defined(__MAC_13_0)
-#define __MAC_13_0 130000
+    #define __MAC_13_0 130000
 #endif
 
 #if !defined (__MAC_OS_X_VERSION_MIN_REQUIRED)
-#define __MAC_OS_X_VERSION_MIN_REQUIRED __MAC_10_15
+    #define __MAC_OS_X_VERSION_MIN_REQUIRED __MAC_10_15
 #endif
 
 #if __MAC_OS_X_VERSION_MIN_REQUIRED == __MAC_10_15
@@ -59,6 +59,6 @@
     #define __CC_COMPATIBILITY_DARWIN_22 0
 #endif
 
-#define CC_COMPATIBILITY_TARGETS(x) (__CC_COMPATIBILITY_x == 1)
+#define CC_COMPATIBILITY_TARGETS(x) (__CC_COMPATIBILITY_##x == 1)
 
 #endif /* __CORECRYPTO_CC_COMPATIBILITY_H__ */
