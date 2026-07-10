@@ -69,6 +69,16 @@ set(CORECRYPTO_ccmode_SOURCES
     cbc/ccmode_cbc_init.c
     cbc/ccmode_factory_cbc_decrypt.c
     cbc/ccmode_factory_cbc_encrypt.c
+    ctr/ccctr_block_size.c
+    ctr/ccctr_context_size.c
+    ctr/ccctr_init.c
+    ctr/ccctr_one_shot.c
+    ctr/ccctr_setctr.c
+    ctr/ccctr_update.c
+    ctr/ccmode_ctr_crypt.c
+    ctr/ccmode_ctr_init.c
+    ctr/ccmode_ctr_setctr.c
+    ctr/ccmode_factory_ctr_crypt.c
     ecb/ccecb_block_size.c
     ecb/ccecb_context_size.c
     ecb/ccecb_init.c

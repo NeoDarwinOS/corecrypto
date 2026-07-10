@@ -121,6 +121,30 @@ struct ccmode_cbc {
  */
 cc_aligned_struct(16) ccctr_ctx;
 
+struct ccmode_ctr {
+    size_t size;
+    size_t block_size;
+    size_t ecb_block_size;
+
+    cc_error_t (*init)(const struct ccmode_ctr *ctr,
+                       ccctr_ctx *ctx,
+                       size_t key_size,
+                       const void *key,
+                       const void *iv);
+
+    cc_error_t (*setctr)(const struct ccmode_ctr *ctr,
+                         ccctr_ctx *ctx,
+                         const void *counter);
+
+    cc_error_t (*ctr)(ccctr_ctx *ctx,
+                      size_t nbytes,
+                      const void *in,
+                      void *out);
+
+    const void *custom;
+
+    const char *impl_name;
+};
 
 /*
  * GCM - 'Galois Counter Mode'

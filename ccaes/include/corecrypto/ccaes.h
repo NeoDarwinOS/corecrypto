@@ -43,6 +43,9 @@ const struct ccmode_cbc *ccaes_cbc_decrypt_mode(void);
 CC_EXPORT
 const struct ccmode_cbc *ccaes_cbc_encrypt_mode(void);
 
+CC_EXPORT
+const struct ccmode_ctr *ccaes_ctr_crypt_mode(void);
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCAES_H__  */

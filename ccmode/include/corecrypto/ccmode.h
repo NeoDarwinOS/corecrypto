@@ -96,6 +96,43 @@ cc_error_t cccbc_one_shot(const struct ccmode_cbc *cbc,
                           const void *in,
                           void *out);
 
+#define ccctr_ctx_decl(size, name) cc_ctx_decl(ccctr_ctx, size, name)
+#define ccctr_ctx_clear(size, name) cc_clear(size, name)
+
+CC_EXPORT
+size_t ccctr_context_size(const struct ccmode_ctr *ctr);
+
+CC_EXPORT
+size_t ccctr_block_size(const struct ccmode_ctr *ctr);
+
+CC_EXPORT
+cc_error_t ccctr_init(const struct ccmode_ctr *ctr,
+                      ccctr_ctx *ctx,
+                      size_t key_size,
+                      const void *key,
+                      const void *iv);
+
+CC_EXPORT
+cc_error_t ccctr_setctr(const struct ccmode_ctr *ctr,
+                        ccctr_ctx *ctx,
+                        const void *counter);
+
+CC_EXPORT
+cc_error_t ccctr_update(const struct ccmode_ctr *ctr,
+                        ccctr_ctx *ctx,
+                        size_t nbytes,
+                        const void *in,
+                        void *out);
+
+CC_EXPORT
+cc_error_t ccctr_one_shot(const struct ccmode_ctr *ctr,
+                          size_t key_length,
+                          const void *key,
+                          const void *iv,
+                          size_t nbytes,
+                          const void *in,
+                          void *out);
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCMODE_H__ */

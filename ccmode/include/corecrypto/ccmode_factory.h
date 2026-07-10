@@ -19,6 +19,9 @@ void ccmode_factory_cbc_decrypt(struct ccmode_cbc *cbc,
 void ccmode_factory_cbc_encrypt(struct ccmode_cbc *cbc,
                                 const struct ccmode_ecb *ecb);
 
+void ccmode_factory_ctr_crypt(struct ccmode_ctr *cbc,
+                              const struct ccmode_ecb *ecb);
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCMODE_FACTORY_H__ */
