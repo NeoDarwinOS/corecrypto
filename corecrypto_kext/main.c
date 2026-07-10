@@ -10,7 +10,7 @@
 
 static struct crypto_functions corecrypto_registration_if;
 
-kern_return_t corecrypto_start(kmod_info_t * ki, void *d);
+kern_return_t corecrypto_start(kmod_info_t *ki, void *d);
 kern_return_t corecrypto_stop(kmod_info_t *ki, void *d);
 
 void cc_kernel_populate_registration(void)
@@ -31,11 +31,12 @@ void cc_kernel_populate_registration(void)
     corecrypto_registration_if.cchmac_final_fn = (cchmac_final_fn_t)&cchmac_final;
     corecrypto_registration_if.cchmac_fn = (cchmac_fn_t)&cchmac;
 
-    /* MISSING COMPONENTS: ccaes in ctr, xts and gcm */
+    /* MISSING COMPONENTS: ccaes in xts and gcm */
     corecrypto_registration_if.ccaes_ecb_encrypt = ccaes_ecb_encrypt_mode();
     corecrypto_registration_if.ccaes_ecb_decrypt = ccaes_ecb_decrypt_mode();
     corecrypto_registration_if.ccaes_cbc_encrypt = ccaes_cbc_encrypt_mode();
     corecrypto_registration_if.ccaes_cbc_decrypt = ccaes_cbc_encrypt_mode();
+    corecrypto_registration_if.ccaes_ctr_crypt = ccaes_ctr_crypt_mode();
 
     /* MISSING COMPONENTS: ccgcm_[init_with_iv, inc_iv ]  */
 

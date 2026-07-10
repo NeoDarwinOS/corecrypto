@@ -177,6 +177,42 @@
 		F0005759300063A6000B3598 /* cc_compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = F0005757300062FB000B3598 /* cc_compatibility.h */; };
 		F000575B3000640B000B3598 /* cckprng.c in Sources */ = {isa = PBXBuildFile; fileRef = F000575A3000640B000B3598 /* cckprng.c */; };
 		F000576130006F62000B3598 /* fortuna_init.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576030006F62000B3598 /* fortuna_init.c */; };
+		F000576F3000DA1B000B3598 /* ccctr_init.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057653000DA1B000B3598 /* ccctr_init.c */; };
+		F00057703000DA1B000B3598 /* ccctr_init.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057653000DA1B000B3598 /* ccctr_init.c */; };
+		F00057713000DA1B000B3598 /* ccctr_block_size.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057663000DA1B000B3598 /* ccctr_block_size.c */; };
+		F00057723000DA1B000B3598 /* ccctr_block_size.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057663000DA1B000B3598 /* ccctr_block_size.c */; };
+		F00057733000DA1B000B3598 /* ccmode_ctr_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057673000DA1B000B3598 /* ccmode_ctr_crypt.c */; };
+		F00057743000DA1B000B3598 /* ccmode_ctr_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057673000DA1B000B3598 /* ccmode_ctr_crypt.c */; };
+		F00057753000DA1B000B3598 /* ccmode_factory_ctr_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057683000DA1B000B3598 /* ccmode_factory_ctr_crypt.c */; };
+		F00057763000DA1B000B3598 /* ccmode_factory_ctr_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057683000DA1B000B3598 /* ccmode_factory_ctr_crypt.c */; };
+		F00057773000DA1B000B3598 /* ccmode_ctr_setctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057693000DA1B000B3598 /* ccmode_ctr_setctr.c */; };
+		F00057783000DA1B000B3598 /* ccmode_ctr_setctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057693000DA1B000B3598 /* ccmode_ctr_setctr.c */; };
+		F00057793000DA1B000B3598 /* ccctr_setctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576A3000DA1B000B3598 /* ccctr_setctr.c */; };
+		F000577A3000DA1B000B3598 /* ccctr_setctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576A3000DA1B000B3598 /* ccctr_setctr.c */; };
+		F000577B3000DA1B000B3598 /* ccctr_update.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576B3000DA1B000B3598 /* ccctr_update.c */; };
+		F000577C3000DA1B000B3598 /* ccctr_update.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576B3000DA1B000B3598 /* ccctr_update.c */; };
+		F000577D3000DA1B000B3598 /* ccctr_context_size.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576C3000DA1B000B3598 /* ccctr_context_size.c */; };
+		F000577E3000DA1B000B3598 /* ccctr_context_size.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576C3000DA1B000B3598 /* ccctr_context_size.c */; };
+		F000577F3000DA1B000B3598 /* ccmode_ctr_init.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576D3000DA1B000B3598 /* ccmode_ctr_init.c */; };
+		F00057803000DA1B000B3598 /* ccmode_ctr_init.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576D3000DA1B000B3598 /* ccmode_ctr_init.c */; };
+		F00057813000DA1B000B3598 /* ccctr_one_shot.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576E3000DA1B000B3598 /* ccctr_one_shot.c */; };
+		F00057823000DA1B000B3598 /* ccctr_one_shot.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576E3000DA1B000B3598 /* ccctr_one_shot.c */; };
+		F00057843000DA34000B3598 /* ccaes_ctr_crypt_mode.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057833000DA34000B3598 /* ccaes_ctr_crypt_mode.c */; };
+		F00057853000DA34000B3598 /* ccaes_ctr_crypt_mode.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057833000DA34000B3598 /* ccaes_ctr_crypt_mode.c */; };
+		F00057863000DA34000B3598 /* ccaes_ctr_crypt_mode.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057833000DA34000B3598 /* ccaes_ctr_crypt_mode.c */; };
+		F00057873000DA48000B3598 /* ccctr_init.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057653000DA1B000B3598 /* ccctr_init.c */; };
+		F00057883000DA48000B3598 /* ccctr_block_size.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057663000DA1B000B3598 /* ccctr_block_size.c */; };
+		F00057893000DA48000B3598 /* ccmode_ctr_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057673000DA1B000B3598 /* ccmode_ctr_crypt.c */; };
+		F000578A3000DA48000B3598 /* ccmode_factory_ctr_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057683000DA1B000B3598 /* ccmode_factory_ctr_crypt.c */; };
+		F000578B3000DA48000B3598 /* ccmode_ctr_setctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057693000DA1B000B3598 /* ccmode_ctr_setctr.c */; };
+		F000578C3000DA48000B3598 /* ccctr_setctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576A3000DA1B000B3598 /* ccctr_setctr.c */; };
+		F000578D3000DA48000B3598 /* ccctr_update.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576B3000DA1B000B3598 /* ccctr_update.c */; };
+		F000578E3000DA48000B3598 /* ccctr_context_size.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576C3000DA1B000B3598 /* ccctr_context_size.c */; };
+		F000578F3000DA48000B3598 /* ccmode_ctr_init.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576D3000DA1B000B3598 /* ccmode_ctr_init.c */; };
+		F00057903000DA48000B3598 /* ccctr_one_shot.c in Sources */ = {isa = PBXBuildFile; fileRef = F000576E3000DA1B000B3598 /* ccctr_one_shot.c */; };
+		F00057923000DA79000B3598 /* ccpost_aes_ctr_validate.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057913000DA79000B3598 /* ccpost_aes_ctr_validate.c */; };
+		F00057933000DA79000B3598 /* ccpost_aes_ctr_validate.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057913000DA79000B3598 /* ccpost_aes_ctr_validate.c */; };
+		F00057943000DA79000B3598 /* ccpost_aes_ctr_validate.c in Sources */ = {isa = PBXBuildFile; fileRef = F00057913000DA79000B3598 /* ccpost_aes_ctr_validate.c */; };
 		F01ACDAF2FF7C778006ED2CE /* cchmac_update.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDAE2FF7C778006ED2CE /* cchmac_update.c */; };
 		F01ACDB02FF7C778006ED2CE /* cchmac_update.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDAE2FF7C778006ED2CE /* cchmac_update.c */; };
 		F01ACDB22FF7C7BB006ED2CE /* cchmac_final.c in Sources */ = {isa = PBXBuildFile; fileRef = F01ACDB12FF7C7BB006ED2CE /* cchmac_final.c */; };
@@ -439,6 +475,18 @@
 		F0005757300062FB000B3598 /* cc_compatibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cc_compatibility.h; sourceTree = "<group>"; };
 		F000575A3000640B000B3598 /* cckprng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cckprng.c; sourceTree = "<group>"; };
 		F000576030006F62000B3598 /* fortuna_init.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fortuna_init.c; sourceTree = "<group>"; };
+		F00057653000DA1B000B3598 /* ccctr_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccctr_init.c; sourceTree = "<group>"; };
+		F00057663000DA1B000B3598 /* ccctr_block_size.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccctr_block_size.c; sourceTree = "<group>"; };
+		F00057673000DA1B000B3598 /* ccmode_ctr_crypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccmode_ctr_crypt.c; sourceTree = "<group>"; };
+		F00057683000DA1B000B3598 /* ccmode_factory_ctr_crypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccmode_factory_ctr_crypt.c; sourceTree = "<group>"; };
+		F00057693000DA1B000B3598 /* ccmode_ctr_setctr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccmode_ctr_setctr.c; sourceTree = "<group>"; };
+		F000576A3000DA1B000B3598 /* ccctr_setctr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccctr_setctr.c; sourceTree = "<group>"; };
+		F000576B3000DA1B000B3598 /* ccctr_update.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccctr_update.c; sourceTree = "<group>"; };
+		F000576C3000DA1B000B3598 /* ccctr_context_size.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccctr_context_size.c; sourceTree = "<group>"; };
+		F000576D3000DA1B000B3598 /* ccmode_ctr_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccmode_ctr_init.c; sourceTree = "<group>"; };
+		F000576E3000DA1B000B3598 /* ccctr_one_shot.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccctr_one_shot.c; sourceTree = "<group>"; };
+		F00057833000DA34000B3598 /* ccaes_ctr_crypt_mode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccaes_ctr_crypt_mode.c; sourceTree = "<group>"; };
+		F00057913000DA79000B3598 /* ccpost_aes_ctr_validate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccpost_aes_ctr_validate.c; sourceTree = "<group>"; };
 		F01ACDAE2FF7C778006ED2CE /* cchmac_update.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cchmac_update.c; sourceTree = "<group>"; };
 		F01ACDB12FF7C7BB006ED2CE /* cchmac_final.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cchmac_final.c; sourceTree = "<group>"; };
 		F01ACDB42FF7C975006ED2CE /* cchmac.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cchmac.c; sourceTree = "<group>"; };
@@ -658,6 +706,7 @@
 				42D6AA9B2FF2946200FAAD94 /* ltc */,
 				F01ACDFC2FF9D1B0006ED2CE /* ccaes_cbc_decrypt_mode.c */,
 				F01ACDFB2FF9D1B0006ED2CE /* ccaes_cbc_encrypt_mode.c */,
+				F00057833000DA34000B3598 /* ccaes_ctr_crypt_mode.c */,
 				42D6AA9C2FF2946200FAAD94 /* ccaes_ecb_decrypt_mode.c */,
 				42D6AA9D2FF2946200FAAD94 /* ccaes_ecb_encrypt_mode.c */,
 			);
@@ -802,6 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				42D6AAC72FF2946200FAAD94 /* cbc */,
+				F00057643000DA1B000B3598 /* ctr */,
 				42D6AACD2FF2946200FAAD94 /* ecb */,
 			);
 			path = src;
@@ -1007,6 +1057,23 @@
 			path = backends;
 			sourceTree = "<group>";
 		};
+		F00057643000DA1B000B3598 /* ctr */ = {
+			isa = PBXGroup;
+			children = (
+				F00057663000DA1B000B3598 /* ccctr_block_size.c */,
+				F000576C3000DA1B000B3598 /* ccctr_context_size.c */,
+				F00057653000DA1B000B3598 /* ccctr_init.c */,
+				F000576E3000DA1B000B3598 /* ccctr_one_shot.c */,
+				F000576A3000DA1B000B3598 /* ccctr_setctr.c */,
+				F000576B3000DA1B000B3598 /* ccctr_update.c */,
+				F00057673000DA1B000B3598 /* ccmode_ctr_crypt.c */,
+				F000576D3000DA1B000B3598 /* ccmode_ctr_init.c */,
+				F00057693000DA1B000B3598 /* ccmode_ctr_setctr.c */,
+				F00057683000DA1B000B3598 /* ccmode_factory_ctr_crypt.c */,
+			);
+			path = ctr;
+			sourceTree = "<group>";
+		};
 		F01ACDC72FF9CA2C006ED2CE /* cczp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1204,6 +1271,7 @@
 			isa = PBXGroup;
 			children = (
 				F01ACE3B2FFF6053006ED2CE /* ccpost_aes_cbc_validate.c */,
+				F00057913000DA79000B3598 /* ccpost_aes_ctr_validate.c */,
 				F01ACE3A2FFF6053006ED2CE /* ccpost_aes_ecb_validate.c */,
 				F01ACE3C2FFF6053006ED2CE /* ccpost_internal.h */,
 				F01ACE3D2FFF6053006ED2CE /* ccpost_validate.c */,
@@ -1554,6 +1622,7 @@
 				42583B062FFCD317000B167B /* ccsha512_224_ltc_di.c in Sources */,
 				42583B072FFCD317000B167B /* ccsha512_256_initial_state.c in Sources */,
 				42583B082FFCD317000B167B /* ccsha256_K.c in Sources */,
+				F000577B3000DA1B000B3598 /* ccctr_update.c in Sources */,
 				42583B092FFCD317000B167B /* ccsha512_final.c in Sources */,
 				42583B0A2FFCD317000B167B /* ccsha224_ltc_di.c in Sources */,
 				42583B0B2FFCD317000B167B /* ccsha512_224_initial_state.c in Sources */,
@@ -1563,10 +1632,14 @@
 				42D6AB102FF2965800FAAD94 /* cccbc_block_size.c in Sources */,
 				42D6AB112FF2965800FAAD94 /* cccbc_init.c in Sources */,
 				42D6AB122FF2965800FAAD94 /* ccmode_cbc_encrypt.c in Sources */,
+				F00057773000DA1B000B3598 /* ccmode_ctr_setctr.c in Sources */,
+				F00057843000DA34000B3598 /* ccaes_ctr_crypt_mode.c in Sources */,
 				F01ACDF72FF9D1A6006ED2CE /* aestab.c in Sources */,
+				F00057793000DA1B000B3598 /* ccctr_setctr.c in Sources */,
 				42D6AB132FF2965800FAAD94 /* ccmode_cbc_init.c in Sources */,
 				42D6AB142FF2965800FAAD94 /* cccbc_context_size.c in Sources */,
 				42D6AB152FF2965800FAAD94 /* cccbc_one_shot.c in Sources */,
+				F000576F3000DA1B000B3598 /* ccctr_init.c in Sources */,
 				42D6AB162FF2965800FAAD94 /* cccbc_set_iv.c in Sources */,
 				42D6AB172FF2965800FAAD94 /* ccmode_cbc_decrypt.c in Sources */,
 				42D6AAF62FF2960E00FAAD94 /* cc_xor.c in Sources */,
@@ -1574,17 +1647,20 @@
 				F01ACDEB2FF9D1A6006ED2CE /* aeskey.c in Sources */,
 				42D6AAF82FF2960E00FAAD94 /* cc_try_abort.c in Sources */,
 				F01ACDF92FF9D1A6006ED2CE /* ccaes_gladman_cbc_decrypt.c in Sources */,
+				F000577F3000DA1B000B3598 /* ccmode_ctr_init.c in Sources */,
 				42D6AAF92FF2960E00FAAD94 /* cc_abort.c in Sources */,
 				F01ACDFF2FF9D1B0006ED2CE /* ccaes_cbc_decrypt_mode.c in Sources */,
 				42D6AAFA2FF2960E00FAAD94 /* cc_cmp_safe.c in Sources */,
 				42D6AAFB2FF2960E00FAAD94 /* cc_clear.c in Sources */,
 				42D6AAEB2FF2954500FAAD94 /* ccecb_context_size.c in Sources */,
+				F00057813000DA1B000B3598 /* ccctr_one_shot.c in Sources */,
 				42D6AAFC2FF2961D00FAAD94 /* ccaes_ltc_ecb_decrypt.c in Sources */,
 				42D6AAFD2FF2961D00FAAD94 /* ccaes_ecb_encrypt_mode.c in Sources */,
 				F01ACDED2FF9D1A6006ED2CE /* ccaes_gladman_cbc_encrypt.c in Sources */,
 				42D6AAFE2FF2961D00FAAD94 /* ccaes_ltc_init.c in Sources */,
 				42D6AB1F2FF2969400FAAD94 /* ccoid_equal.c in Sources */,
 				42D6AB202FF2969400FAAD94 /* ccoid_size.c in Sources */,
+				F00057753000DA1B000B3598 /* ccmode_factory_ctr_crypt.c in Sources */,
 				42D6AAFF2FF2961D00FAAD94 /* ccaes_ltc_ecb_encrypt.c in Sources */,
 				42D6AB002FF2961D00FAAD94 /* ccaes_ltc_tab.c in Sources */,
 				42D6AB012FF2961D00FAAD94 /* ccaes_ecb_decrypt_mode.c in Sources */,
@@ -1593,6 +1669,7 @@
 				42D6AB052FF2964200FAAD94 /* ccdigest_final.c in Sources */,
 				42D6AB062FF2964200FAAD94 /* ccdigest_oid_equal.c in Sources */,
 				42D6AB182FF2966800FAAD94 /* ccsha1_di.c in Sources */,
+				F000577D3000DA1B000B3598 /* ccctr_context_size.c in Sources */,
 				42D6AB192FF2966800FAAD94 /* ccsha1_eay.c in Sources */,
 				42D6AB1A2FF2966800FAAD94 /* ccsha1_initial_state.c in Sources */,
 				42D6AB1B2FF2966800FAAD94 /* ccsha1_ltc.c in Sources */,
@@ -1600,12 +1677,15 @@
 				42D6AB082FF2964200FAAD94 /* ccdigest_final_64be.c in Sources */,
 				F01ACE462FFF6053006ED2CE /* ccpost_validate.c in Sources */,
 				F01ACDB22FF7C7BB006ED2CE /* cchmac_final.c in Sources */,
+				F00057923000DA79000B3598 /* ccpost_aes_ctr_validate.c in Sources */,
+				F00057733000DA1B000B3598 /* ccmode_ctr_crypt.c in Sources */,
 				42D6AB092FF2964200FAAD94 /* ccdigest.c in Sources */,
 				42D6AB0A2FF2964200FAAD94 /* ccdigest_init.c in Sources */,
 				F01ACDFD2FF9D1B0006ED2CE /* ccaes_cbc_encrypt_mode.c in Sources */,
 				42D6AB802FF3373B00FAAD94 /* cchmac_init.c in Sources */,
 				F01ACDAF2FF7C778006ED2CE /* cchmac_update.c in Sources */,
 				42D6AB0B2FF2964200FAAD94 /* ccdigest_update.c in Sources */,
+				F00057713000DA1B000B3598 /* ccctr_block_size.c in Sources */,
 				42D6AB0C2FF2964200FAAD94 /* ccdigest_final_64le.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1630,12 +1710,15 @@
 				42583B182FFCD317000B167B /* ccsha512_224_ltc_di.c in Sources */,
 				42583B192FFCD317000B167B /* ccsha512_256_initial_state.c in Sources */,
 				42583B1A2FFCD317000B167B /* ccsha256_K.c in Sources */,
+				F00057803000DA1B000B3598 /* ccmode_ctr_init.c in Sources */,
 				42583B1B2FFCD317000B167B /* ccsha512_final.c in Sources */,
 				42583B1C2FFCD317000B167B /* ccsha224_ltc_di.c in Sources */,
 				42583B1D2FFCD317000B167B /* ccsha512_224_initial_state.c in Sources */,
 				42583B1E2FFCD317000B167B /* ccsha2_selectors.c in Sources */,
+				F000577A3000DA1B000B3598 /* ccctr_setctr.c in Sources */,
 				42583B1F2FFCD317000B167B /* ccsha512_initial_state.c in Sources */,
 				42583B202FFCD317000B167B /* ccsha256_ltc_compress.c in Sources */,
+				F00057853000DA34000B3598 /* ccaes_ctr_crypt_mode.c in Sources */,
 				F01ACE652FFF65C4006ED2CE /* ccmd5_di.c in Sources */,
 				42D6AB382FF2981E00FAAD94 /* cc_xor.c in Sources */,
 				42D6AB392FF2981E00FAAD94 /* cc_copy.c in Sources */,
@@ -1655,18 +1738,24 @@
 				42D6AB592FF2987D00FAAD94 /* ccmode_factory_cbc_encrypt.c in Sources */,
 				42D6AB812FF3373B00FAAD94 /* cchmac_init.c in Sources */,
 				42D6AB5A2FF2987D00FAAD94 /* cccbc_set_iv.c in Sources */,
+				F000577E3000DA1B000B3598 /* ccctr_context_size.c in Sources */,
 				42D6AB5B2FF2987D00FAAD94 /* ccecb_init.c in Sources */,
 				42D6AB5C2FF2987D00FAAD94 /* cccbc_init.c in Sources */,
 				F01ACDF22FF9D1A6006ED2CE /* aescrypt.c in Sources */,
 				42D6AB5D2FF2987D00FAAD94 /* cccbc_context_size.c in Sources */,
 				42D6AB5E2FF2987D00FAAD94 /* cccbc_block_size.c in Sources */,
+				F00057703000DA1B000B3598 /* ccctr_init.c in Sources */,
 				42D6AB5F2FF2987D00FAAD94 /* cccbc_update.c in Sources */,
 				F01ACE432FFF6053006ED2CE /* ccpost_aes_cbc_validate.c in Sources */,
 				42D6AB602FF2987D00FAAD94 /* ccecb_block_size.c in Sources */,
 				42D6AB612FF2987D00FAAD94 /* ccmode_cbc_decrypt.c in Sources */,
+				F00057933000DA79000B3598 /* ccpost_aes_ctr_validate.c in Sources */,
+				F00057823000DA1B000B3598 /* ccctr_one_shot.c in Sources */,
 				42D6AB622FF2987D00FAAD94 /* ccecb_context_size.c in Sources */,
 				F01ACDF82FF9D1A6006ED2CE /* aestab.c in Sources */,
+				F000577C3000DA1B000B3598 /* ccctr_update.c in Sources */,
 				42D6AB492FF2986200FAAD94 /* ccdigest_final_64le.c in Sources */,
+				F00057723000DA1B000B3598 /* ccctr_block_size.c in Sources */,
 				42D6AB4A2FF2986200FAAD94 /* ccdigest_final.c in Sources */,
 				42D6AB4B2FF2986200FAAD94 /* ccdigest_final_64be.c in Sources */,
 				F01ACDEC2FF9D1A6006ED2CE /* aeskey.c in Sources */,
@@ -1674,6 +1763,7 @@
 				42D6AB4D2FF2986200FAAD94 /* ccdigest_oid_lookup.c in Sources */,
 				F01ACE472FFF6053006ED2CE /* ccpost_validate.c in Sources */,
 				42D6AB4E2FF2986200FAAD94 /* ccdigest_init.c in Sources */,
+				F00057763000DA1B000B3598 /* ccmode_factory_ctr_crypt.c in Sources */,
 				42D6AB4F2FF2986200FAAD94 /* ccdigest_update.c in Sources */,
 				F01ACDB02FF7C778006ED2CE /* cchmac_update.c in Sources */,
 				F01ACDEE2FF9D1A6006ED2CE /* ccaes_gladman_cbc_encrypt.c in Sources */,
@@ -1694,6 +1784,8 @@
 				F01ACE002FF9D1B0006ED2CE /* ccaes_cbc_decrypt_mode.c in Sources */,
 				42D6AB6B2FF298E400FAAD94 /* ccsha1_ltc.c in Sources */,
 				42D6AB3C2FF2981E00FAAD94 /* cc_try_abort.c in Sources */,
+				F00057743000DA1B000B3598 /* ccmode_ctr_crypt.c in Sources */,
+				F00057783000DA1B000B3598 /* ccmode_ctr_setctr.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1715,8 +1807,10 @@
 				F01ACEA62FFF688D006ED2CE /* ccsha1_di.c in Sources */,
 				F01ACEB72FFF688D006ED2CE /* ccsha512_final.c in Sources */,
 				F01ACE792FFF688D006ED2CE /* ccaes_gladman_cbc_encrypt.c in Sources */,
+				F00057883000DA48000B3598 /* ccctr_block_size.c in Sources */,
 				F01ACEB42FFF688D006ED2CE /* ccsha512_224_ltc_di.c in Sources */,
 				F01ACE712FFF688D006ED2CE /* cc_cmp_safe.c in Sources */,
+				F000578D3000DA48000B3598 /* ccctr_update.c in Sources */,
 				F01ACEBB2FFF688E006ED2CE /* ccsha512_ltc_di.c in Sources */,
 				F01ACE952FFF688D006ED2CE /* cccbc_one_shot.c in Sources */,
 				F01ACEB92FFF688E006ED2CE /* ccsha512_K.c in Sources */,
@@ -1731,12 +1825,14 @@
 				F01ACE9D2FFF688D006ED2CE /* ccecb_block_size.c in Sources */,
 				F01ACE9F2FFF688D006ED2CE /* ccecb_init.c in Sources */,
 				F01ACE8C2FFF688D006ED2CE /* cchmac_init.c in Sources */,
+				F000578B3000DA48000B3598 /* ccmode_ctr_setctr.c in Sources */,
 				F01ACE8E2FFF688D006ED2CE /* cchmac_final.c in Sources */,
 				F01ACE942FFF688D006ED2CE /* cccbc_init.c in Sources */,
 				F01ACEA52FFF688D006ED2CE /* ccpost_validate.c in Sources */,
 				F01ACEAA2FFF688D006ED2CE /* ccsha2_selectors.c in Sources */,
 				F01ACE8D2FFF688D006ED2CE /* cchmac_update.c in Sources */,
 				F01ACEB52FFF688D006ED2CE /* ccsha512_256_initial_state.c in Sources */,
+				F000578C3000DA48000B3598 /* ccctr_setctr.c in Sources */,
 				F01ACEA32FFF688D006ED2CE /* ccpost_aes_ecb_validate.c in Sources */,
 				F01ACE812FFF688D006ED2CE /* ccaes_ecb_encrypt_mode.c in Sources */,
 				F01ACEAB2FFF688D006ED2CE /* ccsha224_initial_state.c in Sources */,
@@ -1746,6 +1842,8 @@
 				F01ACE7C2FFF688D006ED2CE /* ccaes_ltc_init.c in Sources */,
 				F01ACE822FFF688D006ED2CE /* ccoid_equal.c in Sources */,
 				F01ACE782FFF688D006ED2CE /* ccaes_gladman_cbc_decrypt.c in Sources */,
+				F00057863000DA34000B3598 /* ccaes_ctr_crypt_mode.c in Sources */,
+				F000578F3000DA48000B3598 /* ccmode_ctr_init.c in Sources */,
 				F01ACEA72FFF688D006ED2CE /* ccsha1_eay.c in Sources */,
 				F01ACE9E2FFF688D006ED2CE /* ccecb_context_size.c in Sources */,
 				F01ACEB82FFF688D006ED2CE /* ccsha512_initial_state.c in Sources */,
@@ -1757,6 +1855,7 @@
 				F01ACE7D2FFF688D006ED2CE /* ccaes_ltc_tab.c in Sources */,
 				F01ACE962FFF688D006ED2CE /* cccbc_set_iv.c in Sources */,
 				F01ACE862FFF688D006ED2CE /* ccdigest_final_64be.c in Sources */,
+				F00057873000DA48000B3598 /* ccctr_init.c in Sources */,
 				F01ACE9C2FFF688D006ED2CE /* ccmode_factory_cbc_encrypt.c in Sources */,
 				F01ACEAE2FFF688D006ED2CE /* ccsha256_K.c in Sources */,
 				F01ACE982FFF688D006ED2CE /* ccmode_cbc_decrypt.c in Sources */,
@@ -1771,13 +1870,17 @@
 				F01ACE702FFF688D006ED2CE /* cc_clear.c in Sources */,
 				F01ACE8B2FFF688D006ED2CE /* ccdigest_update.c in Sources */,
 				F01ACEA82FFF688D006ED2CE /* ccsha1_initial_state.c in Sources */,
+				F000578E3000DA48000B3598 /* ccctr_context_size.c in Sources */,
 				F01ACEAC2FFF688D006ED2CE /* ccsha224_ltc_di.c in Sources */,
 				F01ACE7B2FFF688D006ED2CE /* ccaes_ltc_ecb_encrypt.c in Sources */,
 				F01ACE7E2FFF688D006ED2CE /* ccaes_cbc_decrypt_mode.c in Sources */,
 				F01ACE7F2FFF688D006ED2CE /* ccaes_cbc_encrypt_mode.c in Sources */,
+				F00057893000DA48000B3598 /* ccmode_ctr_crypt.c in Sources */,
+				F000578A3000DA48000B3598 /* ccmode_factory_ctr_crypt.c in Sources */,
 				F01ACE752FFF688D006ED2CE /* aescrypt.c in Sources */,
 				F01ACE8F2FFF688D006ED2CE /* cchmac.c in Sources */,
 				F01ACE882FFF688D006ED2CE /* ccdigest_init.c in Sources */,
+				F00057943000DA79000B3598 /* ccpost_aes_ctr_validate.c in Sources */,
 				F01ACE872FFF688D006ED2CE /* ccdigest_final_64le.c in Sources */,
 				F01ACEA92FFF688D006ED2CE /* ccsha1_ltc.c in Sources */,
 				F01ACEB62FFF688D006ED2CE /* ccsha512_256_ltc_di.c in Sources */,
@@ -1785,6 +1888,7 @@
 				F01ACE742FFF688D006ED2CE /* cc_xor.c in Sources */,
 				F01ACEA12FFF688D006ED2CE /* ccecb_update.c in Sources */,
 				F01ACEA22FFF688D006ED2CE /* ccn_add.c in Sources */,
+				F00057903000DA48000B3598 /* ccctr_one_shot.c in Sources */,
 				F01ACE852FFF688D006ED2CE /* ccdigest_final.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,7 +22,7 @@ cc_error_t ccmode_ctr_crypt(ccctr_ctx *ctx, size_t nbytes, const void *in, void 
             ccecb_update(CCMODE_CTR_KEY_ECB(ctx), CCMODE_CTR_KEY_ECB_CTX(ctx), 1, CCMODE_CTR_KEY_COUNTER(ctx), _pad);
             CCMODE_CTR_KEY_PAD_LENGTH(ctx) = 0;
 
-            inc_uint_be((CCMODE_CTR_KEY_COUNTER(ctx) + (block_size - ctr_size)), ctr_size);
+            inc_uint_be((_counter + (block_size - ctr_size)), ctr_size);
         }
 
         *_out++ = *_in++ ^ _pad[CCMODE_CTR_KEY_PAD_LENGTH(ctx)++];
