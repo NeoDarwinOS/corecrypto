@@ -19,6 +19,9 @@ cc_error_t ccpost_aes_ecb_validate(void);
 CC_PRIVATE
 cc_error_t ccpost_aes_cbc_validate(void);
 
+CC_PRIVATE
+cc_error_t ccpost_aes_ctr_validate(void);
+
 #if CC_PLATFORM_XNU
 #include <pexpert/pexpert.h>
 

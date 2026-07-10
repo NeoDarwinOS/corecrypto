@@ -29,6 +29,7 @@ cc_error_t ccpost_validate(void)
 
     err = CCPOST_RUN_FUNCTION(ccpost_aes_ecb_validate);
     err = CCPOST_RUN_FUNCTION(ccpost_aes_cbc_validate);
+    err = CCPOST_RUN_FUNCTION(ccpost_aes_ctr_validate);
 
     if (err == CCERR_OK) {
         cc_post_log("ALL TESTS PASS");

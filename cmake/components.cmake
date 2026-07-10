@@ -9,6 +9,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
       ccdigest
       ccdrbg
       cchmac
+      cckprng
+      ccmd5
       ccmode
       ccn
       ccpost
@@ -137,6 +139,7 @@ set(CORECRYPTO_ccaes_SOURCES
     ltc/ccaes_ltc_tab.c
     ccaes_cbc_decrypt_mode.c
     ccaes_cbc_encrypt_mode.c
+    ccaes_ctr_crypt_mode.c
     ccaes_ecb_decrypt_mode.c
     ccaes_ecb_encrypt_mode.c
 )
@@ -191,6 +194,7 @@ set(CORECRYPTO_ccpost_PUBLIC_HEADERS
 
 set(CORECRYPTO_ccpost_SOURCES
     ccpost_aes_cbc_validate.c
+    ccpost_aes_ctr_validate.c
     ccpost_aes_ecb_validate.c
     ccpost_validate.c
 )
