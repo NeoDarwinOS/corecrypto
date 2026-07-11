@@ -16,26 +16,26 @@ struct ccdrbg_state;
 struct ccdrbg_info {
     size_t size;
 
-    cc_error_t (*init)(const struct ccdrbg_info *info,
-                       struct ccdrbg_state *state,
-                       size_t entropy_length,
-                       const void *entropy,
-                       size_t none_length,
-                       const void *nonce,
-                       size_t ps_length,
-                       const void *ps);
+    ccdrbg_status_t (*init)(const struct ccdrbg_info *info,
+                            struct ccdrbg_state *state,
+                            size_t entropy_length,
+                            const void *entropy,
+                            size_t nonce_length,
+                            const void *nonce,
+                            size_t ps_length,
+                            const void *ps);
 
-    cc_error_t (*reseed)(struct ccdrbg_state *state,
-                         size_t entropy_length,
-                         const void *entropy,
-                         size_t ad_length,
-                         const void *ad);
+    ccdrbg_status_t (*reseed)(struct ccdrbg_state *state,
+                              size_t entropy_length,
+                              const void *entropy,
+                              size_t ad_length,
+                              const void *ad);
 
-    cc_error_t (*generate)(struct ccdrbg_state *state,
-                           size_t out_length,
-                           void *out,
-                           size_t ad_length,
-                           const void *ad);
+    ccdrbg_status_t (*generate)(struct ccdrbg_state *state,
+                                size_t out_length,
+                                void *out,
+                                size_t ad_length,
+                                const void *ad);
 
     void (*done)(struct ccdrbg_state *state);
 

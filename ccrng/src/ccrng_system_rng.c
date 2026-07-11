@@ -30,6 +30,8 @@ struct ccrng_system_rng {
     cc_lock_t rng_lock;
     struct ccdrbg_info drbg_info;
     struct ccdrbg_nistctr_custom drbg_custom;
+
+    uint8_t drbg_state_buffer[1000];
 };
 
 static struct ccrng_system_rng __rng = {CCRNG_SYSTEM_RNG_MAGIC};
@@ -42,10 +44,13 @@ cc_error_t ccrng_system_rng_init_once(void) {
     __rng.drbg_custom.key_length = CCAES_KEY_SIZE_256;
     __rng.drbg_custom.strictFIPS = true;
     __rng.drbg_custom.use_df = true;
-    
+
+    /* create a lock. we'll need it. */
     cc_lock_init(&__rng.rng_lock, "ccrng");
 
     ccdrbg_factory_nistctr(&__rng.drbg_info, &__rng.drbg_custom);
-    
+    cc_internal_crash(__rng.drbg_info.size == 0, "DRBG did not instantiate correctly");
+    cc_internal_crash(__rng.drbg_info.size > sizeof(__rng.drbg_state_buffer), "DRBG is too large for our buffer. This is not good.");
+
     return CCERR_OK;
 }

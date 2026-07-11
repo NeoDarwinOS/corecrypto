@@ -49,34 +49,34 @@ CC_EXPORT
 size_t ccdrbg_context_size(const struct ccdrbg_info *info);
 
 CC_EXPORT
-cc_error_t ccdrbg_init(const struct ccdrbg_info *info,
-                       struct ccdrbg_state *state,
-                       size_t entropy_length,
-                       const void *entropy,
-                       size_t none_length,
-                       const void *nonce,
-                       size_t ps_length,
-                       const void *ps);
+ccdrbg_status_t ccdrbg_init(const struct ccdrbg_info *info,
+                            struct ccdrbg_state *state,
+                            size_t entropy_length,
+                            const void *entropy,
+                            size_t none_length,
+                            const void *nonce,
+                            size_t ps_length,
+                            const void *ps);
 
 CC_EXPORT
-cc_error_t ccdrbg_reseed(const struct ccdrbg_info *info,
-                         struct ccdrbg_state *state,
-                         size_t entropy_length,
-                         const void *entropy,
-                         size_t ad_length,
-                         const void *ad);
+ccdrbg_status_t ccdrbg_reseed(const struct ccdrbg_info *info,
+                              struct ccdrbg_state *state,
+                              size_t entropy_length,
+                              const void *entropy,
+                              size_t ad_length,
+                              const void *ad);
 
 CC_EXPORT
-cc_error_t ccdrbg_generate(const struct ccdrbg_info *info,
-                           struct ccdrbg_state *state,
-                           size_t out_length,
-                           void *out,
-                           size_t ad_length,
-                           const void *ad);
+ccdrbg_status_t ccdrbg_generate(const struct ccdrbg_info *info,
+                                struct ccdrbg_state *state,
+                                size_t out_length,
+                                void *out,
+                                size_t ad_length,
+                                const void *ad);
 
 CC_EXPORT
-cc_error_t ccdrbg_done(const struct ccdrbg_info *info,
-                       struct ccdrbg_state *state);
+ccdrbg_status_t ccdrbg_done(const struct ccdrbg_info *info,
+                            struct ccdrbg_state *state);
 
 struct ccdrbg_nistctr_custom {
     const struct ccmode_ctr *ctr;

@@ -27,4 +27,13 @@ typedef int cc_error_t;
 #define CCERR_ATFORK            -11
 #define CCERR_OVERFLOW          -12
 
+typedef int ccdrbg_status_t;
+
+#define CCDRBG_STATUS_OK            CCERR_OK
+#define CCDRBG_STATUS_ERROR         -1
+#define CCDRBG_STATUS_NEED_RESEED   -2
+#define CCDRBG_STATUS_PARAM_ERROR   -3
+#define CCDRBG_STATUS_ABORT         -4
+
+
 #endif /* __CORECRYPTO_CC_ERROR_H__ */

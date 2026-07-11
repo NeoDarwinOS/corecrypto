@@ -9,7 +9,7 @@
 #ifndef __CORECRYPTO_CC_LOCK_H__
 #define __CORECRYPTO_CC_LOCK_H__
 
-#include <corecrypto/cc_config.h>
+#include <corecrypto/cc.h>
 
 #if CC_PLATFORM_XNU
 #include <kern/locks.h>
@@ -32,7 +32,7 @@ typedef struct cc_lock {
 #include <pthread.h>
 
 typedef struct cc_lock {
-    pthread_mtx_t mtx;
+    pthread_mutex_t mtx;
 } cc_lock_t;
 
 #endif
