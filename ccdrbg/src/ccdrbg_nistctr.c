@@ -169,12 +169,12 @@ static void df_bcc_final(struct ccdrbg_nistctr_state *state)
     }
 }
 
-static void block_cipher_df(struct ccdrbg_nistctr_state *state,
-                            const void *inputs[],
-                            size_t lengths[],
-                            size_t input_cnt,
-                            size_t nbytes_requested,
-                            void *output)
+static ccdrbg_status_t block_cipher_df(struct ccdrbg_nistctr_state *state,
+                                       const void *inputs[],
+                                       size_t lengths[],
+                                       size_t input_cnt,
+                                       size_t nbytes_requested,
+                                       void *output)
 {
     uint64_t total_length = 0;
     uint32_t nblks = DRBG_BCC_STORAGE_BLOCKS_NUM(state);
@@ -188,6 +188,10 @@ static void block_cipher_df(struct ccdrbg_nistctr_state *state,
 
     for (size_t i = 0; i < input_cnt; i++) {
         total_length += lengths[i];
+    }
+    
+    if (nbytes_requested > 0xFFFFFFFF) {
+        return CCDRBG_STATUS_OK;
     }
 
     for (size_t j = 0; j < DRBG_BCC_STORAGE_BLOCKS_NUM(state); j++) {
@@ -218,6 +222,8 @@ static void block_cipher_df(struct ccdrbg_nistctr_state *state,
     ccctr_ctx_clear(DRBG_STATE_CTR_MODE(state)->size, ctx);
     cc_clear(sizeof(buffer), buffer);
     cc_clear(DRBG_BCC_STORAGE_SIZE(state), state->bcc_tmp);
+    
+    return CCDRBG_STATUS_OK;
 }
 
 static const uint8_t df_key[MAX_KEY_SIZE] = {
@@ -237,7 +243,7 @@ static void df_predf_init(struct ccdrbg_nistctr_state *state)
     ccctr_init(state->ctr_mode, state->df_ctx, state->key_length, df_key, zeroes);
 
     /* Do the trick where we can precalc some of the components of the DF. */
-    for (size_t i = 0; i < blks; i++) {
+    for (uint32_t i = 0; i < blks; i++) {
         iv[0] = cc_h2be32(i);
         bcc(state, iv, 1, &state->bcc_initial_state[i * DRBG_STATE_OUTLEN(state)]);
     }
@@ -354,7 +360,12 @@ ccdrbg_status_t ccdrbg_nistctr_init(const struct ccdrbg_info *info,
 
         df_predf_init(_state);
 
-        block_cipher_df(_state, ins, lens, cnt, DRBG_STATE_SEEDLEN(state), seed_material);
+        res = block_cipher_df(_state, ins, lens, cnt, DRBG_STATE_SEEDLEN(state), seed_material);
+        if (res) {
+            return res;
+        }
+    } else {
+        
     }
 
     /* make sure that our state is clean... */
