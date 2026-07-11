@@ -10,11 +10,27 @@
 #include <corecrypto/ccdrbg.h>
 #include <corecrypto/ccmode.h>
 
+/*
+ * Modern Darwin has a separation between derivation function and
+ */
+
 #define DRBG_STATE(x) ((struct ccdrbg_nistctr_state *)x)
-#define DRBG_CTR_MODE(x) DRBG_STATE(x)->custom.ctr
+#define DRBG_STATE_CTR_MODE(x) DRBG_STATE(x)->ctr_mode
+#define DRBG_STATE_KEY_LENGTH(x) DRBG_STATE(x)->key_length
+#define DRBG_STATE_BLOCK_SIZE(x) DRBG_STATE_CTR_MODE(x)->ecb_block_size
+
+#define DRBG_STATE_DF_KEY(x) DRBG_STATE(x)->df_ctx
+
+#define DRBG_STATE_OUTLEN(x) DRBG_STATE_BLOCK_SIZE(x)
+
+#define DRBG_STATE_SEEDLEN(x) (DRBG_STATE_KEY_LENGTH(x) + DRBG_STATE_BLOCK_SIZE(x))
+
+#define DRBG_STATE_SIZE(ctr) ccn_sizeof_size(struct ccdrbg_nistctr_state) +    \
+                             (2 * ccn_sizeof_size(ctr->size))
 
 #define MAX_KEY_SIZE    CCAES_KEY_SIZE_256
 #define MAX_BLOCK_SIZE  CCAES_BLOCK_SIZE
+#define MAX_SEED_SIZE   MAX_KEY_SIZE + MAX_BLOCK_SIZE
 #define COUNTER_LENGTH  8
 
 /* Need to determine what fields we need in-memory for the DRBG to function. And to never. Ever. have to call malloc. */
@@ -34,6 +50,17 @@ struct ccdrbg_nistctr_state {
 
     /* Self-explanatory. */
     bool use_df;
+
+    /* BCC stuff. */
+    size_t bcc_pos;
+
+    /* POINTERS BELOW THIS LINE ARE CONVENIENCE POINTERS TO AVOID MESSING WITH THE cc_unit SPACE */
+    ccctr_ctx *ctr_ctx;
+    ccctr_ctx *df_ctx;
+    uint8_t *bcc_buf;
+
+    /* cc_unit memory region */
+    cc_unit u[];
 };
 
 /*
@@ -54,6 +81,26 @@ static void block_encrypt(const struct ccmode_ctr *ctr, ccctr_ctx *ctx, const vo
 {
     ccctr_setctr(ctr, ctx, in);
     ccctr_update(ctr, ctx, ctr->ecb_block_size, zeroes, out);
+}
+
+/* Inner portion of bcc, since it's reusable. */
+static void bcc_update(struct ccdrbg_nistctr_state *drbg, const void *in, size_t nblocks, void *out)
+{
+    const uint8_t *_data = (const uint8_t *)in;
+
+    for (size_t i = 0; i < nblocks; i++) {
+        cc_xor(DRBG_STATE_BLOCK_SIZE(drbg), out, out, _data);
+        _data += DRBG_STATE_BLOCK_SIZE(drbg);
+        block_encrypt(DRBG_STATE_CTR_MODE(drbg), DRBG_STATE_DF_KEY(drbg), out, out);
+    }
+}
+
+static void bcc(struct ccdrbg_nistctr_state *drbg, const void *in, size_t nblocks, void *out)
+{
+    const uint8_t *_data = (const uint8_t *)in;
+    cc_clear(DRBG_STATE_BLOCK_SIZE(drbg), out);
+
+    bcc_update(drbg, in, nblocks, out);
 }
 
 
