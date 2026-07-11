@@ -10,6 +10,7 @@
 #include <corecrypto/ccaes.h>
 #include <corecrypto/ccdrbg.h>
 #include <corecrypto/ccrng.h>
+#include <corecrypto/cc_lock.h>
 
 /*
  * NOTE: This is not finished! This is the groundwork for the global RNG once the CTR DRBG is finalised.
@@ -26,19 +27,25 @@
 struct ccrng_system_rng {
     uint32_t magic;
     bool prediction_break;
+    cc_lock_t rng_lock;
     struct ccdrbg_info drbg_info;
     struct ccdrbg_nistctr_custom drbg_custom;
 };
 
 static struct ccrng_system_rng __rng = {CCRNG_SYSTEM_RNG_MAGIC};
 
-void ccrng_system_rng_init_once(void) {
+cc_error_t ccrng_system_rng_init_once(void) {
+    /* It's probably safer to abort here than not. */
     cc_internal_crash(__rng.magic == CCRNG_SYSTEM_RNG_MAGIC, "ccrng_system_rng: internal RNG structure is bad.");
 
     __rng.drbg_custom.ctr = ccaes_ctr_crypt_mode();
     __rng.drbg_custom.key_length = CCAES_KEY_SIZE_256;
     __rng.drbg_custom.strictFIPS = true;
     __rng.drbg_custom.use_df = true;
+    
+    cc_lock_init(&__rng.rng_lock, "ccrng");
 
     ccdrbg_factory_nistctr(&__rng.drbg_info, &__rng.drbg_custom);
+    
+    return CCERR_OK;
 }

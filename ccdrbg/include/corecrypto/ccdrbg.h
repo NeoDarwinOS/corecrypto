@@ -16,6 +16,14 @@
 CC_BEGIN_DECLS
 
 /*
+ * API NOTES:
+ *
+ * These routines provide the skeleton for a fully featured DRBG. It does not cover everything.
+ *
+ * For example, for predicition resistence, this is implemented by the API making use of the underlying DRBG code.
+ */
+
+/*
  * SP800-90A excerpts:
  *
  * entropy_input: Input bits containing entropy. The maximum length of the entropy_input
