@@ -31,7 +31,7 @@ struct ccrng_system_rng {
     struct ccdrbg_info drbg_info;
     struct ccdrbg_nistctr_custom drbg_custom;
 
-    uint8_t drbg_state_buffer[1000];
+    uint8_t drbg_state_buffer[0x400];
 };
 
 static struct ccrng_system_rng __rng = {CCRNG_SYSTEM_RNG_MAGIC};

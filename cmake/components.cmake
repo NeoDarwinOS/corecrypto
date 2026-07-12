@@ -161,6 +161,8 @@ set(CORECRYPTO_ccdrbg_PUBLIC_HEADERS
 )
 
 set(CORECRYPTO_ccdrbg_SOURCES
+    ccdrbg.c
+    ccdrbg_nistctr.c
 )
 
 set(CORECRYPTO_ccsha2_PUBLIC_HEADERS

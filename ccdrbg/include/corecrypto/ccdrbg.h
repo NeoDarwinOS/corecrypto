@@ -31,19 +31,12 @@ CC_BEGIN_DECLS
  * length for the selected DRBG mechanism (see Section 10).
  *
  * Hash based DRBGs are placed with a limit of AT MAXIMUM 2^35 bits, and so are CTR DRBGs.
- *
- * For simplicity's sake, and to make this portable for armv7 and i386 (because I know someone will want to),
- * let's strive for under the 32-bit integer limit and use (1 << 30) as our base.
- *
- * CTR_DRBG is annoying and places it's limit at seedlen when used without a derivation function.
- *
- * Anyways, the bitshift right now works in bits. I need to reduce the bitshift size
  */
-#define CCDRBG_MAX_ENTROPY_SIZE             (1 << 31)
-#define CCDRBG_MAX_ADDITIONALINPUT_SIZE     (1 << 31)
-#define CCDRBG_MAX_PSINPUT_SIZE             (1 << 31)
+#define CCDRBG_MAX_ENTROPY_SIZE             (1 << 16)
+#define CCDRBG_MAX_ADDITIONALINPUT_SIZE     (1 << 16)
+#define CCDRBG_MAX_PSINPUT_SIZE             (1 << 16)
 #define CCDRBG_MAX_REQUEST_SIZE             (1 << 16)   /* Hard limit from SP800-90A */
-#define CCDRBG_RESEED_INTERVAL              (1 << 48)
+#define CCDRBG_RESEED_INTERVAL              (1ULL << 48)
 
 CC_EXPORT
 size_t ccdrbg_context_size(const struct ccdrbg_info *info);
@@ -75,8 +68,8 @@ ccdrbg_status_t ccdrbg_generate(const struct ccdrbg_info *info,
                                 const void *ad);
 
 CC_EXPORT
-ccdrbg_status_t ccdrbg_done(const struct ccdrbg_info *info,
-                            struct ccdrbg_state *state);
+void ccdrbg_done(const struct ccdrbg_info *info,
+                 struct ccdrbg_state *state);
 
 struct ccdrbg_nistctr_custom {
     const struct ccmode_ctr *ctr;

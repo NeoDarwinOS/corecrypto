@@ -6,13 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-#include "corecrypto/cc.h"
-#include "corecrypto/cc_error.h"
-#include "corecrypto/ccmode_internal.h"
 #include <corecrypto/cc_priv.h>
 #include <corecrypto/ccaes.h>
 #include <corecrypto/ccdrbg.h>
-#include <corecrypto/ccmode.h>
+#include <corecrypto/ccmode_internal.h>
 #include <corecrypto/ccn.h>
 
 #define DRBG_STATE(x) ((struct ccdrbg_nistctr_state *)x)
@@ -189,7 +186,7 @@ static ccdrbg_status_t block_cipher_df(struct ccdrbg_nistctr_state *state,
     for (size_t i = 0; i < input_cnt; i++) {
         total_length += lengths[i];
     }
-    
+
     if (nbytes_requested > 0xFFFFFFFF) {
         return CCDRBG_STATUS_OK;
     }
@@ -222,7 +219,7 @@ static ccdrbg_status_t block_cipher_df(struct ccdrbg_nistctr_state *state,
     ccctr_ctx_clear(DRBG_STATE_CTR_MODE(state)->size, ctx);
     cc_clear(sizeof(buffer), buffer);
     cc_clear(DRBG_BCC_STORAGE_SIZE(state), state->bcc_tmp);
-    
+
     return CCDRBG_STATUS_OK;
 }
 
@@ -365,7 +362,15 @@ ccdrbg_status_t ccdrbg_nistctr_init(const struct ccdrbg_info *info,
             return res;
         }
     } else {
-        
+        cc_clear(MAX_SEED_SIZE, seed_material);
+        if (ps && ps_length) {
+            if (ps_length > sizeof(seed_material)) {
+                return CCDRBG_STATUS_PARAM_ERROR;
+            }
+
+            cc_copy(ps_length, seed_material, ps);
+            cc_xor(DRBG_STATE_SEEDLEN(state), seed_material, seed_material, entropy);
+        }
     }
 
     /* make sure that our state is clean... */
@@ -383,8 +388,153 @@ ccdrbg_status_t ccdrbg_nistctr_init(const struct ccdrbg_info *info,
     return CCDRBG_STATUS_OK;
 }
 
+ccdrbg_status_t ccdrbg_nistctr_reseed(struct ccdrbg_state *state,
+                                      size_t entropy_length,
+                                      const void *entropy,
+                                      size_t ad_length,
+                                      const void *ad)
+{
+    ccdrbg_status_t stat = CCDRBG_STATUS_OK;
+    uint8_t seed_material[MAX_SEED_SIZE];
+
+    stat = are_parameters_valid(DRBG_STATE(state), entropy_length, ad_length, 0);
+    if (stat) {
+        return stat;
+    }
+
+    if (DRBG_STATE(state)->use_df) {
+        const void *ins[2];
+        size_t lens[2];
+        uint32_t cnt = 1;
+
+        ins[0] = entropy;
+        lens[0] = entropy_length;
+
+        if (ad) {
+            ins[1] = ad;
+            lens[1] = ad_length;
+            cnt++;
+        }
+
+        stat = block_cipher_df(DRBG_STATE(state), ins, lens, cnt, DRBG_STATE_SEEDLEN(state), seed_material);
+        if (stat) {
+            return stat;
+        }
+    } else {
+        cc_clear(MAX_SEED_SIZE, seed_material);
+        if (ad && ad_length) {
+            if (ad_length > sizeof(seed_material)) {
+                return CCDRBG_STATUS_PARAM_ERROR;
+            }
+
+            cc_copy(ad_length, seed_material, ad);
+            cc_xor(DRBG_STATE_SEEDLEN(state), seed_material, seed_material, entropy);
+        }
+    }
+
+    ccdrbg_nistctr_update(DRBG_STATE(state), seed_material);
+    DRBG_STATE(state)->reseed_counter = 1;
+
+    stat = CCDRBG_STATUS_OK;
+
+    return stat;
+}
+
+ccdrbg_status_t ensure_we_can_gen(struct ccdrbg_nistctr_state *state,
+                                  size_t req_bytes,
+                                  size_t ad_len)
+{
+    if (req_bytes > CCDRBG_MAX_REQUEST_SIZE) {
+        return CCDRBG_STATUS_PARAM_ERROR;
+    }
+
+    if (state->use_df) {
+        if (ad_len > CCDRBG_MAX_ADDITIONALINPUT_SIZE) {
+            return CCDRBG_STATUS_PARAM_ERROR;
+        }
+    } else {
+        if (ad_len > DRBG_STATE_SEEDLEN(state)) {
+            return CCDRBG_STATUS_PARAM_ERROR;
+        }
+    }
+
+    if ((state->reseed_counter > CCDRBG_RESEED_INTERVAL) && state->strictFIPS) {
+        return CCDRBG_STATUS_NEED_RESEED;
+    }
+
+    return CCDRBG_STATUS_OK;
+}
+
+ccdrbg_status_t ccdrbg_nistctr_generate(struct ccdrbg_state *state,
+                                        size_t out_length,
+                                        void *out,
+                                        size_t ad_length,
+                                        const void *ad)
+{
+    ccdrbg_status_t stat = CCDRBG_STATUS_OK;
+    uint8_t additional[MAX_SEED_SIZE];
+    uint8_t leftover_out[MAX_BLOCK_SIZE];       /* We use this to get CTR to increment the counter... */
+    uint8_t *_out = (uint8_t *)out;
+
+    stat = ensure_we_can_gen(DRBG_STATE(state), out_length, ad_length);
+    if (stat) {
+        return stat;
+    }
+
+    if (ad && ad_length) {
+        if (DRBG_STATE(state)->use_df) {
+            const void *input[1];
+            size_t len[1];
+
+            input[0] = ad;
+            len[0] = ad_length;
+
+            stat = block_cipher_df(DRBG_STATE(state), input, len, 1, DRBG_STATE_SEEDLEN(state), additional);
+            if (stat) {
+                cc_clear(sizeof(additional), additional);
+            }
+        } else {
+            cc_clear(sizeof(additional), additional);
+            cc_copy(ad_length, additional, ad);
+        }
+
+		ccdrbg_nistctr_update(DRBG_STATE(state), additional);
+    }
+
+    while (out_length >= DRBG_STATE_OUTLEN(state)) {
+        size_t nbytes = cc_min(DRBG_STATE_OUTLEN(state), out_length);
+        ccctr_update(DRBG_STATE_CTR_MODE(state), DRBG_STATE_CTR_KEY(state), nbytes, zeroes, _out);
+        out_length -= nbytes;
+        _out += nbytes;
+    }
+
+    size_t leftover = (DRBG_STATE_OUTLEN(state) - out_length);
+    /* check that leftover < outlen because we can end up here aligned on a block */
+    if (leftover < DRBG_STATE_OUTLEN(state)) {
+        ccctr_update(DRBG_STATE_CTR_MODE(state), DRBG_STATE_CTR_KEY(state), leftover, zeroes, leftover_out);
+        cc_clear(leftover, leftover_out);
+    }
+
+    const uint8_t *dat;
+    if (ad && ad_length) {
+        dat = additional;
+    } else {
+        dat = zeroes;
+    }
+
+    ccdrbg_nistctr_update(DRBG_STATE(state), dat);
+
+    DRBG_STATE(state)->reseed_counter++;
+
+    cc_clear(sizeof(additional), additional);
+    return CCDRBG_STATUS_OK;
+}
+
 void ccdrbg_nistctr_done(struct ccdrbg_state *state)
 {
+    cc_clear(DRBG_STATE_OUTLEN(state), DRBG_STATE(state)->bcc_scratch);
+    cc_clear(DRBG_BCC_STORAGE_SIZE(state), DRBG_STATE(state)->bcc_initial_state);
+    cc_clear(DRBG_BCC_STORAGE_SIZE(state), DRBG_STATE(state)->bcc_tmp);
     ccctr_ctx_clear(DRBG_STATE_CTR_MODE(state)->size, DRBG_STATE_CTR_KEY(state));
     ccctr_ctx_clear(DRBG_STATE_CTR_MODE(state)->size, DRBG_STATE_DF_KEY(state));
     cc_clear(sizeof(struct ccdrbg_nistctr_state), state);
@@ -394,6 +544,8 @@ void ccdrbg_factory_nistctr(struct ccdrbg_info *info, const struct ccdrbg_nistct
 {
     info->size = DRBG_STATE_SIZE(custom);
     info->init = &ccdrbg_nistctr_init;
+    info->reseed = &ccdrbg_nistctr_reseed;
+    info->generate = &ccdrbg_nistctr_generate;
     info->done = &ccdrbg_nistctr_done;
     info->custom = custom;
 }
