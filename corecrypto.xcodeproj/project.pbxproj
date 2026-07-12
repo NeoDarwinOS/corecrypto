@@ -361,6 +361,12 @@
 		F0B1CB963001E29A00AA7184 /* cc_lock.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CB953001E29A00AA7184 /* cc_lock.c */; };
 		F0B1CB973001E29A00AA7184 /* cc_lock.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CB953001E29A00AA7184 /* cc_lock.c */; };
 		F0B1CB983001E29A00AA7184 /* cc_lock.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CB953001E29A00AA7184 /* cc_lock.c */; };
+		F0B1CD173003766B00AA7184 /* ccpost_ctr_drbg_validate.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CD163003766B00AA7184 /* ccpost_ctr_drbg_validate.c */; };
+		F0B1CD183003766B00AA7184 /* ccpost_ctr_drbg_validate.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CD163003766B00AA7184 /* ccpost_ctr_drbg_validate.c */; };
+		F0B1CD193003766B00AA7184 /* ccpost_ctr_drbg_validate.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CD163003766B00AA7184 /* ccpost_ctr_drbg_validate.c */; };
+		F0B1CD1B300376A200AA7184 /* ccdrbg.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CD1A300376A200AA7184 /* ccdrbg.c */; };
+		F0B1CD1C300376A200AA7184 /* ccdrbg.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CD1A300376A200AA7184 /* ccdrbg.c */; };
+		F0B1CD1D300376A200AA7184 /* ccdrbg.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CD1A300376A200AA7184 /* ccdrbg.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -535,6 +541,8 @@
 		F0B1CB8D3001DE4D00AA7184 /* ccrng_system_rng.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccrng_system_rng.c; sourceTree = "<group>"; };
 		F0B1CB913001E0B700AA7184 /* cc_lock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cc_lock.h; sourceTree = "<group>"; };
 		F0B1CB953001E29A00AA7184 /* cc_lock.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cc_lock.c; sourceTree = "<group>"; };
+		F0B1CD163003766B00AA7184 /* ccpost_ctr_drbg_validate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccpost_ctr_drbg_validate.c; sourceTree = "<group>"; };
+		F0B1CD1A300376A200AA7184 /* ccdrbg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccdrbg.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1293,6 +1301,7 @@
 				F01ACE3B2FFF6053006ED2CE /* ccpost_aes_cbc_validate.c */,
 				F00057913000DA79000B3598 /* ccpost_aes_ctr_validate.c */,
 				F01ACE3A2FFF6053006ED2CE /* ccpost_aes_ecb_validate.c */,
+				F0B1CD163003766B00AA7184 /* ccpost_ctr_drbg_validate.c */,
 				F01ACE3C2FFF6053006ED2CE /* ccpost_internal.h */,
 				F01ACE3D2FFF6053006ED2CE /* ccpost_validate.c */,
 			);
@@ -1392,6 +1401,7 @@
 		F0B1CB873001BD0100AA7184 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F0B1CD1A300376A200AA7184 /* ccdrbg.c */,
 				F0B1CB883001BD0100AA7184 /* ccdrbg_nistctr.c */,
 			);
 			path = src;
@@ -1654,6 +1664,7 @@
 				42583AFF2FFCD317000B167B /* ccsha256_initial_state.c in Sources */,
 				F01ACE402FFF6053006ED2CE /* ccpost_aes_ecb_validate.c in Sources */,
 				42583B002FFCD317000B167B /* ccsha224_initial_state.c in Sources */,
+				F0B1CD173003766B00AA7184 /* ccpost_ctr_drbg_validate.c in Sources */,
 				42583B012FFCD317000B167B /* ccsha384_initial_state.c in Sources */,
 				42583B022FFCD317000B167B /* ccsha256_ltc_di.c in Sources */,
 				42583B032FFCD317000B167B /* ccsha384_ltc_di.c in Sources */,
@@ -1704,6 +1715,7 @@
 				F00057753000DA1B000B3598 /* ccmode_factory_ctr_crypt.c in Sources */,
 				42D6AAFF2FF2961D00FAAD94 /* ccaes_ltc_ecb_encrypt.c in Sources */,
 				42D6AB002FF2961D00FAAD94 /* ccaes_ltc_tab.c in Sources */,
+				F0B1CD1B300376A200AA7184 /* ccdrbg.c in Sources */,
 				42D6AB012FF2961D00FAAD94 /* ccaes_ecb_decrypt_mode.c in Sources */,
 				F01ACE422FFF6053006ED2CE /* ccpost_aes_cbc_validate.c in Sources */,
 				42D6AAEC2FF2954500FAAD94 /* ccecb_block_size.c in Sources */,
@@ -1774,6 +1786,8 @@
 				F01ACDFA2FF9D1A6006ED2CE /* ccaes_gladman_cbc_decrypt.c in Sources */,
 				42D6AB542FF2987D00FAAD94 /* ccmode_factory_cbc_decrypt.c in Sources */,
 				42D6AB552FF2987D00FAAD94 /* ccmode_cbc_init.c in Sources */,
+				F0B1CD1C300376A200AA7184 /* ccdrbg.c in Sources */,
+				F0B1CD183003766B00AA7184 /* ccpost_ctr_drbg_validate.c in Sources */,
 				42D6AB562FF2987D00FAAD94 /* ccmode_cbc_encrypt.c in Sources */,
 				F01ACDFE2FF9D1B0006ED2CE /* ccaes_cbc_encrypt_mode.c in Sources */,
 				F01ACE042FF9D257006ED2CE /* ccn_add.c in Sources */,
@@ -1863,6 +1877,7 @@
 				F01ACEB12FFF688D006ED2CE /* ccsha384_initial_state.c in Sources */,
 				F01ACEB32FFF688D006ED2CE /* ccsha512_224_initial_state.c in Sources */,
 				F01ACE6F2FFF688D006ED2CE /* cc_abort.c in Sources */,
+				F0B1CD193003766B00AA7184 /* ccpost_ctr_drbg_validate.c in Sources */,
 				F01ACE732FFF688D006ED2CE /* cc_try_abort.c in Sources */,
 				F01ACEA42FFF688D006ED2CE /* ccpost_aes_cbc_validate.c in Sources */,
 				F01ACE842FFF688D006ED2CE /* ccdigest.c in Sources */,
@@ -1913,6 +1928,7 @@
 				F01ACEAD2FFF688D006ED2CE /* ccsha256_initial_state.c in Sources */,
 				F01ACE8A2FFF688D006ED2CE /* ccdigest_oid_lookup.c in Sources */,
 				F01ACE802FFF688D006ED2CE /* ccaes_ecb_decrypt_mode.c in Sources */,
+				F0B1CD1D300376A200AA7184 /* ccdrbg.c in Sources */,
 				F01ACE9B2FFF688D006ED2CE /* ccmode_factory_cbc_decrypt.c in Sources */,
 				F01ACE702FFF688D006ED2CE /* cc_clear.c in Sources */,
 				F01ACE8B2FFF688D006ED2CE /* ccdigest_update.c in Sources */,
@@ -2237,6 +2253,7 @@
 			baseConfigurationReference = 42D6AA5D2FEF35E500FAAD94 /* corecrypto.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2298,6 +2315,7 @@
 			baseConfigurationReference = 42D6AA5D2FEF35E500FAAD94 /* corecrypto.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

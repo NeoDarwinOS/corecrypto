@@ -106,22 +106,11 @@ static void bcc_update(struct ccdrbg_nistctr_state *drbg, const void *in, size_t
 {
     const uint8_t *_data = (const uint8_t *)in;
 
-    cc_debug_log("bcc_update in: %p", in);
-    cc_debug_log("bcc_update out: %p", out);
-    cc_debug_log("bcc_update nblocks: %zd", nblocks);
-
     for (size_t i = 0; i < nblocks; i++) {
-        cc_debug_log("bcc_update XOR ENTER");
         cc_xor(DRBG_STATE_BLOCK_SIZE(drbg), out, out, _data);
-        cc_debug_log("bcc_update XOR EXIT");
         _data += DRBG_STATE_BLOCK_SIZE(drbg);
-        cc_debug_log("bcc_update _data %p", _data);
-        cc_debug_log("bcc_update block_encrypt ENTER");
         block_encrypt(DRBG_STATE_CTR_MODE(drbg), DRBG_STATE_DF_KEY(drbg), out, out);
-        cc_debug_log("bcc_update block_encrypt EXIT");
     }
-
-    cc_debug_log("bcc_update EXIT");
 }
 
 static void bcc(struct ccdrbg_nistctr_state *state, const void *in, size_t n, void *out)
@@ -148,41 +137,28 @@ static void df_bcc_init(struct ccdrbg_nistctr_state *state, uint32_t l, uint32_t
 
 static void df_bcc_update(struct ccdrbg_nistctr_state *state, const void *in, size_t nbytes)
 {
-    size_t bytes = nbytes;
-    size_t blks = nbytes / DRBG_STATE_BLOCK_SIZE(state);
     size_t leftover = (DRBG_STATE_BLOCK_SIZE(state) - state->bcc_pos);
     const uint8_t *_in = (const uint8_t *)in;
 
-    cc_debug_log("df_bcc_update bcc_pos: %zd", state->bcc_pos);
-    cc_debug_log("df_bcc_update nbytes: %zd", nbytes);
-    cc_debug_log("df_bcc_update blks: %zd", blks);
-
-    cc_debug_log("df_bcc_update _in 0 %p", _in);
-
     if (state->bcc_pos) {
-        cc_debug_log("df_bcc_update bcc_pos >>");
         cc_copy(leftover, (state->bcc_scratch + leftover), _in);
         bcc_update(state, state->bcc_scratch, 1, state->bcc_tmp);
         state->bcc_pos = 0;
         _in += leftover;
-        bytes -= leftover;
+        nbytes -= leftover;
     }
 
-    cc_debug_log("df_bcc_update _in 1 %p", _in);
-
-    if (bytes >= DRBG_STATE_BLOCK_SIZE(state)) {
-        cc_debug_log("df_bcc_update _in 2 %p", _in);
+    if (nbytes >= DRBG_STATE_BLOCK_SIZE(state)) {
+        /* DIRTY! BAD! DIRTY! DIRTY! >:( */
+        size_t blks = (((nbytes - ((nbytes % DRBG_STATE_BLOCK_SIZE(state)))) / DRBG_STATE_BLOCK_SIZE(state)));
         bcc_update(state, _in, blks, state->bcc_tmp);
-        cc_debug_log("df_bcc_update bcc_update EXIT");
         _in += (blks * DRBG_STATE_BLOCK_SIZE(state));
-        bytes -= (blks * DRBG_STATE_BLOCK_SIZE(state));
+        nbytes -= (blks * DRBG_STATE_BLOCK_SIZE(state));
     }
 
-    if (bytes) {
-        cc_debug_log("df_bcc_update COPY BYTES ENTER");
-        cc_copy(bytes, state->bcc_scratch, _in);
-        state->bcc_pos = bytes;
-        cc_debug_log("df_bcc_update COPY BYTES EXIT");
+    if (nbytes) {
+        cc_copy(nbytes, state->bcc_scratch, _in);
+        state->bcc_pos = nbytes;
     }
 }
 
@@ -217,12 +193,6 @@ static ccdrbg_status_t block_cipher_df(struct ccdrbg_nistctr_state *state,
 
     cc_clear(DRBG_BCC_STORAGE_SIZE(state), state->bcc_tmp);
 
-    cc_debug_log("block_cipher_df: state %p", state);
-    cc_debug_log("block_cipher_df: ins %p", inputs);
-    cc_debug_log("block_cipher_df: lens %p", lengths);
-    cc_debug_log("block_cipher_df: nbytes %zd", nbytes_requested);
-    cc_debug_log("block_cipher_df: output %p", output);
-
     for (size_t i = 0; i < input_cnt; i++) {
         total_length += lengths[i];
     }
@@ -232,13 +202,10 @@ static ccdrbg_status_t block_cipher_df(struct ccdrbg_nistctr_state *state,
     }
 
     for (size_t j = 0; j < DRBG_BCC_STORAGE_BLOCKS_NUM(state); j++) {
-        cc_debug_log("block_cipher_df loop: %zd", j);
         cc_copy(DRBG_STATE_BLOCK_SIZE(state), state->bcc_tmp, state->bcc_initial_state);
         df_bcc_init(state, (uint32_t)total_length, nbytes_requested);
 
         for (size_t k = 0; k < input_cnt; k++) {
-            cc_debug_log("block_cipher_df df_bcc_update: %p", inputs[k]);
-            cc_debug_log("block_cipher_df df_bcc_update: %zd", lengths[k]);
             df_bcc_update(state, inputs[k], lengths[k]);
         }
 
@@ -342,10 +309,10 @@ void ccdrbg_nistctr_update(struct ccdrbg_nistctr_state *state,
     ccctr_update(DRBG_STATE_CTR_MODE(state), DRBG_STATE_CTR_KEY(state), DRBG_STATE_SEEDLEN(state), zeroes, tmp);
 
     cc_xor(DRBG_STATE_SEEDLEN(state), tmp, tmp, in);
-    cc_copy(DRBG_STATE_OUTLEN(state), state->V, (tmp + DRBG_STATE_KEY_LENGTH(state)));
+    cc_copy(DRBG_STATE_BLOCK_SIZE(state), state->V, (tmp + DRBG_STATE_KEY_LENGTH(state)));
 
     /* we need to accomodate for ourselves here. */
-    inc_uint_be((state->V + (DRBG_STATE_OUTLEN(state) - COUNTER_LENGTH)), COUNTER_LENGTH);
+    inc_uint_be((state->V + (DRBG_STATE_BLOCK_SIZE(state) - COUNTER_LENGTH)), COUNTER_LENGTH);
 
     ccctr_init(DRBG_STATE_CTR_MODE(state), DRBG_STATE_CTR_KEY(state), DRBG_STATE_KEY_LENGTH(state), &tmp[0], &state->V[0]);
 
@@ -428,9 +395,9 @@ ccdrbg_status_t ccdrbg_nistctr_init(const struct ccdrbg_info *info,
 
     /* make sure that our state is clean... */
     cc_clear(_state->key_length, _state->key);
-    cc_clear(DRBG_STATE_OUTLEN(state), _state->V);
+    cc_clear(DRBG_STATE_BLOCK_SIZE(state), _state->V);
 
-    _state->V[DRBG_STATE_OUTLEN(state)-1] = 1;
+    _state->V[DRBG_STATE_BLOCK_SIZE(state)-1] = 1;
 
     ccctr_init(DRBG_STATE_CTR_MODE(state), DRBG_STATE_CTR_KEY(state), DRBG_STATE_KEY_LENGTH(state), _state->key, _state->V);
     ccdrbg_nistctr_update(_state, seed_material);
