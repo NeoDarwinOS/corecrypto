@@ -17,6 +17,10 @@ cc_error_t ccmode_ctr_init(const struct ccmode_ctr *ctr, ccctr_ctx *ctx, size_t 
     /* Now, this shouldn't be used by any SPI beyond ccmode_factory_xxx, but just in case... */
     cc_debug_abort(ecb == NULL, "ccmode_ctr_init: ecb field is null.", CCERR_PARAMETER);
 
+    cc_debug_log("ctx ptr %p", ctx);
+    cc_debug_log("key ptr %p", key);
+    cc_debug_log("iv ptr %p", iv);
+
     CCMODE_CTR_KEY_ECB(ctx) = ecb;
 
     err = ccecb_init(ecb, CCMODE_CTR_KEY_ECB_CTX(ctx), key_size, key);

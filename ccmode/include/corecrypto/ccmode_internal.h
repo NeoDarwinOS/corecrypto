@@ -78,6 +78,13 @@ struct _ccmode_cbc_key {
 struct _ccmode_ctr_key {
     const struct ccmode_ecb *ecb;
     size_t pad_len;
+
+    /*
+     * layout:
+     * counter  [ block_size ]
+     * pad      [ block_size ]
+     * ecb_ctx  [ ecb ctx size ]
+     */
     cc_unit u[];
 };
 
