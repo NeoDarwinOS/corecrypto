@@ -58,6 +58,7 @@ cc_error_t ccpost_ctr_drbg_validate(void)
 
     uint8_t state[1600];
     struct ccdrbg_state *drbg = (struct ccdrbg_state *)state;
+    cc_clear(sizeof(state), state);
 
     if (sizeof(state) < info.size) {
         cc_post_func_log("state too small %zd", info.size);
