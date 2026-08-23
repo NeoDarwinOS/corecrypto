@@ -338,6 +338,14 @@ void cc_abort(const char *msg);
 CC_PRIVATE
 void cc_try_abort(const char *msg);
 
+CC_EXPORT
+void cc_atfork_prepare(void);
+
+CC_EXPORT
+void cc_atfork_parent(void);
+
+CC_EXPORT
+void cc_atfork_child(void);
 
 /*
  * XNU as of Darwin 20 has extra security/lockdown features for the kernel where it can remap data as R/O later 

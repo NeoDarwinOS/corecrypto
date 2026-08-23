@@ -28,11 +28,39 @@
 #endif
 
 static
-cc_error_t ccrng_system_rng_generate(struct ccrng_state *state, size_t nbytes, void *out);
+cc_error_t ccrng_crypto_getentropy(size_t nbytes, void *buffer);
+
+#if CC_PLATFORM_XNU
+
+#include <sys/random.h>
+#include <sys/types.h>
+#include <machine/limits.h>
+
+cc_error_t ccrng_crypto_getentropy(size_t nbytes, void *buffer)
+{
+    cc_internal_crash(nbytes > UINT_MAX, "getentropy nbytes > UINT_MAX");
+    read_random(buffer, (u_int)nbytes);
+    return CCERR_OK;
+}
+
+#elif CC_PLATFORM_LINUX || CC_PLATFORM_DARWIN
+
+#include <sys/random.h>
+
+cc_error_t ccrng_crypto_getentropy(size_t nbytes, void *buffer)
+{
+    cc_internal_crash(nbytes > 256, "getentropy nbytes > 256");
+    return getentropy(buffer, nbytes);
+}
+
+#endif
+
+static
+cc_error_t ccrng_crypto_rng_generate(struct ccrng_state *state, size_t nbytes, void *out);
 
 #define CCRNG_SYSTEM_RNG_MAGIC 0xCC524E47
 
-struct ccrng_system_rng {
+struct ccrng_crypto_rng {
     uint32_t magic;
     bool did_init;
     bool prediction_break;
@@ -48,7 +76,7 @@ struct ccrng_system_rng {
     struct ccrng_state rng_state;
 };
 
-static struct ccrng_system_rng __rng = {CCRNG_SYSTEM_RNG_MAGIC, false};
+static struct ccrng_crypto_rng __rng = {CCRNG_SYSTEM_RNG_MAGIC, false};
 
 //
 // !!!TEMPORARY!!!
@@ -56,7 +84,7 @@ static struct ccrng_system_rng __rng = {CCRNG_SYSTEM_RNG_MAGIC, false};
 static const uint8_t df_pr_entropy[] = "\x53\x43\x46\xa3\xe0\xba\xa6\x5d\x7a\x51\x87\x1b\x6d\x63\x3a\x6f\x1e\xfa\x9f\xf5\x5d\xfd\xe3\x21\x2c\x95\x02\x9a\xdf\x23\x87\xd9";
 static const uint8_t df_pr_nonce[] = "\x0c\xbe\x99\x82\x15\x09\x97\x5d\x82\x4f\xd8\x26\xc4\x7d\x2a\xbc";
 
-cc_error_t ccrng_system_rng_init_once(void) {
+cc_error_t ccrng_crypto_rng_init_once(void) {
     cc_error_t err = CCERR_OK;
     
     if (__rng.did_init) {
@@ -64,7 +92,7 @@ cc_error_t ccrng_system_rng_init_once(void) {
     }
     
     /* It's probably safer to abort here than not. */
-    cc_internal_crash(__rng.magic == CCRNG_SYSTEM_RNG_MAGIC, "ccrng_system_rng: internal RNG structure is bad.");
+    cc_internal_crash(__rng.magic == CCRNG_SYSTEM_RNG_MAGIC, "ccrng_crypto_rng: internal RNG structure is bad.");
     
     err = ccdrbg_df_bc_init(&__rng.drbg_df_bc_ctx, ccaes_cbc_encrypt_mode(), CCAES_KEY_SIZE_256);
     cc_internal_crash(err != CCERR_OK, "ccdrbg_df_bc_init failed.");
@@ -91,7 +119,7 @@ cc_error_t ccrng_system_rng_init_once(void) {
 
     cc_internal_crash(err != CCERR_OK, "ccdrbg_init failed.");
 
-    __rng.rng_state.generate = &ccrng_system_rng_generate;
+    __rng.rng_state.generate = &ccrng_crypto_rng_generate;
     
     __rng.did_init = true;
     
@@ -99,7 +127,7 @@ cc_error_t ccrng_system_rng_init_once(void) {
 }
 
 static
-cc_error_t ccrng_system_rng_generate(struct ccrng_state *state, size_t nbytes, void *out)
+cc_error_t ccrng_crypto_rng_generate(struct ccrng_state *state, size_t nbytes, void *out)
 {
     cc_lock_lock(&__rng.rng_lock);
     
@@ -119,6 +147,6 @@ cc_error_t ccrng_system_rng_generate(struct ccrng_state *state, size_t nbytes, v
 struct ccrng_state *
 ccrng(cc_error_t *err)
 {
-    ccrng_system_rng_init_once();
+    ccrng_crypto_rng_init_once();
     return &__rng.rng_state;
 }

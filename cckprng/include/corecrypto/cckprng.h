@@ -35,7 +35,9 @@ CC_BEGIN_DECLS
 //
 // Defines whether the Fortuna backend is the system default.
 //
+#if 0
 #define CCKPRNG_OS_USES_FORTUNA_BACKEND __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_15, __MAC_13_0)
+#endif
 
 //
 // Defines whether the kprng requires the entropybuffer shared interface.
@@ -46,6 +48,11 @@ CC_BEGIN_DECLS
 // Defines whether the kprng requires the getentropy function pointer.
 //
 #define CCKPRNG_OS_USES_GETENTROPY __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_11_1, __MAC_28_0)
+
+//
+// Defines whether the DRBG backend is the system default
+//
+#define CCKPRNG_OS_USES_DRBG_BACKEND __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_15, __MAC_28_0)
 
 //
 // The Kernel PRNG for Darwin 19 is a modified Fortuna construction with some interesting details:
@@ -173,6 +180,24 @@ struct cckprng_ctx {
     struct cckprng_pool_ctx pools[CCKPRNG_NPOOLS];
     struct cckprng_entropybuf entropybuf;
     struct cckprng_diag diag;
+#if CCKPRNG_OS_USES_GETENTROPY
+    cckprng_getentropy getentropy;
+    void *getentropy_arg;
+#endif
+};
+
+#endif
+
+#if CCKPRNG_OS_USES_DRBG_BACKEND
+
+#include <corecrypto/ccdrbg.h>
+
+struct cckprng_ctx {
+    struct ccdrbg_state *drbg_state;
+    struct ccdrbg_df_bc_ctx df_ctx;
+    struct ccdrbg_nistctr_custom drbg_custom;
+    cc_lock_t lock;
+    
 #if CCKPRNG_OS_USES_GETENTROPY
     cckprng_getentropy getentropy;
     void *getentropy_arg;

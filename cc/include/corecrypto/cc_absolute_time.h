@@ -6,4 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-#include <corecrypto/cckprng.h>
+
+#ifndef __CORECRYPTO_CC_ABSOLUTE_TIME_H__
+#define __CORECRYPTO_CC_ABSOLUTE_TIME_H__
+
+#include <corecrypto/cc_config.h>
+
+#endif /* __CORECRYPTO_CC_ABSOLUTE_TIME_H__ */
