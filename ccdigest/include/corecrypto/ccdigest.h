@@ -90,22 +90,26 @@ struct ccdigest_info {
 #define ccdigest_di_clear(di, name) ccdigest_ctx_clear(di->state_size, di->block_size, name)
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void ccdigest(const struct ccdigest_info *di,
               size_t length,
               const void *data,
               void *digest);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void ccdigest_init(const struct ccdigest_info *di,
                    ccdigest_ctx_t ctx);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void ccdigest_update(const struct ccdigest_info *di,
                      ccdigest_ctx_t ctx,
                      size_t length,
                      const void *data);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void ccdigest_final(const struct ccdigest_info *di,
                     ccdigest_ctx_t ctx,
                     void *digest);

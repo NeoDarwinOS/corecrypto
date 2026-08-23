@@ -35,7 +35,7 @@
 #else
 #include <stdio.h>
 
-#define cc_debug_log(fmt, x...) printf("corecrypto: " fmt "\n", ##x)
+#define cc_debug_log(fmt, ...) printf("corecrypto: " fmt "\n", __VA_ARGS__)
 #endif
 
 #endif /* __CORECRYPTO_CC_DEBUG_H__ */

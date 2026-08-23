@@ -80,4 +80,14 @@ bool cc_lock_try_lock(cc_lock_t *lock)
     return pthread_mutex_trylock(&lock->mtx);
 }
 
+#elif CC_PLATFORM_WINDOWS
+
+void cc_lock_init(cc_lock_t *lock, const char *group_name)
+{
+    lock->mtx = CreateMutex(NULL,
+    FALSE,
+NULL);
+}
+
+
 #endif

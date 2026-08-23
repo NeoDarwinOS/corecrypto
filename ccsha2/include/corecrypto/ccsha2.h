@@ -18,9 +18,11 @@ CC_BEGIN_DECLS
 #define	CCSHA256_STATE_SIZE     32
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info *ccsha256_di(void);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info ccsha256_ltc_di;
 
 #define ccoid_sha256 CCOID("\x06\x09\x60\x86\x48\x01\x65\x03\x04\x02\x01")
@@ -30,9 +32,11 @@ const struct ccdigest_info ccsha256_ltc_di;
 #define	CCSHA224_OUTPUT_SIZE 28
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info *ccsha224_di(void);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info ccsha224_ltc_di;
 
 #define ccoid_sha224 CCOID("\x06\x09\x60\x86\x48\x01\x65\x03\x04\x02\x04")
@@ -44,9 +48,12 @@ const struct ccdigest_info ccsha224_ltc_di;
 #define	CCSHA512_STATE_SIZE     64
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info *ccsha512_di(void);
 
-extern const struct ccdigest_info ccsha512_ltc_di;
+CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
+const struct ccdigest_info ccsha512_ltc_di;
 
 #define ccoid_sha512 CCOID("\x06\x09\x60\x86\x48\x01\x65\x03\x04\x02\x03")
 #define ccoid_sha512_len 11
@@ -55,9 +62,12 @@ extern const struct ccdigest_info ccsha512_ltc_di;
 #define	CCSHA384_OUTPUT_SIZE  48
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info *ccsha384_di(void);
 
-extern const struct ccdigest_info ccsha384_ltc_di;
+CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
+const struct ccdigest_info ccsha384_ltc_di;
 
 #define ccoid_sha384 CCOID("\x06\x09\x60\x86\x48\x01\x65\x03\x04\x02\x02")
 #define ccoid_sha384_len 11

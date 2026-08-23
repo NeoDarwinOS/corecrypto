@@ -250,7 +250,8 @@ typedef char DummyDeclarationToMakeValidC;
     defined(__i386__) || defined(_M_I86) || defined(_M_IX86) ||                \
     defined(__OS2__) || defined(sun386) || defined(__TURBOC__) ||              \
     defined(vax) || defined(vms) || defined(VMS) || defined(__VMS) ||          \
-    defined(__x86_64__)
+    defined(__x86_64__) || defined(_M_AMD64) || defined(_M_ARM64) ||           \
+    defined(_M_ARM)
 #define PLATFORM_BYTE_ORDER BRG_LITTLE_ENDIAN
 
 #elif defined(AMIGA) || defined(applec) || defined(__AS400__) ||               \

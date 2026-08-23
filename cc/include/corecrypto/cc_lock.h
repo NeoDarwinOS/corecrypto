@@ -35,6 +35,15 @@ typedef struct cc_lock {
     pthread_mutex_t mtx;
 } cc_lock_t;
 
+#elif CC_PLATFORM_WINDOWS
+
+#include <windows.h>
+#include <synchapi.h>
+
+typedef struct cc_lock {
+    HANDLE mtx;
+} cc_lock_t;
+
 #endif
 
 void cc_lock_init(cc_lock_t *lock, const char *group_name);

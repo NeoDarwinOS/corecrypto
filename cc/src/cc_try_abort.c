@@ -8,7 +8,7 @@
 
 #include <corecrypto/cc_priv.h>
 
-#if CC_PLATFORM_DARWIN || CC_PLATFORM_XNU || CC_PLATFORM_LINUX
+#if CC_PLATFORM_DARWIN || CC_PLATFORM_XNU || CC_PLATFORM_LINUX || CC_PLATFORM_WINDOWS
 
 void cc_try_abort(const char *msg) {
     cc_abort(msg);

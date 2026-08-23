@@ -18,6 +18,7 @@ CC_BEGIN_DECLS
 #define CCMD5_STATE_SIZE   16
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info *ccmd5_di(void);
 
 CC_EXPORT

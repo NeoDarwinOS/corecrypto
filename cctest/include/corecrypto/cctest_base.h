@@ -11,10 +11,21 @@
 
 #include <corecrypto/cc.h>
 
+enum cctest_log_level {
+    CCTEST_LOG_ERROR = 1,
+    CCTEST_LOG_WARNING,
+    CCTEST_LOG_DEBUG,
+};
+
+struct cctest_vtable {
+    void (*log)(enum cctest_log_level lvl, const char *fmt, ...);
+};
+
 struct cctest_base {
     const char *test_name;
 
     cc_error_t (*run)(const struct cctest_base *self);
+    const void *custom;
 };
 
 cc_error_t cctest_run(const struct cctest_base *test);

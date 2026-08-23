@@ -11,6 +11,7 @@
 
 #include <corecrypto/cc.h>
 #include <corecrypto/ccdrbg_impl.h>
+#include <corecrypto/ccdrbg_df.h>
 #include <corecrypto/ccmode.h>
 
 CC_BEGIN_DECLS
@@ -20,7 +21,12 @@ CC_BEGIN_DECLS
  *
  * These routines provide the skeleton for a fully featured DRBG. It does not cover everything.
  *
- * For example, for predicition resistence, this is implemented by the API making use of the underlying DRBG code.
+ * Prediction Resistance is a contract between the wrapper of the DRBG and the DRBG, where the DRBG
+ * maintains a reseed counter, whilst periodic prediction breaking is handled by the wrapper.
+ *
+ * This API surface isn't actually used by any clients, so we can realistically modify it to suit our needs.
+ *
+ * CommonCrypto only ever calls ccrng, which is our internal DRBG.
  */
 
 /*
@@ -39,9 +45,11 @@ CC_BEGIN_DECLS
 #define CCDRBG_RESEED_INTERVAL              (1ULL << 48)
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 size_t ccdrbg_context_size(const struct ccdrbg_info *info);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 ccdrbg_status_t ccdrbg_init(const struct ccdrbg_info *info,
                             struct ccdrbg_state *state,
                             size_t entropy_length,
@@ -52,6 +60,7 @@ ccdrbg_status_t ccdrbg_init(const struct ccdrbg_info *info,
                             const void *ps);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 ccdrbg_status_t ccdrbg_reseed(const struct ccdrbg_info *info,
                               struct ccdrbg_state *state,
                               size_t entropy_length,
@@ -60,6 +69,7 @@ ccdrbg_status_t ccdrbg_reseed(const struct ccdrbg_info *info,
                               const void *ad);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 ccdrbg_status_t ccdrbg_generate(const struct ccdrbg_info *info,
                                 struct ccdrbg_state *state,
                                 size_t out_length,
@@ -68,6 +78,7 @@ ccdrbg_status_t ccdrbg_generate(const struct ccdrbg_info *info,
                                 const void *ad);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void ccdrbg_done(const struct ccdrbg_info *info,
                  struct ccdrbg_state *state);
 
@@ -75,10 +86,11 @@ struct ccdrbg_nistctr_custom {
     const struct ccmode_ctr *ctr;
     size_t key_length;
     bool strictFIPS;
-    bool use_df;
+    ccdrbg_df_ctx_t *df_ctx;
 };
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void ccdrbg_factory_nistctr(struct ccdrbg_info *info, const struct ccdrbg_nistctr_custom *custom);
 
 CC_END_DECLS

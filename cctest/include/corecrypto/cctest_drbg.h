@@ -6,9 +6,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-#include <corecrypto/ccdigest_priv.h>
+#ifndef __CORECRYPTO_CCTEST_DRBG_H__
+#define __CORECRYPTO_CCTEST_DRBG_H__
 
-void ccdigest_final(const struct ccdigest_info *di, ccdigest_ctx_t ctx, void *digest)
-{
-    di->final(di, ctx, digest);
-}
+#include <corecrypto/cctest_base.h>
+
+struct cctest_drbg_vector {
+
+};
+
+#endif /* __CORECRYPTO_CCTEST_DRBG_H__ */

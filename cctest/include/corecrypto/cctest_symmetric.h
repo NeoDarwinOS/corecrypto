@@ -37,6 +37,7 @@ struct cctest_symmetric_impls {
     union {
         const struct ccmode_ecb *ecb;
         const struct ccmode_cbc *cbc;
+        const struct ccmode_ctr *ctr;
     } impls;
 };
 

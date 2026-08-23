@@ -29,18 +29,22 @@ CC_BEGIN_DECLS
 #define ccecb_ctx_clear(size, name) cc_clear(size, name)
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 size_t ccecb_context_size(const struct ccmode_ecb *ecb);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 size_t ccecb_block_size(const struct ccmode_ecb *ecb);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t ccecb_init(const struct ccmode_ecb *ecb,
                       ccecb_ctx *ctx,
                       size_t key_size,
                       const void *key);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t ccecb_update(const struct ccmode_ecb *ecb,
                         const ccecb_ctx *ctx,
                         size_t nblocks,
@@ -48,6 +52,7 @@ cc_error_t ccecb_update(const struct ccmode_ecb *ecb,
                         void *out);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t ccecb_one_shot(const struct ccmode_ecb *ecb,
                           size_t key_length,
                           const void *key,
@@ -63,23 +68,28 @@ cc_error_t ccecb_one_shot(const struct ccmode_ecb *ecb,
 #define cccbc_iv_clear(size, name) cc_clear(size, name)
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 size_t cccbc_context_size(const struct ccmode_cbc *cbc);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 size_t cccbc_block_size(const struct ccmode_cbc *cbc);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t cccbc_init(const struct ccmode_cbc *cbc,
                       cccbc_ctx *ctx,
                       size_t key_size,
                       const void *key);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t cccbc_set_iv(const struct ccmode_cbc *mode,
                         cccbc_iv *iv_ctx,
                         const void *iv);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t cccbc_update(const struct ccmode_cbc *cbc,
                         const cccbc_ctx *ctx,
                         cccbc_iv *iv,
@@ -88,6 +98,7 @@ cc_error_t cccbc_update(const struct ccmode_cbc *cbc,
                         void *out);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t cccbc_one_shot(const struct ccmode_cbc *cbc,
                           size_t key_length,
                           const void *key,
@@ -100,12 +111,15 @@ cc_error_t cccbc_one_shot(const struct ccmode_cbc *cbc,
 #define ccctr_ctx_clear(size, name) cc_clear(size, name)
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 size_t ccctr_context_size(const struct ccmode_ctr *ctr);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 size_t ccctr_block_size(const struct ccmode_ctr *ctr);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t ccctr_init(const struct ccmode_ctr *ctr,
                       ccctr_ctx *ctx,
                       size_t key_size,
@@ -118,6 +132,7 @@ cc_error_t ccctr_setctr(const struct ccmode_ctr *ctr,
                         const void *counter);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t ccctr_update(const struct ccmode_ctr *ctr,
                         ccctr_ctx *ctx,
                         size_t nbytes,
@@ -125,6 +140,7 @@ cc_error_t ccctr_update(const struct ccmode_ctr *ctr,
                         void *out);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 cc_error_t ccctr_one_shot(const struct ccmode_ctr *ctr,
                           size_t key_length,
                           const void *key,

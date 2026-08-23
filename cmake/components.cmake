@@ -32,6 +32,32 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
   message("CoreCrypto: Using Linux configuration for build.")
 endif()
 
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  set(CORECRYPTO_ALLOWED_COMPONENTS cc;ccn;ccmode;ccasn1;ccdigest)
+  set(CORECRYPTO_SHARED_COMPONENTS
+      cc
+      ccaes
+      ccasn1
+      ccchacha20poly1305
+      ccdigest
+      ccdrbg
+      cchmac
+      cckprng
+      ccmd5
+      ccmode
+      ccn
+      ccpost
+      ccrc4
+      ccrng
+      ccrsa
+      ccsha1
+      ccsha2
+      cczp
+      )
+  set(CORECRYPTO_STATIC_COMPONENTS cc;ccn;ccmode)
+  message("CoreCrypto: Using Windows configuration for build.")
+endif()
+
 set(CORECRYPTO_cc_PUBLIC_HEADERS
     corecrypto/cc_config.h
     corecrypto/cc_error.h
@@ -162,6 +188,7 @@ set(CORECRYPTO_ccdrbg_PUBLIC_HEADERS
 
 set(CORECRYPTO_ccdrbg_SOURCES
     ccdrbg.c
+    ccdrbg_df_bc.c
     ccdrbg_nistctr.c
 )
 

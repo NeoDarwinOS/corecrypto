@@ -21,12 +21,15 @@ CC_BEGIN_DECLS
 #define CCSHA1_STATE_SIZE   20
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info *ccsha1_di(void);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info ccsha1_ltc_di;
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccdigest_info ccsha1_eay_di;
 
 

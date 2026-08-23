@@ -32,18 +32,23 @@ CC_EXPORT const struct ccmode_cbc ccaes_gladman_cbc_encrypt_mode;
  * Runtime selectors go here.
  */
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ecb *ccaes_ecb_decrypt_mode(void);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ecb *ccaes_ecb_encrypt_mode(void);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_cbc *ccaes_cbc_decrypt_mode(void);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_cbc *ccaes_cbc_encrypt_mode(void);
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ctr *ccaes_ctr_crypt_mode(void);
 
 CC_END_DECLS

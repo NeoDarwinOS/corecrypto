@@ -11,6 +11,7 @@
 
 #include <corecrypto/ccmode.h>
 #include <corecrypto/ccn.h>
+#include <corecrypto/cc_priv.h>
 
 CC_BEGIN_DECLS
 
@@ -27,9 +28,12 @@ CC_INLINE void inc_uint_be(uint8_t *ptr, size_t len)
 
 /*
  * Default CBC implementation.
+ *
+ * Since this defines the function interface too, we mark the struct as READ_ONLY_LATE for platforms
+ * that use it.
  */
 #define CCMODE_CBC_FACTORY(cipher, encdec)                                  \
-    static struct ccmode_cbc cbc_##cipher##_##encdec;                       \
+    static CC_READ_ONLY_LATE(struct ccmode_cbc) cbc_##cipher##_##encdec;    \
                                                                             \
     const struct ccmode_cbc *cc##cipher##_cbc_##encdec##_mode(void) {       \
         const struct ccmode_ecb *ecb=cc##cipher##_ecb_##encdec##_mode();    \
@@ -65,9 +69,12 @@ struct _ccmode_cbc_key {
 
 /*
  * Default CTR implementation
+ *
+ * Since this defines the function interface too, we mark the struct as READ_ONLY_LATE for platforms
+ * that use it.
  */
 #define CCMODE_CTR_FACTORY(cipher)                                          \
-    static struct ccmode_ctr ctr_##cipher;                                  \
+    static CC_READ_ONLY_LATE(struct ccmode_ctr) ctr_##cipher;               \
                                                                             \
     const struct ccmode_ctr *cc##cipher##_ctr_crypt_mode(void) {            \
         const struct ccmode_ecb *ecb=cc##cipher##_ecb_encrypt_mode();       \
@@ -81,7 +88,7 @@ struct _ccmode_ctr_key {
 
     /*
      * layout:
-     * counter  [ block_size ]
+     * counter  [ block_size ]          corecrypto counters are always 8 bytes in length at the end of the block.
      * pad      [ block_size ]
      * ecb_ctx  [ ecb ctx size ]
      */

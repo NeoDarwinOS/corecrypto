@@ -28,7 +28,7 @@ cc_error_t ccpost_aes_ecb_validate_encrypt(void)
     cc_clear(CCAES_BLOCK_SIZE, output);
 
     /* Run AES-128 validation */
-    cc_post_func_log("AES-128 encrypt validation");
+    cc_post_func_log("AES-128 encrypt");
     if (ccecb_one_shot(ccaes_ecb_encrypt_mode(), CCAES_KEY_SIZE_128, aes_128_key, 1, aes_128_plaintext, output) != CCERR_OK) {
         return CCERR_INTEGRITY;
     }

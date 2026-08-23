@@ -15,6 +15,7 @@
 #define ccdigest_copy_state(_di_, _dst_, _src_) cc_memcpy_nochk(_dst_, _src_, (_di_)->state_size)
 
 CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 bool ccdigest_oid_equal(const struct ccdigest_info *di,
                         ccoid_t oid);
 

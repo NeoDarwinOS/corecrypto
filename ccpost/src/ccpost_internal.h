@@ -46,9 +46,15 @@ cc_error_t ccpost_ctr_drbg_validate(void);
 #else
 #include <stdio.h>
 
+#if CC_PLATFORM_WINDOWS
+#define cc_post_log(fmt, ...) printf("CCPOST: " fmt "\n", __VA_ARGS__)
+
+#define cc_post_func_log(fmt, ...) printf("CCPOST [%s]: " fmt "\n", __FUNCTION__, __VA_ARGS__)
+#else
 #define cc_post_log(fmt, x...) printf("CCPOST: " fmt "\n", ##x)
 
 #define cc_post_func_log(fmt, x...) printf("CCPOST [%s]: " fmt "\n", __FUNCTION__, ##x)
+#endif
 
 #define cc_post_func_hex_log(fmt, length, buffer) {     \
         printf("CCPOST [%s]: " fmt "\n", __FUNCTION__); \

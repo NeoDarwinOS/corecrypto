@@ -44,6 +44,8 @@
 
 #if __has_builtin(__builtin_bswap32)
 #define cc_bswap32(x) __builtin_bswap32(x)
+#elif defined(_MSC_VER)
+#define cc_bswap32(x) _byteswap_ulong(x)
 #else
 #if (CC_ARCH_X86_64 && CC_ENABLE_ASM)
 CC_INLINE CC_CONST uint32_t cc_bswap32(uint32_t i) {
@@ -66,6 +68,8 @@ CC_INLINE CC_CONST uint32_t cc_bswap32(uint32_t i) {
 
 #if __has_builtin(__builtin_bswap64)
 #define cc_bswap64(x) __builtin_bswap64(x)
+#elif defined(_MSC_VER)
+#define cc_bswap64(x) _byteswap_uint64(x)
 #else
 #if (CC_ARCH_X86_64 && CC_ENABLE_ASM)
 CC_INLINE CC_CONST uint64_t cc_bswap64(uint64_t i) {
@@ -124,12 +128,12 @@ CC_INLINE uint32_t cc_ror(uint32_t w, int i)
 #else
 CC_INLINE uint32_t cc_rol(uint32_t w, int i)
 {
-    return ((word << (i & 0x1F)) | (word >> (0x20 - (i & 0x1F))));
+    return ((w << (i & 0x1F)) | (w >> (0x20 - (i & 0x1F))));
 }
 
 CC_INLINE uint32_t cc_ror(uint32_t w, int i)
 {
-    return ((word >> (i & 0x1F)) | (word << (0x20 - (i & 0x1F))));
+    return ((w >> (i & 0x1F)) | (w << (0x20 - (i & 0x1F))));
 }
 
 #define cc_rolc(w, i) cc_rol(w, i)
@@ -177,12 +181,12 @@ CC_INLINE uint64_t cc_ror64(uint64_t w, int i)
 #else
 CC_INLINE uint64_t cc_rol64(uint64_t w, int i)
 {
-    return ((word << (i & 0x3F)) | (word >> (0x40 - (i & 0x3F))));
+    return ((w << (i & 0x3F)) | (w >> (0x40 - (i & 0x3F))));
 }
 
 CC_INLINE uint64_t cc_ror64(uint64_t w, int i)
 {
-    return ((word >> (i & 0x3F)) | (word << (0x40 - (i & 0x3F))));
+    return ((w >> (i & 0x3F)) | (w << (0x40 - (i & 0x3F))));
 }
 
 #define cc_rol64c(w, i) cc_rol64(w, i)
@@ -212,6 +216,14 @@ CC_INLINE CC_CONST uint32_t cc_clz(uint32_t w)
 {
     return (uint32_t)__builtin_clz(w);
 }
+#elif CC_PLATFORM_WINDOWS
+CC_INLINE CC_CONST uint32_t cc_clz(uint32_t w)
+{
+    uint32_t bsr;
+    if (w == 0) return 32;
+    _BitScanReverse(&bsr, w);
+    return 32 - 1 - bsr;
+}
 #else
     #error we need a fallback for clz
 #endif
@@ -220,6 +232,14 @@ CC_INLINE CC_CONST uint32_t cc_clz(uint32_t w)
 CC_INLINE CC_CONST uint32_t cc_clz64(uint64_t w)
 {
     return (uint32_t)__builtin_clzll(w);
+}
+#elif CC_PLATFORM_WINDOWS
+CC_INLINE CC_CONST uint32_t cc_clz64(uint32_t w)
+{
+    uint64_t bsr;
+    if (w == 0) return 32;
+    _BitScanReverse64(&bsr, w);
+    return 64 - 1 - bsr;
 }
 #else
     #error we need a fallback for clzll
@@ -301,6 +321,9 @@ CC_INLINE CC_CONST uint32_t cc_clz64(uint64_t w)
             ((uint64_t)(((uint8_t *)y)[0]));            \
     } while(0)
 
+
+
+
 CC_PRIVATE
 void cc_xor(size_t len, void *r, const void *s, const void *t);
 
@@ -314,5 +337,18 @@ void cc_abort(const char *msg);
 
 CC_PRIVATE
 void cc_try_abort(const char *msg);
+
+
+/*
+ * XNU as of Darwin 20 has extra security/lockdown features for the kernel where it can remap data as R/O later 
+ * in the kernel boot procedure
+ *
+ * In XNU, this is the "SECURITY_READ_ONLY_LATE" macro.
+ */
+#if CC_PLATFORM_XNU && (CC_ARCH_X86_64 || CC_ARCH_ARM64) && __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_11_0, __MAC_28_0)
+    #define CC_READ_ONLY_LATE(x)    x __attribute__((section("__DATA,__const")))  __attribute__((used))
+#else
+    #define CC_READ_ONLY_LATE(x)    x
+#endif
 
 #endif /* __CORECRYPTO_CC_PRIV_H__ */

@@ -6,9 +6,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-#include <corecrypto/ccdigest_priv.h>
+#ifndef __CORECRYPTO_CCCHACHA20POLY1305_PRIV_H__
+#define __CORECRYPTO_CCCHACHA20POLY1305_PRIV_H__
 
-void ccdigest_final(const struct ccdigest_info *di, ccdigest_ctx_t ctx, void *digest)
-{
-    di->final(di, ctx, digest);
-}
+#include <corecrypto/ccchacha20poly1305.h>
+
+#endif /* __CORECRYPTO_CCCHACHA20POLY1305_PRIV_H__  */

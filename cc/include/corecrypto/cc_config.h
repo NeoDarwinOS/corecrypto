@@ -56,11 +56,15 @@
     #define CC_PLATFORM_LINUX   1
 #endif
 
-#if defined (__x86_64__) && __x86_64__
+#if defined (_MSC_VER)
+    #define CC_PLATFORM_WINDOWS 1
+#endif
+
+#if (defined (__x86_64__) && __x86_64__) || (defined (_M_AMD64) && _M_AMD64)
     #define CC_ARCH_X86_64  1
-#elif defined (__arm64__) && __arm64__
+#elif (defined (__arm64__) && __arm64__) || (defined (_M_ARM64) && _M_ARM64)
     #define CC_ARCH_ARM64   1
-#elif defined (__arm__) && __arm__
+#elif (defined (__arm__) && __arm__) || (defined (_M_ARM) && _M_ARM)
     #define CC_ARCH_ARM     1
 
     #if defined (__ARM_ARCH_7A__) || defined (__ARM_ARCH_7S__) || defined (__ARM_ARCH_7F__) || defined (__ARM_ARCH_7K__)
@@ -103,7 +107,7 @@
 #endif
 
 #if !defined (CC_ENABLE_HEAP_BACKED_WORKSPACES)
-#define CC_ENABLE_HEAP_BACKED_WORKSPACES  1
+    #define CC_ENABLE_HEAP_BACKED_WORKSPACES  1
 #endif
 
 /* This is specific to a certain Darwin variant. I wonder which one that is. */
@@ -155,7 +159,7 @@
     #endif
 
     #if __has_attribute(mode)
-        #if CC_ARCH_X86_64 || CC_ARCH_ARM64
+        #if (CC_ARCH_X86_64 || CC_ARCH_ARM64) && !CC_PLATFORM_WINDOWS
             #define CC_UNIT_ALLOW_UINT128_DUNIT 1
         #else
             #define CC_UNIT_ALLOW_UINT128_DUNIT 0
@@ -168,8 +172,12 @@
         #define CC_PRIVATE extern __attribute__((visibility("hidden")))
         #define CC_EXPORT extern __attribute__((visibility("default")))
     #else
-        #define CC_PRIVATE
-        #define CC_EXPORT
+        #if CC_PLATFORM_WINDOWS
+            #define CC_EXPORT __declspec(dllexport)
+        #else
+            #define CC_PRIVATE
+            #define CC_EXPORT
+        #endif
     #endif
 #else
     #define CC_CONST
@@ -186,12 +194,16 @@
 #if CC_UNIT_SIZE == 8
     #if __GNUC__
         #define cc_aligned(x) __attribute__((aligned((x))))
+    #elif defined _MSC_VER
+        #define cc_aligned(x) __declspec(align(x))
     #else
         #error unsupported compiler
     #endif
 #else
     #if __GNUC__
         #define cc_aligned(x) __attribute__ ((aligned((x) > 8 ? 8 : (x))))
+    #elif defined _MSC_VER
+        #define cc_aligned(x) __declspec(align(x))
     #else
         #error unsupported compiler
     #endif
@@ -214,7 +226,7 @@
 #endif
 
 #ifndef CC_SMALL_CODE
-#define CC_SMALL_CODE 0
+    #define CC_SMALL_CODE 0
 #endif
 
 #endif /* __CORECRYPTO_CC_CONFIG_H__ */

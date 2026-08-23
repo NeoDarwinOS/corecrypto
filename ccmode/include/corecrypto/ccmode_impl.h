@@ -60,8 +60,14 @@ struct ccmode_ecb {
     cc_error_t (*ecb)(const ccecb_ctx *ctx, size_t nblocks, const void *in,
                       void *out);
 
-    /* These fields are ones we really don't care about- they aren't used anywhere in Security or other frameworks. */
+    /* 
+     * These fields are ones we really don't care about- they aren't used anywhere in Security or other frameworks. 
+     *
+     * Below, is the round_key function pointer on modern Darwin.
+     */
     void *pad;
+
+    /* On Apple corecrypto, this is cc_impl_t. We do not care.*/
     int pad2;
 
     /* API NOTE: This is yet another extension */
@@ -106,13 +112,18 @@ struct ccmode_cbc {
 
 /*
  * CFB - 'Cipher Feedback Mode'
- *
- *
  */
+cc_aligned_struct(16) cccfb_ctx;
+
+/*
+ * CFB8 - 'Cipher Feedback Mode'
+ */
+cc_aligned_struct(16) cccfb8_ctx;
 
 /*
  * OFB - 'Output Feedback Mode'
  */
+cc_aligned_struct(16) ccofb_ctx;
 
 /*
  * CTR - 'Counter Mode'
@@ -159,6 +170,21 @@ cc_aligned_struct(16) ccgcm_ctx;
  * XTS is THE full-disk encryption algorithm. I think we know why we need this.
  */
 cc_aligned_struct(16) ccxts_ctx;
+cc_aligned_struct(16) ccxts_tweak;
+
+/*
+ * CCM - Counter with CBC-MAC
+ *
+ * Used for WPA2. This would be very useful for SoftMAC implementations of a future 802.11 stack.
+ *
+ * Introduced in 2014.
+ */
+cc_aligned_struct(16) ccccm_ctx;
+cc_aligned_struct(16) ccccm_nonce;
+
+struct ccmode_ccm {
+    size_t size;
+};
 
 CC_END_DECLS
 

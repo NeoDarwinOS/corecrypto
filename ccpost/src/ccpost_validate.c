@@ -8,6 +8,7 @@
 
 #include "ccpost_internal.h"
 
+#if !CC_PLATFORM_WINDOWS
 #define CCPOST_RUN_FUNCTION(x) ({            \
         cc_post_log(#x " BEGIN");            \
         cc_error_t err = x();               \
@@ -19,6 +20,18 @@
         }                                   \
         err;                                \
     })
+#else
+#define CCPOST_RUN_FUNCTION(x)             \
+        cc_post_log(#x " BEGIN");           \
+        err = x();                          \
+        if (err) {                          \
+            cc_post_log(#x " FAIL");         \
+            return err;                     \
+        } else {                            \
+            cc_post_log(#x " PASS");         \
+        }                                   \
+        err;                                
+#endif
 
 #include "ccpost_internal.h"
 

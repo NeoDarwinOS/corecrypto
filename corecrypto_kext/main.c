@@ -54,16 +54,17 @@ void cc_kernel_populate_registration(void)
 
 
     /* MISSING COMPONENTS: cc[blowfish, cast]_ecb_[encrypt, decrypt]  */
-
+#if __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_10, __MAC_11_0)
+    
+#endif
 
     /* MISSING COMPONENTS: ccdes_key_[is_weak, set_odd_parity]  */
 
 
     /* MISSING COMPONETNS: ccpad_[cts3, xts]_[encrypt, decrypt] */
 
-
-    /* MISSING COMPONENTS: ccrng */
-
+    // works for now. needs proper work.
+    corecrypto_registration_if.ccrng_fn = &ccrng;
 
     /* MISSING COMPONENTS: ccrsa_[make_pub, verify_pkcs1v15] */
 }

@@ -52,21 +52,28 @@ typedef cchmac_ctx *cchmac_ctx_t;
 #define cchmac_ostate64(di, hmac_ctx)   (ccdigest_u64(cchmac_ostate(di, hmac_ctx)))
 #define cchmac_ostateccn(di, hmac_ctx)  (ccdigest_ccn(cchmac_ostate(di, hmac_ctx)))
 
-
+CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void cchmac_init(const struct ccdigest_info *di,
                  cchmac_ctx_t ctx,
                  size_t key_length,
                  const void *key);
 
+CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void cchmac_update(const struct ccdigest_info *di,
                    cchmac_ctx_t ctx,
                    size_t data_length,
                    const void *data);
 
+CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void cchmac_final(const struct ccdigest_info *di,
                   cchmac_ctx_t ctx,
                   void *mac);
 
+CC_EXPORT
+CORECRYPTO_API_AVAILABLE_2012
 void cchmac(const struct ccdigest_info *di,
             size_t key_length,
             const void *key,
