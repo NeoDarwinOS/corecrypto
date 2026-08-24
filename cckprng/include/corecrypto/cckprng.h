@@ -261,6 +261,9 @@ void cckprng_init(struct cckprng_ctx *ctx,
                   const void *nonce);
 
 CC_EXPORT
+void cckprng_initgen(struct cckprng_ctx *ctx, uint32_t gen_id);
+
+CC_EXPORT
 void cckprng_reseed(struct cckprng_ctx *ctx, size_t nbytes, const void *seed);
 
 CC_EXPORT

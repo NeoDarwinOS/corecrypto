@@ -111,12 +111,12 @@ struct ccmode_cbc {
 };
 
 /*
- * CFB - 'Cipher Feedback Mode'
+ * CFB - 'Cipher Feedback Mode' (using the native block size)
  */
 cc_aligned_struct(16) cccfb_ctx;
 
 /*
- * CFB8 - 'Cipher Feedback Mode'
+ * CFB8 - 'Cipher Feedback Mode' (using 8-bits)
  */
 cc_aligned_struct(16) cccfb8_ctx;
 
@@ -124,6 +124,21 @@ cc_aligned_struct(16) cccfb8_ctx;
  * OFB - 'Output Feedback Mode'
  */
 cc_aligned_struct(16) ccofb_ctx;
+
+struct ccmode_ofb {
+    size_t size;
+    size_t block_size;
+    cc_error_t (*init)(const struct ccmode_ofb *ofb,
+                       ccofb_ctx *ctx,
+                       size_t key_size,
+                       const void *key,
+                       const void *iv);
+    cc_error_t (*ofb)(ccofb_ctx *ctx,
+                      size_t nbytes,
+                      const void *in,
+                      void *out);
+    const void *custom;
+};
 
 /*
  * CTR - 'Counter Mode'
@@ -172,6 +187,10 @@ cc_aligned_struct(16) ccgcm_ctx;
 cc_aligned_struct(16) ccxts_ctx;
 cc_aligned_struct(16) ccxts_tweak;
 
+struct ccmode_xts {
+    size_t size;
+};
+
 /*
  * CCM - Counter with CBC-MAC
  *
@@ -184,6 +203,26 @@ cc_aligned_struct(16) ccccm_nonce;
 
 struct ccmode_ccm {
     size_t size;
+    size_t nonce_size;
+    size_t block_size;
+    
+    cc_error_t (*init)(const struct ccmode_ccm *ccm,
+                       ccccm_ctx *ctx,
+                       size_t key_size,
+                       const void *key);
+    
+    cc_error_t (*set_iv)(ccccm_ctx *ctx,
+                         ccccm_nonce *nonce_ctx,
+                         size_t nonce_len,
+                         const void *nonce,
+                         size_t mac_size,
+                         size_t auth_len,
+                         size_t data_len);
+    
+    cc_error_t (*cbcmac)(ccccm_ctx *ctx,
+                         ccccm_nonce *nonce,
+                         size_t nbytes,
+                         const void *in);
 };
 
 CC_END_DECLS

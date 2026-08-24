@@ -12,6 +12,11 @@
 
 #define CCKPRNG_PERSONALIZATION_STRING "cc_kprng"
 
+//
+// DARWIN 19: We must manage entropy ourselves. Pain and suffering for all.
+// DARWIN 20: The kernel gives a function pointer to get entropy. Thanks Hexley!
+//
+
 void cckprng_init(struct cckprng_ctx *ctx, 
                   uint32_t ngens, 
                   size_t entropybuf_nbytes, 

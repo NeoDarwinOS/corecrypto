@@ -42,7 +42,7 @@ void cc_kernel_populate_registration(void)
 
 
     /* MISSING COMPONENTS: ccchacha20poly1305_[all]  */
-
+    // more networking
 
     corecrypto_registration_if.ccdes_ecb_encrypt = ccdes_ecb_encrypt_mode();
     corecrypto_registration_if.ccdes_ecb_decrypt = ccdes_ecb_decrypt_mode();
@@ -67,18 +67,35 @@ void cc_kernel_populate_registration(void)
 
     /* MISSING COMPONETNS: ccpad_[cts3, xts]_[encrypt, decrypt] */
 
-    // works for now. needs proper work.
+    // in xnu, netkey/key.c uses ccrng for random key fill
+    //         it's also used for swap encryption and decryption
+    //         remind me to write the XTS implementation for that.
     corecrypto_registration_if.ccrng_fn = &ccrng;
 
     /* MISSING COMPONENTS: ccrsa_[make_pub, verify_pkcs1v15] */
+
+    // these rsa routines are used for imageboot dmg validation.
 }
+
+//
+// KPRNG
+//
+struct cckprng_ctx kprng_ctx;
+
+const struct cckprng_funcs kprng_funcs = {
+    cckprng_init,
+    cckprng_initgen,
+    cckprng_reseed,
+    cckprng_refresh,
+    cckprng_generate
+};
 
 kern_return_t corecrypto_start(kmod_info_t * ki, void *d)
 {
     cc_debug_log("kmod has been loaded, hello! :)");
 
     if (ccpost_validate() != CCERR_OK) {
-        cc_abort("CCPOST has determined that this copy of corecrypto is bad.");
+        cc_abort("The world has ended.");
     }
 
     cc_kernel_populate_registration();
@@ -87,6 +104,9 @@ kern_return_t corecrypto_start(kmod_info_t * ki, void *d)
     if (res != KERN_SUCCESS) {
         cc_internal_crash(1, "well. this is awkward.");
     }
+    
+    // wire in kernel PRNG.
+    register_and_init_prng(&kprng_ctx, &kprng_funcs);
 
     return KERN_SUCCESS;
 }

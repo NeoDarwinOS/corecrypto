@@ -417,6 +417,7 @@
 		F035FE68303C5FB200417505 /* ccrc4.c in Sources */ = {isa = PBXBuildFile; fileRef = F035FE67303C5FB200417505 /* ccrc4.c */; };
 		F035FE69303C5FB200417505 /* ccrc4.c in Sources */ = {isa = PBXBuildFile; fileRef = F035FE67303C5FB200417505 /* ccrc4.c */; };
 		F035FE6A303C5FB200417505 /* ccrc4.c in Sources */ = {isa = PBXBuildFile; fileRef = F035FE67303C5FB200417505 /* ccrc4.c */; };
+		F035FE6D303C647300417505 /* cckprng_initgen.c in Sources */ = {isa = PBXBuildFile; fileRef = F035FE6B303C647300417505 /* cckprng_initgen.c */; };
 		F0B1CB893001BD0100AA7184 /* ccdrbg_nistctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CB883001BD0100AA7184 /* ccdrbg_nistctr.c */; };
 		F0B1CB8A3001BD0100AA7184 /* ccdrbg_nistctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CB883001BD0100AA7184 /* ccdrbg_nistctr.c */; };
 		F0B1CB8B3001BD0100AA7184 /* ccdrbg_nistctr.c in Sources */ = {isa = PBXBuildFile; fileRef = F0B1CB883001BD0100AA7184 /* ccdrbg_nistctr.c */; };
@@ -640,6 +641,7 @@
 		F035FE5D303C384200417505 /* ccdes3_factory_modes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccdes3_factory_modes.c; sourceTree = "<group>"; };
 		F035FE63303C5C5D00417505 /* ccrc4_eay.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccrc4_eay.c; sourceTree = "<group>"; };
 		F035FE67303C5FB200417505 /* ccrc4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccrc4.c; sourceTree = "<group>"; };
+		F035FE6B303C647300417505 /* cckprng_initgen.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cckprng_initgen.c; sourceTree = "<group>"; };
 		F0B1CB883001BD0100AA7184 /* ccdrbg_nistctr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccdrbg_nistctr.c; sourceTree = "<group>"; };
 		F0B1CB8D3001DE4D00AA7184 /* ccrng_crypto_rng.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccrng_crypto_rng.c; sourceTree = "<group>"; };
 		F0B1CB913001E0B700AA7184 /* cc_lock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cc_lock.h; sourceTree = "<group>"; };
@@ -1185,6 +1187,7 @@
 			children = (
 				F035FE14303C175800417505 /* cckprng_generate.c */,
 				F035FE11303BA58F00417505 /* cckprng_init.c */,
+				F035FE6B303C647300417505 /* cckprng_initgen.c */,
 				F035FE16303C176000417505 /* cckprng_refresh.c */,
 				F035FE17303C176000417505 /* cckprng_reseed.c */,
 			);
@@ -2113,6 +2116,7 @@
 				42D6AB422FF2983B00FAAD94 /* ccaes_ltc_init.c in Sources */,
 				42D6AB432FF2983B00FAAD94 /* ccaes_ecb_encrypt_mode.c in Sources */,
 				42D6AB682FF298E400FAAD94 /* ccsha1_di.c in Sources */,
+				F035FE6D303C647300417505 /* cckprng_initgen.c in Sources */,
 				42D6AB692FF298E400FAAD94 /* ccsha1_initial_state.c in Sources */,
 				42D6AB6A2FF298E400FAAD94 /* ccsha1_eay.c in Sources */,
 				F01ACE002FF9D1B0006ED2CE /* ccaes_cbc_decrypt_mode.c in Sources */,

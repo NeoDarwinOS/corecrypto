@@ -11,5 +11,10 @@
 
 void cckprng_generate(struct cckprng_ctx *ctx, uint32_t gen_idx, size_t nbytes, void *out)
 {
-    
+    //
+    // TODO: We must keep being a cryptographic CSPRNG even in low-entropy environments.
+    //
+    //       There needs to be a shared implementation of CSPRNGs here, it would be beneficial and useful
+    //       for any client of the library. Darwin 24 style. And also for ourselves to reduce code duplication.
+    //
 }

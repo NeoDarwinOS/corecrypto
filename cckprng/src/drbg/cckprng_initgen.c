@@ -6,12 +6,15 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+#include <corecrypto/cc_debug.h>
+#include <corecrypto/ccaes.h>
 #include <corecrypto/cckprng.h>
 
-void cckprng_refresh(struct cckprng_ctx *ctx)
+void cckprng_initgen(struct cckprng_ctx *ctx, uint32_t gen_id)
 {
     //
-    // TODO: All of this.
+    // On DRBG, we do not have per-CPU generators.
     //
-    ctx->must_reseed = true;
+    // This is a redundant function.
+    //
 }
