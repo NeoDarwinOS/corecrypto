@@ -1455,6 +1455,54 @@
 			path = ccaes;
 			sourceTree = "<group>";
 		};
+		F035FE1A303C1A2D00417505 /* ccdes */ = {
+			isa = PBXGroup;
+			children = (
+				F035FE1D303C1A4A00417505 /* src */,
+				F035FE1B303C1A4000417505 /* include */,
+			);
+			path = ccdes;
+			sourceTree = "<group>";
+		};
+		F035FE1B303C1A4000417505 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F035FE1C303C1A4400417505 /* corecrypto */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		F035FE1C303C1A4400417505 /* corecrypto */ = {
+			isa = PBXGroup;
+			children = (
+				F035FE1E303C1A5200417505 /* ccdes.h */,
+			);
+			path = corecrypto;
+			sourceTree = "<group>";
+		};
+		F035FE1D303C1A4A00417505 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F035FE49303C36DF00417505 /* ccdes3_ecb_encrypt_mode.c */,
+				F035FE4D303C371C00417505 /* ccdes3_ecb_decrypt_mode.c */,
+				F035FE5D303C384200417505 /* ccdes3_factory_modes.c */,
+				F035FE35303C32D900417505 /* ccdes3_ltc_common.c */,
+				F035FE45303C361700417505 /* ccdes3_ltc_ecb_decrypt.c */,
+				F035FE41303C35D400417505 /* ccdes3_ltc_ecb_encrypt.c */,
+				F035FE51303C376F00417505 /* ccdes_ecb_encrypt_mode.c */,
+				F035FE55303C378B00417505 /* ccdes_ecb_decrypt_mode.c */,
+				F035FE59303C37D600417505 /* ccdes_factory_modes.c */,
+				F035FE2D303C23D100417505 /* ccdes_key_is_weak.c */,
+				F035FE31303C2D5F00417505 /* ccdes_key_set_odd_parity.c */,
+				F035FE1F303C1C1600417505 /* ccdes_ltc_common.c */,
+				F035FE3D303C353C00417505 /* ccdes_ltc_ecb_decrypt.c */,
+				F035FE39303C334100417505 /* ccdes_ltc_ecb_encrypt.c */,
+				F035FE25303C1D6300417505 /* ltc_des_common.h */,
+				F035FE26303C1D6300417505 /* ltc_des_common.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		F0AA37662FEE71DC00D71546 = {
 			isa = PBXGroup;
 			children = (
