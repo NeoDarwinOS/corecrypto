@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+#include "corecrypto/cc_absolute_time.h"
 #include <corecrypto/cc_debug.h>
 #include <corecrypto/ccaes.h>
 #include <corecrypto/ccdrbg.h>
@@ -82,7 +83,6 @@ static struct ccrng_crypto_rng __rng = {CCRNG_SYSTEM_RNG_MAGIC, false};
 // !!!TEMPORARY!!!
 //
 static const uint8_t df_pr_entropy[] = "\x53\x43\x46\xa3\xe0\xba\xa6\x5d\x7a\x51\x87\x1b\x6d\x63\x3a\x6f\x1e\xfa\x9f\xf5\x5d\xfd\xe3\x21\x2c\x95\x02\x9a\xdf\x23\x87\xd9";
-static const uint8_t df_pr_nonce[] = "\x0c\xbe\x99\x82\x15\x09\x97\x5d\x82\x4f\xd8\x26\xc4\x7d\x2a\xbc";
 
 cc_error_t ccrng_crypto_rng_init_once(void) {
     cc_error_t err = CCERR_OK;
@@ -112,9 +112,11 @@ cc_error_t ccrng_crypto_rng_init_once(void) {
     cc_internal_crash(__rng.drbg_info.size == 0, "DRBG did not instantiate correctly");
     cc_internal_crash(__rng.drbg_info.size > sizeof(__rng.drbg_state_buffer), "DRBG is too large for our buffer. This is not good.");
     
+    uint64_t now = cc_absolute_time();
+
     err = ccdrbg_init(&__rng.drbg_info, __rng.drbg_state,
                       sizeof(df_pr_entropy)-1, df_pr_entropy,
-                      sizeof(df_pr_nonce)-1, df_pr_nonce,
+                      sizeof(now), &now,
                       sizeof("corecrypto rng")-1, "corecrypto rng");
 
     cc_internal_crash(err != CCERR_OK, "ccdrbg_init failed.");
