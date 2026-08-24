@@ -30,10 +30,10 @@ typedef int cc_error_t;
 typedef int ccdrbg_status_t;
 
 #define CCDRBG_STATUS_OK            CCERR_OK
-#define CCDRBG_STATUS_ERROR         -1
-#define CCDRBG_STATUS_NEED_RESEED   -2
-#define CCDRBG_STATUS_PARAM_ERROR   -3
-#define CCDRBG_STATUS_ABORT         -4
+#define CCDRBG_STATUS_ERROR         -61
+#define CCDRBG_STATUS_NEED_RESEED   -62
+#define CCDRBG_STATUS_PARAM_ERROR   -63
+#define CCDRBG_STATUS_ABORT         -64
 
 
 #endif /* __CORECRYPTO_CC_ERROR_H__ */
