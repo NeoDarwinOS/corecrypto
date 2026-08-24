@@ -53,8 +53,7 @@ void cc_kernel_populate_registration(void)
     corecrypto_registration_if.cctdes_cbc_encrypt = ccdes3_cbc_encrypt_mode();
     corecrypto_registration_if.cctdes_cbc_decrypt = ccdes3_cbc_decrypt_mode();
 
-
-    /* MISSING COMPONENTS: ccrc4_info  */
+    corecrypto_registration_if.ccrc4_info = ccrc4();
 
 
     /* MISSING COMPONENTS: cc[blowfish, cast]_ecb_[encrypt, decrypt]  */
