@@ -31,6 +31,12 @@ struct ccrc4_info {
                   void *out);
 };
 
+CC_EXPORT
+const struct ccrc4_info *ccrc4(void);
+
+CC_EXPORT
+const struct ccrc4_info ccrc4_eay;
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCRC4_H__  */
