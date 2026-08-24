@@ -20,6 +20,11 @@ CC_BEGIN_DECLS
 //
 // Make sure that corecrypto_kext in the Xcode project exports this.
 //
+// The kernel PRNG's speed is relative to the speed of the underlying cryptographic implementations.
+//
+// In the future, the PRNG is likely to be able to be sped up via parallel block processing and
+// instruction-accelerated assembly
+//
 
 //-------------------------------------------------
 // OS-related configuration goes here
@@ -192,11 +197,18 @@ struct cckprng_ctx {
 
 #include <corecrypto/ccdrbg.h>
 
+#define CCKPRNG_STATE_SIZE  1280
+
 struct cckprng_ctx {
-    struct ccdrbg_state *drbg_state;
     struct ccdrbg_df_bc_ctx df_ctx;
-    struct ccdrbg_nistctr_custom drbg_custom;
+    struct ccdrbg_info drbg_info;
     cc_lock_t lock;
+    struct cckprng_entropybuf entropybuf;
+
+    struct ccdrbg_state *drbg_state;
+    uint8_t state[CCKPRNG_STATE_SIZE];
+
+    bool must_reseed;
     
 #if CCKPRNG_OS_USES_GETENTROPY
     cckprng_getentropy getentropy;
@@ -236,6 +248,26 @@ struct cckprng_funcs {
 #endif
 };
 #endif
+
+CC_EXPORT
+void cckprng_init(struct cckprng_ctx *ctx,
+                  uint32_t ngens,
+                  size_t entropybuf_nbytes,
+                  const void *entropybuf,
+                  const uint32_t *entropybuf_nsamples,
+                  size_t seed_nbytes,
+                  const void *seed,
+                  size_t nonce_nbytes,
+                  const void *nonce);
+
+CC_EXPORT
+void cckprng_reseed(struct cckprng_ctx *ctx, size_t nbytes, const void *seed);
+
+CC_EXPORT
+void cckprng_refresh(struct cckprng_ctx *ctx);
+
+CC_EXPORT
+void cckprng_generate(struct cckprng_ctx *ctx, uint32_t gen_idx, size_t nbytes, void *out);
 
 CC_END_DECLS
 
