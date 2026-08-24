@@ -44,10 +44,14 @@ void cc_kernel_populate_registration(void)
     /* MISSING COMPONENTS: ccchacha20poly1305_[all]  */
 
 
-    /* MISSING COMPONENTS: ccdes_[ecb, cbc]_[encrypt, decrypt]  */
-
-
-    /* MISSING COMPONENTS: cctdes_[ecb, cbc]_[encrypt, decrypt]  */
+    corecrypto_registration_if.ccdes_ecb_encrypt = ccdes_ecb_encrypt_mode();
+    corecrypto_registration_if.ccdes_ecb_decrypt = ccdes_ecb_decrypt_mode();
+    corecrypto_registration_if.ccdes_cbc_encrypt = ccdes_cbc_encrypt_mode();
+    corecrypto_registration_if.ccdes_cbc_decrypt = ccdes_cbc_decrypt_mode();
+    corecrypto_registration_if.cctdes_ecb_encrypt = ccdes3_ecb_encrypt_mode();
+    corecrypto_registration_if.cctdes_ecb_decrypt = ccdes3_ecb_decrypt_mode();
+    corecrypto_registration_if.cctdes_cbc_encrypt = ccdes3_cbc_encrypt_mode();
+    corecrypto_registration_if.cctdes_cbc_decrypt = ccdes3_cbc_decrypt_mode();
 
 
     /* MISSING COMPONENTS: ccrc4_info  */
@@ -58,7 +62,8 @@ void cc_kernel_populate_registration(void)
     
 #endif
 
-    /* MISSING COMPONENTS: ccdes_key_[is_weak, set_odd_parity]  */
+    corecrypto_registration_if.ccdes_key_is_weak_fn = (ccdes_key_is_weak_fn_t)&ccdes_key_is_weak;
+    corecrypto_registration_if.ccdes_key_set_odd_parity_fn = &ccdes_key_set_odd_parity;
 
 
     /* MISSING COMPONETNS: ccpad_[cts3, xts]_[encrypt, decrypt] */
