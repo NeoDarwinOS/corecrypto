@@ -13,6 +13,7 @@
 #include <corecrypto/ccdrbg_impl.h>
 #include <corecrypto/ccdrbg_df.h>
 #include <corecrypto/ccmode.h>
+#include <corecrypto/ccdigest.h>
 
 CC_BEGIN_DECLS
 
@@ -92,6 +93,18 @@ struct ccdrbg_nistctr_custom {
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 void ccdrbg_factory_nistctr(struct ccdrbg_info *info, const struct ccdrbg_nistctr_custom *custom);
+
+//
+// TODO: we need a HMAC DRBG for later ECC operations and key generation as per FIPS
+//
+struct ccdrbg_nisthmac_custom {
+    const struct ccdigest_info *di;
+    bool strictFIPS;
+};
+
+//
+// optionally add Hash_DRBG? i doubt many places would use it but it would be useful for someone surely.
+//
 
 CC_END_DECLS
 
