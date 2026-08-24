@@ -5,3 +5,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
+
+#include <corecrypto/cc_absolute_time.h>
+#include <corecrypto/cckprng.h>
+
+void cckprng_generate(struct cckprng_ctx *ctx, uint32_t gen_idx, size_t nbytes, void *out)
+{
+    
+}

@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+#include <corecrypto/cc_debug.h>
 #include <corecrypto/ccaes.h>
 #include <corecrypto/cckprng.h>
 
@@ -25,6 +26,7 @@ void cckprng_init(struct cckprng_ctx *ctx,
     // we first begin by initialising the lock
     //
     cc_lock_init(&ctx->lock, "corecrypto kprng");
+    cc_debug_log("cckprng_init: ngens %d, eb_nbytes %zd", ngens, entropybuf_nbytes);
 
     ctx->drbg_state = (struct ccdrbg_state *)&ctx->state[0];
 
