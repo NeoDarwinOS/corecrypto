@@ -1,0 +1,20 @@
+set(CORECRYPTO_ccaes_PUBLIC_HEADERS
+    corecrypto/ccaes.h
+)
+
+set(CORECRYPTO_ccaes_SOURCES
+    gladman/aescrypt.c
+    gladman/aeskey.c
+    gladman/aestab.c
+    gladman/ccaes_gladman_cbc_decrypt.c
+    gladman/ccaes_gladman_cbc_encrypt.c
+    ltc/ccaes_ltc_ecb_decrypt.c
+    ltc/ccaes_ltc_ecb_encrypt.c
+    ltc/ccaes_ltc_init.c
+    ltc/ccaes_ltc_tab.c
+    ccaes_cbc_decrypt_mode.c
+    ccaes_cbc_encrypt_mode.c
+    ccaes_ctr_crypt_mode.c
+    ccaes_ecb_decrypt_mode.c
+    ccaes_ecb_encrypt_mode.c
+)

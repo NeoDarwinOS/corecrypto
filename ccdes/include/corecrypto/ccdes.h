@@ -46,7 +46,7 @@ CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ctr *ccdes_ctr_crypt_mode(void);
 
-#pragma mark - Triple DES
+// MARK: Triple DES
 
 /*
  * Available implementations
@@ -77,7 +77,7 @@ CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ctr *ccdes3_ctr_crypt_mode(void);
 
-#pragma mark - Utility functions
+// MARK: Utility functions
 
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012

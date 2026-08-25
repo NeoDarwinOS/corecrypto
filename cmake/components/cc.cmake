@@ -1,0 +1,19 @@
+set(CORECRYPTO_cc_PUBLIC_HEADERS
+    corecrypto/cc_absolute_time.h
+    corecrypto/cc_availability.h
+    corecrypto/cc_compatibility.h
+    corecrypto/cc_config.h
+    corecrypto/cc_error.h
+    corecrypto/cc_lock.h
+    corecrypto/cc.h
+    )
+
+set(CORECRYPTO_cc_SOURCES
+    cc_abort.c
+    cc_clear.c
+    cc_cmp_safe.c
+    cc_copy.c
+    cc_lock.c
+    cc_try_abort.c
+    cc_xor.c
+    )

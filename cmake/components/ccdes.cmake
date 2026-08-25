@@ -1,0 +1,21 @@
+set(CORECRYPTO_ccdes_PUBLIC_HEADERS
+    corecrypto/ccdes.h
+)
+
+set(CORECRYPTO_ccdes_SOURCES
+    ccdes_ecb_decrypt_mode.c
+    ccdes_ecb_encrypt_mode.c
+    ccdes_factory_modes.c
+    ccdes_key_is_weak.c
+    ccdes_key_set_odd_parity.c
+    ccdes_ltc_common.c
+    ccdes_ltc_ecb_decrypt.c
+    ccdes_ltc_ecb_encrypt.c
+    ccdes3_ecb_decrypt_mode.c
+    ccdes3_ecb_encrypt_mode.c
+    ccdes3_factory_modes.c
+    ccdes3_ltc_common.c
+    ccdes3_ltc_ecb_decrypt.c
+    ccdes3_ltc_ecb_encrypt.c
+    ltc_des_common.c
+)

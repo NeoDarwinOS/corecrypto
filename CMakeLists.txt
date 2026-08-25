@@ -4,45 +4,48 @@ project(corecrypto C)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-add_library(corecrypto SHARED)
+add_library(corecrypto_shared SHARED)
+add_library(corecrypto_static STATIC)
 
-# This is stupid. And also a quick library for ld64 on Linux. Reduces code size.
-if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  add_library(microcrypto STATIC)
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  include(cmake/config/win32.cmake)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  include(cmake/config/linux.cmake)
 endif()
 
-include(cmake/components.cmake)
+set_target_properties(corecrypto_shared PROPERTIES OUTPUT_NAME "corecrypto")
 
-foreach(component IN LISTS CORECRYPTO_SHARED_COMPONENTS)
-  message("CoreCrypto: Enabling Component - ${component}")
-  target_include_directories(corecrypto PRIVATE
+foreach(component IN LISTS CORECRYPTO_STATIC_COMPONENTS)
+  message("corecrypto (static): Enabling Component - ${component}")
+  include(cmake/components/${component}.cmake)
+  target_include_directories(corecrypto_static PRIVATE
                              ${CMAKE_SOURCE_DIR}/${component}/include)
   foreach(file IN LISTS CORECRYPTO_${component}_SOURCES)
-    target_sources(corecrypto PRIVATE
+    target_sources(corecrypto_static PRIVATE
                    ${CMAKE_SOURCE_DIR}/${component}/src/${file})
   endforeach()
 endforeach()
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  foreach(component IN LISTS CORECRYPTO_MICRO_COMPONENTS)
-    message("MicroCrypto: Enabling Component - ${component}")
-    target_include_directories(microcrypto PRIVATE
-                               ${CMAKE_SOURCE_DIR}/${component}/include)
-    foreach(file IN LISTS CORECRYPTO_${component}_SOURCES)
-      target_sources(microcrypto PRIVATE
-                     ${CMAKE_SOURCE_DIR}/${component}/src/${file})
-    endforeach()
+foreach(component IN LISTS CORECRYPTO_SHARED_COMPONENTS)
+  message("corecrypto (shared): Enabling Component - ${component}")
+  include(cmake/components/${component}.cmake)
+  target_include_directories(corecrypto_shared PRIVATE
+                             ${CMAKE_SOURCE_DIR}/${component}/include)
+  foreach(file IN LISTS CORECRYPTO_${component}_SOURCES)
+    target_sources(corecrypto_shared PRIVATE
+                   ${CMAKE_SOURCE_DIR}/${component}/src/${file})
   endforeach()
-endif()
+endforeach()
 
 add_library(corecrypto_test)
 
-target_link_libraries(corecrypto_test PRIVATE corecrypto)
+target_link_libraries(corecrypto_test PRIVATE corecrypto_shared)
 
 target_include_directories(corecrypto_test PRIVATE
     ${CMAKE_SOURCE_DIR}/cc/include
