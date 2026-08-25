@@ -61,7 +61,7 @@ target_sources(corecrypto_test PRIVATE
 
 add_executable(cc_boot_post)
 
-target_link_libraries(cc_boot_post PRIVATE corecrypto)
+target_link_libraries(cc_boot_post PRIVATE corecrypto_static)
 
 target_include_directories(cc_boot_post PRIVATE
     ${CMAKE_SOURCE_DIR}/cc/include
