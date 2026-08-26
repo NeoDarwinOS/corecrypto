@@ -115,10 +115,46 @@ struct ccmode_cbc {
  */
 cc_aligned_struct(16) cccfb_ctx;
 
+struct ccmode_cfb {
+    size_t size;
+    size_t block_size;
+
+    cc_error_t (*init)(const struct ccmode_cfb *ofb,
+                       cccfb_ctx *ctx,
+                       size_t key_size,
+                       const void *key,
+                       const void *iv);
+
+    cc_error_t (*cfb)(cccfb_ctx *ctx,
+                      size_t nbytes,
+                      const void *in,
+                      void *out);
+
+    const void *custom;
+};
+
 /*
  * CFB8 - 'Cipher Feedback Mode' (using 8-bits)
  */
 cc_aligned_struct(16) cccfb8_ctx;
+
+struct ccmode_cfb8 {
+    size_t size;
+    size_t block_size;
+
+    cc_error_t (*init)(const struct ccmode_cfb8 *ofb,
+                       cccfb8_ctx *ctx,
+                       size_t key_size,
+                       const void *key,
+                       const void *iv);
+
+    cc_error_t (*cfb8)(cccfb8_ctx *ctx,
+                       size_t nbytes,
+                       const void *in,
+                       void *out);
+
+    const void *custom;
+};
 
 /*
  * OFB - 'Output Feedback Mode'
@@ -128,15 +164,18 @@ cc_aligned_struct(16) ccofb_ctx;
 struct ccmode_ofb {
     size_t size;
     size_t block_size;
+
     cc_error_t (*init)(const struct ccmode_ofb *ofb,
                        ccofb_ctx *ctx,
                        size_t key_size,
                        const void *key,
                        const void *iv);
+
     cc_error_t (*ofb)(ccofb_ctx *ctx,
                       size_t nbytes,
                       const void *in,
                       void *out);
+
     const void *custom;
 };
 
@@ -179,6 +218,41 @@ struct ccmode_ctr {
  */
 cc_aligned_struct(16) ccgcm_ctx;
 
+#define CCMODE_GCM_DECRYPTOR 78647
+#define CCMODE_GCM_ENCRYPTOR 4073947
+
+struct ccmode_gcm {
+    size_t size;
+    int encdec;
+    size_t block_size;
+    
+    cc_error_t (*init)(const struct ccmode_gcm *gcm,
+                       ccgcm_ctx *cyx,
+                       size_t key_size,
+                       const void *key);
+    
+    cc_error_t (*set_iv)(ccgcm_ctx *ctx,
+                         size_t iv_size,
+                         const void *iv);
+    
+    cc_error_t (*gmac)(ccgcm_ctx *ctx,
+                       size_t nbytes,
+                       const void *in);
+    
+    cc_error_t (*gcm)(ccgcm_ctx *ctx,
+                      size_t nbytes,
+                      const void *in,
+                      void *out);
+    
+    cc_error_t (*finalize)(ccgcm_ctx *ctx,
+                           size_t tag_size,
+                           void *tag);
+    
+    cc_error_t (*reset)(ccgcm_ctx *ctx);
+    
+    const void *custom;
+};
+
 /*
  * XTS - 'XEX Tweakable Block Ciphertext Stealing'
  *
@@ -189,6 +263,33 @@ cc_aligned_struct(16) ccxts_tweak;
 
 struct ccmode_xts {
     size_t size;
+    size_t tweak_size;
+    size_t block_size;
+    
+    cc_error_t (*init)(const struct ccmode_xts *xts,
+                       ccxts_ctx *ctx,
+                       size_t key_size,
+                       const void *data_key,
+                       const void *tweak_key);
+    
+    cc_error_t (*key_sched)(const struct ccmode_xts *xts,
+                            ccxts_ctx *ctx,
+                            size_t key_size,
+                            const void *data_key,
+                            const void *tweak_key);
+    
+    cc_error_t (*set_tweak)(const ccxts_ctx *ctx,
+                            ccxts_tweak *tweak,
+                            const void *iv);
+    
+    void *(*xts)(const ccxts_ctx *ctx,
+                 ccxts_tweak *tweak,
+                 size_t nblocks,
+                 const void *in,
+                 void *out);
+    
+    const void *custom;
+    const void *custom1;
 };
 
 /*
@@ -223,6 +324,23 @@ struct ccmode_ccm {
                          ccccm_nonce *nonce,
                          size_t nbytes,
                          const void *in);
+    
+    cc_error_t (*ccm)(ccccm_ctx *ctx,
+                      ccccm_nonce *nonce,
+                      size_t nbytes,
+                      const void *in,
+                      void *out);
+    
+    cc_error_t (*finalize)(ccccm_ctx *ctx,
+                           ccccm_nonce *nonce,
+                           void *mac);
+    
+    cc_error_t (*reset)(ccccm_ctx *ctx,
+                        ccccm_nonce *nonce);
+    
+    const void *custom;
+
+    bool enc_mode;
 };
 
 CC_END_DECLS
