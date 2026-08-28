@@ -91,3 +91,84 @@ cc_error_t _ccchacha20_block(ccchacha20_ctx *ctx) {
     
     return CCERR_OK;
 }
+
+cc_error_t ccchacha20_update(ccchacha20_ctx *ctx, size_t nbytes, const void *in, void *out) {
+    cc_error_t err = CCERR_OK;
+    const uint8_t *p = (const uint8_t *)in;
+    uint8_t *o = (uint8_t *)out;
+    uint32_t *buffer = (uint32_t *)ctx->buffer;
+    
+    while (nbytes) {
+        if (ctx->leftover) {
+            size_t nb = (CCCHACHA20_BLOCK_NBYTES - ctx->leftover);
+            if (nb > nbytes) {
+                nb = nbytes;
+            }
+            
+            cc_xor(nb, out, in, ctx->buffer + ctx->leftover);
+
+            p += nb;
+            o += nb;
+            
+            nbytes -= nb;
+            
+            ctx->leftover += nb;
+            ctx->leftover &= (CCCHACHA20_BLOCK_NBITS - 1);
+        }
+        
+        if (nbytes >= CCCHACHA20_BLOCK_NBYTES) {
+            err = _ccchacha20_block(ctx);
+            if (err) {
+                goto out;
+            }
+            cc_xor(CCCHACHA20_BLOCK_NBYTES, out, in, buffer);
+            
+            ctx->state[12]++;
+            
+            nbytes -= CCCHACHA20_BLOCK_NBYTES;
+            p += (CCCHACHA20_BLOCK_NBYTES);
+            o += (CCCHACHA20_BLOCK_NBYTES);
+        } else {
+            err = _ccchacha20_block(ctx);
+            if (err) {
+                goto out;
+            }
+            
+            ctx->state[12]++;
+
+            cc_xor(nbytes, out, in, buffer);
+
+            ctx->leftover = nbytes;
+            nbytes = 0;
+        }
+    }
+    
+out:
+    return err;
+}
+
+cc_error_t ccchacha20_reset(ccchacha20_ctx *ctx) {
+    return ccchacha20_setcounter(ctx, 0);
+}
+
+cc_error_t ccchacha20_final(ccchacha20_ctx *ctx) {
+    cc_clear(sizeof(*ctx), ctx);
+    return CCERR_OK;
+}
+
+cc_error_t ccchacha20(const void *key,
+                      const void *nonce,
+                      uint32_t counter,
+                      size_t nbytes,
+                      const void *in,
+                      void *out) {
+    ccchacha20_ctx ctx;
+
+    ccchacha20_init(&ctx, key);
+    ccchacha20_setnonce(&ctx, nonce);
+    ccchacha20_setcounter(&ctx, counter);
+    ccchacha20_update(&ctx, nbytes, in, out);
+    ccchacha20_final(&ctx);
+
+    return CCERR_OK;
+}
