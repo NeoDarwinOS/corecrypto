@@ -86,6 +86,19 @@ void crypto_digest(crypto_digest_alg_t alg,
     cc_copy(digest_size, digest, buf);
 }
 
+size_t crypto_hmac_ctx_size(crypto_digest_alg_t alg) {
+    return cchmac_di_size(crypto_digest_algs[alg]);
+}
+
+void crypto_hmac_init(crypto_digest_alg_t alg,
+                      void *ctx,
+                      size_t ctx_size,
+                      const void *key,
+                      size_t key_size) {
+    cc_client_crash(ctx_size != cchmac_di_size(crypto_digest_algs[alg]), "ctx_size != cchmac_di_size");
+    cchmac_init(crypto_digest_algs[alg], (cchmac_ctx_t)ctx, key_size, key);
+}
+
 #endif // __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_13_0, __MAC_28_0)
 
 void cc_kernel_populate_registration(void)
@@ -165,6 +178,9 @@ void cc_kernel_populate_registration(void)
     corecrypto_registration_if.digest_update_fn = &crypto_digest_update;
     corecrypto_registration_if.digest_final_fn = &crypto_digest_final;
     corecrypto_registration_if.digest_fn = &crypto_digest;
+    
+    corecrypto_registration_if.hmac_ctx_size_fn = &crypto_hmac_ctx_size;
+    corecrypto_registration_if.hmac_init_fn = &crypto_hmac_init;
 #endif // __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_13_0, __MAC_28_0)
 }
 
@@ -181,6 +197,7 @@ const struct cckprng_funcs kprng_funcs = {
     cckprng_generate
 };
 
+// MARK: kmod entrypoints
 kern_return_t corecrypto_start(kmod_info_t * ki, void *d)
 {
     cc_debug_log("kmod has been loaded, hello! :)");
