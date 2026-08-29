@@ -103,7 +103,7 @@ typedef int32_t (*cckprng_getentropy)(size_t *entropy_nbytes,
 #if CCKPRNG_BACKEND_FORTUNA_MULTI_GEN
 
 #if (CCKPRNG_OS_USES_BUILTIN_FUNCTION_POINTERS == 0) && (CCKPRNG_OS_USES_ENTROPY_BUFFER == 0)
-#error cckprng has somehow ended up misconfigured, fixme!!!
+    #error cckprng has somehow ended up misconfigured, fixme!!!
 #endif
 
 //
@@ -191,13 +191,17 @@ struct cckprng_ctx {
 #endif
 };
 
-#endif
+#endif // CCKPRNG_BACKEND_FORTUNA_MULTI_GEN
 
 #if CCKPRNG_OS_USES_DRBG_BACKEND
 
 #include <corecrypto/ccdrbg.h>
 
 #define CCKPRNG_STATE_SIZE  1280
+
+#if (CCKPRNG_OS_USES_BUILTIN_FUNCTION_POINTERS == 0) && (CCKPRNG_OS_USES_ENTROPY_BUFFER == 0)
+    #error cckprng has somehow ended up misconfigured, fixme!!!
+#endif
 
 struct cckprng_ctx {
     struct ccdrbg_df_bc_ctx df_ctx;
@@ -216,7 +220,7 @@ struct cckprng_ctx {
 #endif
 };
 
-#endif
+#endif // CCKPRNG_OS_USES_DRBG_BACKEND
 
 #if CCKPRNG_OS_USES_BUILTIN_FUNCTION_POINTERS
 struct cckprng_funcs {
@@ -245,9 +249,9 @@ struct cckprng_funcs {
                                  const void *nonce,
                                  cckprng_getentropy getentropy,
                                  void *getentropy_arg);
-#endif
+#endif // CCKPRNG_OS_USES_GETENTROPY
 };
-#endif
+#endif // CCKPRNG_OS_USES_BUILTIN_FUNCTION_POINTERS
 
 CC_EXPORT
 void cckprng_init(struct cckprng_ctx *ctx,
