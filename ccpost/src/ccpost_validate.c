@@ -40,10 +40,10 @@ cc_error_t ccpost_validate(void)
     cc_error_t err = CCERR_OK;
     cc_post_log("BEGINNING PREFLIGHT TESTS.");
 
-    err = CCPOST_RUN_FUNCTION(ccpost_aes_ecb_validate);
-    err = CCPOST_RUN_FUNCTION(ccpost_aes_cbc_validate);
-    err = CCPOST_RUN_FUNCTION(ccpost_aes_ctr_validate);
-    err = CCPOST_RUN_FUNCTION(ccpost_ctr_drbg_validate);
+    err |= CCPOST_RUN_FUNCTION(ccpost_aes_ecb_validate);
+    err |= CCPOST_RUN_FUNCTION(ccpost_aes_cbc_validate);
+    err |= CCPOST_RUN_FUNCTION(ccpost_aes_ctr_validate);
+    err |= CCPOST_RUN_FUNCTION(ccpost_ctr_drbg_validate);
 
     if (err == CCERR_OK) {
         cc_post_log("ALL TESTS PASS");
