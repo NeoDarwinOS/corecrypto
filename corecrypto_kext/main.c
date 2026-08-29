@@ -53,7 +53,9 @@ void cc_kernel_populate_registration(void)
     corecrypto_registration_if.cctdes_cbc_encrypt = ccdes3_cbc_encrypt_mode();
     corecrypto_registration_if.cctdes_cbc_decrypt = ccdes3_cbc_decrypt_mode();
 
+#if __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_10, __MAC_11_0)
     corecrypto_registration_if.ccrc4_info = ccrc4();
+#endif  // __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_10, __MAC_11_0)
 
 
     /* MISSING COMPONENTS: cc[blowfish, cast]_ecb_[encrypt, decrypt]  */
