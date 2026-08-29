@@ -25,8 +25,6 @@
 //
 // Currently, the project targets Mac OS X 10.15 and higher.
 //
-// This could later change if need be, say to bootstrap the PD 17.4 image.
-//
 // These macros rely on the fact that we use Mac OS X as the base target. In the future, if such a change were made to
 // the target triple where we no longer used PLATFORM_MACOS and __MAC_OS_X_VERSION_MIN_REQUIRED, it would break this.
 //
@@ -82,6 +80,26 @@
     #define __MAC_14_0  140000
 #endif
 
+//
+//  [INTERNAL PROJECT TRACKING ANNOTATION]
+//  Project:            AvailabilityVersions
+//  Track:              Errinundra, Aurora, Marigold
+//  Completion Status:  Planned
+//
+//  Description:
+//  We need to fix the AvailabilityVersions revision to include mappings beyond 14.3
+//  It's not out of the question that they bleach the opensource code releases
+//  of anything that might hint at SU names.
+//
+//  See WebKit's dyldSPI.h for hints at macro names to reconstruct.
+//
+//  Affected projects (subject to change):
+//      corecrypto
+//      xnu
+//      dyld
+//      libdyld
+//
+
 #if !defined(__MAC_15_0)
     #define __MAC_15_0  150000
 #endif
@@ -111,9 +129,17 @@
     #define __MAC_28_0  280000
 #endif
 
-#if !defined (__MAC_OS_X_VERSION_MIN_REQUIRED)
-    #define __MAC_OS_X_VERSION_MIN_REQUIRED __MAC_10_15
+#if !defined (__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__)
+    #define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ __MAC_10_15
 #endif
+
+#if !defined (__MAC_OS_X_VERSION_MIN_REQUIRED)
+    #if defined (__ENVIRONMENT_MAC_OS_VERSION_MIN_REQUIRED__) && !defined(__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__)
+        #define __MAC_OS_X_VERSION_MIN_REQUIRED __ENVIRONMENT_MAC_OS_VERSION_MIN_REQUIRED__
+    #else
+        #define __MAC_OS_X_VERSION_MIN_REQUIRED __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__
+    #endif
+#endif // !defined (__MAC_OS_X_VERSION_MIN_REQUIRED)
 
 //
 // Apple hasn't dramatically updated their KPIs between minor versions yet.
