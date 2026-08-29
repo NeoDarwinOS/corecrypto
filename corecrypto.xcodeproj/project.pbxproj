@@ -172,7 +172,7 @@
 		42D6AB7E2FF3331B00FAAD94 /* cchmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AB7B2FF32E8D00FAAD94 /* cchmac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB802FF3373B00FAAD94 /* cchmac_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AB7F2FF3373B00FAAD94 /* cchmac_init.c */; };
 		42D6AB812FF3373B00FAAD94 /* cchmac_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AB7F2FF3373B00FAAD94 /* cchmac_init.c */; };
-		F00057563000629A000B3598 /* cckprng.h in Headers */ = {isa = PBXBuildFile; fileRef = F000575530006031000B3598 /* cckprng.h */; };
+		F00057563000629A000B3598 /* cckprng.h in Headers */ = {isa = PBXBuildFile; fileRef = F000575530006031000B3598 /* cckprng.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0005758300063A6000B3598 /* cc_compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = F0005757300062FB000B3598 /* cc_compatibility.h */; };
 		F0005759300063A6000B3598 /* cc_compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = F0005757300062FB000B3598 /* cc_compatibility.h */; };
 		F000575B3000640B000B3598 /* cckprng.c in Sources */ = {isa = PBXBuildFile; fileRef = F000575A3000640B000B3598 /* cckprng.c */; };
@@ -2473,7 +2473,6 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				KEXT_FAMILY_NAME = corecrypto;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				MODULE_NAME = dev.neodarwin.kec.corecrypto;
 				MODULE_START = corecrypto_start;
@@ -2546,7 +2545,6 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				KEXT_FAMILY_NAME = corecrypto;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				MODULE_NAME = dev.neodarwin.kec.corecrypto;
 				MODULE_START = corecrypto_start;
