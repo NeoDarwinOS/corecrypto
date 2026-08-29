@@ -13,6 +13,81 @@ static struct crypto_functions corecrypto_registration_if;
 kern_return_t corecrypto_start(kmod_info_t *ki, void *d);
 kern_return_t corecrypto_stop(kmod_info_t *ki, void *d);
 
+#if __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_13_0, __MAC_28_0)
+//
+//  [INTERNAL PROJECT TRACKING ANNOTATION]
+//  Project:            corecrypto
+//  Track:              Goulburn, Errinundra, Aurora, Marigold
+//  Completion Status:  In Progress
+//
+//  Description:
+//  The contract with XNU regarding SPI has changed in ways so that
+//  behaviour is similar to CommonCrypto's interfaces.
+//
+//  We need to update based on that, and make sure that backwards compatibility
+//  is not broken along the way.
+//
+//  Affected projects (subject to change):
+//      corecrypto
+//
+
+#define CRYPTO_DIGEST_ALGS_MAX  6
+
+static const struct ccdigest_info *crypto_digest_algs[CRYPTO_DIGEST_ALGS_MAX];
+
+//
+// For functions with a ctx_size, should we client_crash when they don't sync?
+//
+size_t crypto_digest_ctx_size(crypto_digest_alg_t alg) {
+    return ccdigest_di_size(crypto_digest_algs[alg]);
+}
+
+void crypto_digest_init(crypto_digest_alg_t alg,
+                        void *ctx,
+                        size_t ctx_size) {
+    cc_client_crash((ccdigest_di_size(crypto_digest_algs[alg])) != ctx_size, "ctx_size != ccdigest_di_size");
+    ccdigest_init(crypto_digest_algs[alg], (ccdigest_ctx_t)ctx);
+}
+
+void crypto_digest_update(crypto_digest_alg_t alg,
+                          void *ctx,
+                          size_t ctx_size,
+                          const void *data,
+                          size_t data_size)
+{
+    cc_client_crash((ccdigest_di_size(crypto_digest_algs[alg])) != ctx_size, "ctx_size != ccdigest_di_size");
+    ccdigest_update(crypto_digest_algs[alg], (ccdigest_ctx_t)ctx, data_size, data);
+}
+
+#define DIGEST_MAX_OUTPUT_SIZE  64
+
+void crypto_digest_final(crypto_digest_alg_t alg,
+                         void *ctx,
+                         size_t ctx_size,
+                         void *digest,
+                         size_t digest_size) {
+    uint8_t buf[DIGEST_MAX_OUTPUT_SIZE];
+    
+    cc_client_crash((ccdigest_di_size(crypto_digest_algs[alg])) != ctx_size, "ctx_size != ccdigest_di_size");
+    cc_client_crash(digest_size > crypto_digest_algs[alg]->output_size, "digest_size > output_size");
+    ccdigest_final(crypto_digest_algs[alg], (ccdigest_ctx_t)ctx, buf);
+    cc_copy(digest_size, digest, buf);
+}
+
+void crypto_digest(crypto_digest_alg_t alg,
+                   const void *data,
+                   size_t data_size,
+                   void *digest,
+                   size_t digest_size) {
+    uint8_t buf[DIGEST_MAX_OUTPUT_SIZE];
+
+    cc_client_crash(digest_size > crypto_digest_algs[alg]->output_size, "digest_size > output_size");
+    ccdigest(crypto_digest_algs[alg], data_size, data, buf);
+    cc_copy(digest_size, digest, buf);
+}
+
+#endif // __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_13_0, __MAC_28_0)
+
 void cc_kernel_populate_registration(void)
 {
     corecrypto_registration_if.ccdigest_init_fn = &ccdigest_init;
@@ -77,6 +152,20 @@ void cc_kernel_populate_registration(void)
     /* MISSING COMPONENTS: ccrsa_[make_pub, verify_pkcs1v15] */
 
     // these rsa routines are used for imageboot dmg validation.
+    
+#if __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_13_0, __MAC_28_0)
+    crypto_digest_algs[CRYPTO_DIGEST_ALG_MD5] = ccmd5_di();
+    crypto_digest_algs[CRYPTO_DIGEST_ALG_SHA1] = ccsha1_di();
+    crypto_digest_algs[CRYPTO_DIGEST_ALG_SHA256] = ccsha256_di();
+    crypto_digest_algs[CRYPTO_DIGEST_ALG_SHA384] = ccsha384_di();
+    crypto_digest_algs[CRYPTO_DIGEST_ALG_SHA512] = ccsha512_di();
+    
+    corecrypto_registration_if.digest_ctx_size_fn = &crypto_digest_ctx_size;
+    corecrypto_registration_if.digest_init_fn = &crypto_digest_init;
+    corecrypto_registration_if.digest_update_fn = &crypto_digest_update;
+    corecrypto_registration_if.digest_final_fn = &crypto_digest_final;
+    corecrypto_registration_if.digest_fn = &crypto_digest;
+#endif // __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_13_0, __MAC_28_0)
 }
 
 //
