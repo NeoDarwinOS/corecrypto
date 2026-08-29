@@ -15,5 +15,10 @@
 //      This project needs to be cross-platform.
 //
 
+#define cc_require(assertion, label)                \
+    if (__builtin_expect(!(assertion), 0)) {        \
+        goto label;                                 \
+    }
+
 #endif /* __CORECRYPTO_CC_MACROS_H__ */
 
