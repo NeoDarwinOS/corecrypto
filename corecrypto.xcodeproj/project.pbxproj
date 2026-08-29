@@ -78,7 +78,7 @@
 		42D6AB012FF2961D00FAAD94 /* ccaes_ecb_decrypt_mode.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AA9C2FF2946200FAAD94 /* ccaes_ecb_decrypt_mode.c */; };
 		42D6AB022FF2962600FAAD94 /* ccaes.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AA922FF2946200FAAD94 /* ccaes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB032FF2963800FAAD94 /* ccdigest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAA72FF2946200FAAD94 /* ccdigest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42D6AB042FF2963800FAAD94 /* ccdigest_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAA92FF2946200FAAD94 /* ccdigest_priv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42D6AB042FF2963800FAAD94 /* ccdigest_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAA92FF2946200FAAD94 /* ccdigest_priv.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		42D6AB052FF2964200FAAD94 /* ccdigest_final.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAAD2FF2946200FAAD94 /* ccdigest_final.c */; };
 		42D6AB062FF2964200FAAD94 /* ccdigest_oid_equal.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAB12FF2946200FAAD94 /* ccdigest_oid_equal.c */; };
 		42D6AB072FF2964200FAAD94 /* ccdigest_oid_lookup.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAB22FF2946200FAAD94 /* ccdigest_oid_lookup.c */; };
@@ -137,7 +137,7 @@
 		42D6AB4E2FF2986200FAAD94 /* ccdigest_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAB02FF2946200FAAD94 /* ccdigest_init.c */; };
 		42D6AB4F2FF2986200FAAD94 /* ccdigest_update.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAB32FF2946200FAAD94 /* ccdigest_update.c */; };
 		42D6AB502FF2986200FAAD94 /* ccdigest.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAAC2FF2946200FAAD94 /* ccdigest.c */; };
-		42D6AB512FF2986200FAAD94 /* ccdigest_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAA92FF2946200FAAD94 /* ccdigest_priv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42D6AB512FF2986200FAAD94 /* ccdigest_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAA92FF2946200FAAD94 /* ccdigest_priv.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		42D6AB522FF2986200FAAD94 /* ccdigest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D6AAA72FF2946200FAAD94 /* ccdigest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D6AB532FF2987D00FAAD94 /* cccbc_one_shot.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AABF2FF2946200FAAD94 /* cccbc_one_shot.c */; };
 		42D6AB542FF2987D00FAAD94 /* ccmode_factory_cbc_decrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42D6AAC52FF2946200FAAD94 /* ccmode_factory_cbc_decrypt.c */; };
