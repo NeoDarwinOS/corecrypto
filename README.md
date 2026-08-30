@@ -13,7 +13,7 @@ Any APIs referenced or re-implemented by this project, [have been written throug
 `corecrypto` aims to eventually be the backbone for all of modern Darwin's needs, and therefore, aims to be compatible with as low as macOS 10.15 Catalina, to macOS 26.6 Tahoe.
 
 > [!NOTE]
-> No. This does not mean use it on a real copy of macOS. Do not file an issue if it's broken on a real macOS installation.
+> No. This does not mean use it as a system library or kernel extension on a real copy of macOS. Do not file an issue if it's broken on a real macOS installation.
 
 Any older, and there would need to be major works done in the Kernel PRNG to ensure compatibility with macOS 10.13 High Sierra and 10.14 Mojave.
 
