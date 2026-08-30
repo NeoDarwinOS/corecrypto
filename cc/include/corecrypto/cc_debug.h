@@ -29,7 +29,11 @@
 #endif
 
 #if CC_PLATFORM_XNU
-#include <pexpert/pexpert.h>
+
+#ifndef _FN_KPRINTF
+#define _FN_KPRINTF
+extern void kprintf(const char *fmt, ...) __printflike(1, 2);
+#endif
 
 #define cc_debug_log(fmt, x...) kprintf("corecrypto: " fmt "\n", ##x)
 #else

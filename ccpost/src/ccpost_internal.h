@@ -26,7 +26,10 @@ CC_PRIVATE
 cc_error_t ccpost_ctr_drbg_validate(void);
 
 #if CC_PLATFORM_XNU
-#include <pexpert/pexpert.h>
+#ifndef _FN_KPRINTF
+#define _FN_KPRINTF
+extern void kprintf(const char *fmt, ...) __printflike(1, 2);
+#endif
 
 #define cc_post_log(fmt, x...) kprintf("CCPOST: " fmt "\n", ##x)
 #define cc_post_func_log(fmt, x...) kprintf("CCPOST [%s]: " fmt "\n", __FUNCTION__, ##x)
