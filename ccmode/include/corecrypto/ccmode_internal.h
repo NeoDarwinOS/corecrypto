@@ -117,6 +117,35 @@ cc_error_t ccmode_ctr_crypt(ccctr_ctx *ctx,
 #define CCMODE_CTR_KEY_PAD(key)         (uint8_t *)(&CCMODE_CTR_KEY(key)->u[ccn_nof_size(CCMODE_CTR_KEY_ECB(key)->block_size)])
 #define CCMODE_CTR_KEY_ECB_CTX(key)     (ccecb_ctx *)(&CCMODE_CTR_KEY(key)->u[ccn_nof_size(CCMODE_CTR_KEY_ECB(key)->block_size * 2)])
 
+/*
+ * Default CTR implementation
+ *
+ * Since this defines the function interface too, we mark the struct as READ_ONLY_LATE for platforms
+ * that use it.
+ */
+#define CCMODE_XTS_FACTORY(cipher, encdec)                                  \
+    static CC_READ_ONLY_LATE(struct ccmode_xts) xts_##cipher##_##encdec;    \
+                                                                            \
+    const struct ccmode_xts *cc##cipher##_xts_##encdec##_mode(void) {       \
+        const struct ccmode_ecb *ecb=cc##cipher##_ecb_##encdec##_mode();    \
+        const struct ccmode_ecb *ecb_enc=cc##cipher##_ecb_encrypt_mode();   \
+        ccmode_factory_xts_##encdec(&ctr_##cipher, ecb, ecb_enc);           \
+        return &xts_##cipher##_##encdec;                                    \
+    }
+
+struct _ccmode_xts_key {
+    const struct ccmode_ecb *ecb;
+    const struct ccmode_ecb *ecb_encrypt;
+
+    cc_unit u[];
+};
+
+#define CCMODE_XTS_TWEAK_MAX_BLOCKS_PROCESSED 0x100000
+
+#define CCMODE_XTS_KEY(key)                     ((struct _ccmode_xts_key *)key)
+#define CCMODE_XTS_KEY_ECB_CTX(key)             (ccecb_ctx *)&CCMODE_XTS_KEY(key)->u[0]
+#define CCMODE_XTS_KEY_ECB_ENCRYPT_CTX(key)     (ccecb_ctx *)(&CCMODE_XTS_KEY(key)->u[ccn_nof_size(xkey->ecb->size)])
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCMODE_INTERNAL_H__ */
