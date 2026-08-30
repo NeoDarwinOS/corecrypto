@@ -1,4 +1,4 @@
-#  corecrypto
+#  `corecrypto`
 
 Welcome to the NeoDarwin `corecrypto` project. This is the home for an open-source and free (as in beer) implementation/alternative to the Apple library used across their many platforms.
 
@@ -6,7 +6,7 @@ Welcome to the NeoDarwin `corecrypto` project. This is the home for an open-sour
 
 This project, is in no part, derived from any Apple source code that pertains to the actual functioning of the library. All code in the form of `.c` files have been cleanly implemented, with no code copy-pasted from Apple's own source code.
 
-Any APIs referenced or re-implemented by this project, [have been written through analysis of header files](https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision) and have been written to serve interoperability with any binaries or client applications that make use of the corecrypto API.
+Any APIs referenced or re-implemented by this project, [have been written through analysis of header files](https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision) and have been written to serve interoperability with any binaries or client applications that make use of the `corecrypto` API.
 
 ## Getting Started
 
@@ -49,6 +49,18 @@ In all, this project will install the following to the destination:
 Contributions are welcome! All contributions, however, including new files, are expected to be licensed under the Mozilla Public License 2.0, as is common with the rest of the project's self-written code. This project is meant to faciliate free and open source Darwin, and to do so, we need to maintain the weak copyleft nature of the project.
 
 As is standard with the NeoDarwin policy, this project does not welcome AI-generated code, and is highly discouraged especially more so since Apple has released their source code to GitHub under their Internal Use Only license. We want to avoid any legal trouble here.
+
+## Why develop another if we already have Darling's `corecrypto`?
+
+The GPL, when used in isolation with itself and the projects surrounding it are GPL, works great.
+
+For the people developing Darwin derived operating systems, the GPL becomes a nightmare to manage among thousands of APSL 2.0 licensed code segments and snippets, to the point where it is better to forsake GPL projects that use GPLv3 than to use them still. **Even Apple made the decision to ditch GPLv3 licensed projects due to conflicts. (And quite likely the Tivoization clause, but that's besides the point)**
+
+It is why for NeoDarwin, the Mozilla Public License 2.0 was chosen for independent projects. It provides a balance between copyleft, and license interoprerability.
+
+The NeoDarwin `corecrypto` project was developed with the intention to be free of any licensing chaos that would otherwise plague alternative implementations. **Darling themselves make use of headers unlicensed by Apple, which is why it stands outside of the monorepo.**
+
+By rewriting headers from scratch, this project gains freedom from uncertainty that would otherwise stifle development.
 
 ## Acknowledgements
 
