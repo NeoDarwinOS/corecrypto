@@ -199,7 +199,7 @@ void ccmd5_ltc_compress(ccdigest_state_t state, size_t nblocks, const void *data
     }
 }
 
-const uint32_t ccmd5_initial_state[4] = {
+static const uint32_t ccmd5_initial_state[4] = {
     0x67452301UL,
     0xefcdab89UL,
     0x98badcfeUL,
