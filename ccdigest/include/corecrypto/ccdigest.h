@@ -45,6 +45,7 @@ typedef ccdigest_ctx *ccdigest_ctx_t;
 
 #define ccdigest_ctx_size(state_size, block_size) (sizeof(uint64_t) + state_size + block_size + sizeof(uint32_t))
 #define ccdigest_ctx_decl(state_size, block_size, name) cc_ctx_decl(ccdigest_ctx, ccdigest_ctx_size(state_size, block_size), name)
+#define ccdigest_ctx_decl_vla(state_size, block_size, name) cc_ctx_decl_vla(ccdigest_ctx, ccdigest_ctx_size(state_size, block_size), name)
 #define ccdigest_ctx_clear(state_size, block_size, name) cc_clear((state_size + block_size), name);
 
 #define ccdigest_nbits(di, ctx) (*(ccdigest_u64(ctx)))
@@ -113,6 +114,10 @@ CORECRYPTO_API_AVAILABLE_2012
 void ccdigest_final(const struct ccdigest_info *di,
                     ccdigest_ctx_t ctx,
                     void *digest);
+
+// MARK: Update as time goes on
+#define CCDIGEST_MAX_BLOCK_SIZE 128
+#define CCDIGEST_MAX_STATE_SIZE 64
 
 CC_END_DECLS
 

@@ -30,6 +30,7 @@ void cchmac_init(const struct ccdigest_info *di,
         }
     }
     
+    // preconstruct? who let connor detroit in here
     /* After having done the above, we should be able to preconstruct parts of the opad state early. */
     for (size_t i = 0; i < di->block_size; i++) {
         cchmac_data(di, ctx)[i] ^= 0x5C;

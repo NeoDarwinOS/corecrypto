@@ -21,4 +21,3 @@
     }
 
 #endif /* __CORECRYPTO_CC_MACROS_H__ */
-
