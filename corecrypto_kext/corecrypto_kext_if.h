@@ -11,6 +11,8 @@
 
 #include <corecrypto/cc_debug.h>
 #include <corecrypto/ccaes.h>
+#include <corecrypto/ccblowfish.h>
+#include <corecrypto/ccchacha20poly1305.h>
 #include <corecrypto/ccdes.h>
 #include <corecrypto/ccmd5.h>
 #include <corecrypto/ccpost.h>
