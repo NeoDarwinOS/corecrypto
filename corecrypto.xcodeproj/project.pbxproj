@@ -49,6 +49,23 @@
 		42583B202FFCD317000B167B /* ccsha256_ltc_compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 42583AEC2FFCD317000B167B /* ccsha256_ltc_compress.c */; };
 		42583B212FFCD317000B167B /* ccsha2_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 42583AE62FFCD317000B167B /* ccsha2_internal.h */; };
 		42583B222FFCD317000B167B /* ccsha2.h in Headers */ = {isa = PBXBuildFile; fileRef = 42583AE32FFCD317000B167B /* ccsha2.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4263BB6E3058076B0082E0A1 /* ccblowfish.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263BB6D3058073F0082E0A1 /* ccblowfish.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4263BB6F3058076B0082E0A1 /* ccblowfish.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263BB6D3058073F0082E0A1 /* ccblowfish.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4263BB7230580A010082E0A1 /* ccblowfish_ltc_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263BB7030580A010082E0A1 /* ccblowfish_ltc_common.h */; };
+		4263BB7330580A010082E0A1 /* ccblowfish_ltc_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 4263BB7130580A010082E0A1 /* ccblowfish_ltc_common.c */; };
+		4263BB7430580A010082E0A1 /* ccblowfish_ltc_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 4263BB7130580A010082E0A1 /* ccblowfish_ltc_common.c */; };
+		4263BB7530580A010082E0A1 /* ccblowfish_ltc_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263BB7030580A010082E0A1 /* ccblowfish_ltc_common.h */; };
+		4263BB7630580A010082E0A1 /* ccblowfish_ltc_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 4263BB7130580A010082E0A1 /* ccblowfish_ltc_common.c */; };
+		4263BB7730580A010082E0A1 /* ccblowfish_ltc_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263BB7030580A010082E0A1 /* ccblowfish_ltc_common.h */; };
+		426691493058A223003574B1 /* ccblowfish_factory_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 426691483058A223003574B1 /* ccblowfish_factory_modes.c */; };
+		4266914A3058A223003574B1 /* ccblowfish_factory_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 426691483058A223003574B1 /* ccblowfish_factory_modes.c */; };
+		4266914B3058A223003574B1 /* ccblowfish_factory_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 426691483058A223003574B1 /* ccblowfish_factory_modes.c */; };
+		42857D9E305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42857D9D305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c */; };
+		42857D9F305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42857D9D305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c */; };
+		42857DA0305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42857D9D305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c */; };
+		42857DA2305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42857DA1305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c */; };
+		42857DA3305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42857DA1305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c */; };
+		42857DA4305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42857DA1305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c */; };
 		42CBBE8C3044174D006FA5BC /* cc_runtime_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 42CBBE8B3044174D006FA5BC /* cc_runtime_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CBBE8D3044174D006FA5BC /* cc_runtime_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 42CBBE8B3044174D006FA5BC /* cc_runtime_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42CBBE9430441928006FA5BC /* ccmd4_ltc.c in Sources */ = {isa = PBXBuildFile; fileRef = 42CBBE9330441928006FA5BC /* ccmd4_ltc.c */; };
@@ -504,6 +521,12 @@
 		42583AF62FFCD317000B167B /* ccsha512_K.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccsha512_K.c; sourceTree = "<group>"; };
 		42583AF72FFCD317000B167B /* ccsha512_ltc_compress.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccsha512_ltc_compress.c; sourceTree = "<group>"; };
 		42583AF82FFCD317000B167B /* ccsha512_ltc_di.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccsha512_ltc_di.c; sourceTree = "<group>"; };
+		4263BB6D3058073F0082E0A1 /* ccblowfish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccblowfish.h; sourceTree = "<group>"; };
+		4263BB7030580A010082E0A1 /* ccblowfish_ltc_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccblowfish_ltc_common.h; sourceTree = "<group>"; };
+		4263BB7130580A010082E0A1 /* ccblowfish_ltc_common.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccblowfish_ltc_common.c; sourceTree = "<group>"; };
+		426691483058A223003574B1 /* ccblowfish_factory_modes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccblowfish_factory_modes.c; sourceTree = "<group>"; };
+		42857D9D305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccblowfish_ltc_ecb_encrypt.c; sourceTree = "<group>"; };
+		42857DA1305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccblowfish_ltc_ecb_decrypt.c; sourceTree = "<group>"; };
 		42CBBE8B3044174D006FA5BC /* cc_runtime_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cc_runtime_config.h; sourceTree = "<group>"; };
 		42CBBE91304418BF006FA5BC /* ccmd4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccmd4.h; sourceTree = "<group>"; };
 		42CBBE9330441928006FA5BC /* ccmd4_ltc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccmd4_ltc.c; sourceTree = "<group>"; };
@@ -821,6 +844,43 @@
 				42583AF92FFCD317000B167B /* src */,
 			);
 			path = ccsha2;
+			sourceTree = "<group>";
+		};
+		4263BB69305807190082E0A1 /* ccblowfish */ = {
+			isa = PBXGroup;
+			children = (
+				4263BB6A3058071F0082E0A1 /* include */,
+				4263BB6B305807240082E0A1 /* src */,
+			);
+			path = ccblowfish;
+			sourceTree = "<group>";
+		};
+		4263BB6A3058071F0082E0A1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				4263BB6C305807290082E0A1 /* corecrypto */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		4263BB6B305807240082E0A1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				4263BB7030580A010082E0A1 /* ccblowfish_ltc_common.h */,
+				4263BB7130580A010082E0A1 /* ccblowfish_ltc_common.c */,
+				42857D9D305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c */,
+				42857DA1305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c */,
+				426691483058A223003574B1 /* ccblowfish_factory_modes.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		4263BB6C305807290082E0A1 /* corecrypto */ = {
+			isa = PBXGroup;
+			children = (
+				4263BB6D3058073F0082E0A1 /* ccblowfish.h */,
+			);
+			path = corecrypto;
 			sourceTree = "<group>";
 		};
 		42CBBE8E30441895006FA5BC /* ccmd4 */ = {
@@ -1798,6 +1858,7 @@
 				F01ACE4D2FFF608F006ED2CE /* cc_boot_post */,
 				42D6AA9F2FF2946200FAAD94 /* ccaes */,
 				42D6AAA62FF2946200FAAD94 /* ccasn1 */,
+				4263BB69305807190082E0A1 /* ccblowfish */,
 				F01ACE0C2FF9DF2D006ED2CE /* ccchacha20poly1305 */,
 				422680493043CD09003309C0 /* ccder */,
 				F035FE1A303C1A2D00417505 /* ccdes */,
@@ -1859,6 +1920,7 @@
 				F01ACDCB2FF9CA2C006ED2CE /* cczp.h in Headers */,
 				42CBBEA830444058006FA5BC /* ccmd2.h in Headers */,
 				F01ACDF32FF9D1A6006ED2CE /* aesopt.h in Headers */,
+				4263BB6E3058076B0082E0A1 /* ccblowfish.h in Headers */,
 				F035FDF7303AD46200417505 /* cc_availability.h in Headers */,
 				42D6AAF52FF2957300FAAD94 /* cc_debug.h in Headers */,
 				F01ACDD22FF9CC00006ED2CE /* ccdrbg_impl.h in Headers */,
@@ -1891,6 +1953,7 @@
 				42D6AAF22FF2955600FAAD94 /* cc_config.h in Headers */,
 				F01ACDEF2FF9D1A6006ED2CE /* aestab.h in Headers */,
 				42D6AAF32FF2955600FAAD94 /* cc.h in Headers */,
+				4263BB7230580A010082E0A1 /* ccblowfish_ltc_common.h in Headers */,
 				F01ACDF52FF9D1A6006ED2CE /* aes.h in Headers */,
 				F01ACE0A2FF9D2BB006ED2CE /* ccrsa.h in Headers */,
 				42CBBE8D3044174D006FA5BC /* cc_runtime_config.h in Headers */,
@@ -1919,6 +1982,7 @@
 				F035FE24303C1C1900417505 /* ccdes.h in Headers */,
 				42D6AB642FF2987D00FAAD94 /* ccmode_internal.h in Headers */,
 				F0005759300063A6000B3598 /* cc_compatibility.h in Headers */,
+				4263BB6F3058076B0082E0A1 /* ccblowfish.h in Headers */,
 				F01ACE3F2FFF6053006ED2CE /* ccpost.h in Headers */,
 				42D6AB652FF2987D00FAAD94 /* ccmode_impl.h in Headers */,
 				F01ACDD52FF9CC00006ED2CE /* ccdrbg.h in Headers */,
@@ -1948,6 +2012,7 @@
 				F0B1CB933001E0D100AA7184 /* cc_lock.h in Headers */,
 				42D6AB482FF2984C00FAAD94 /* ccasn1.h in Headers */,
 				F01ACE112FF9E513006ED2CE /* cc_debug.h in Headers */,
+				4263BB7530580A010082E0A1 /* ccblowfish_ltc_common.h in Headers */,
 				42D6AB672FF298D900FAAD94 /* ccn.h in Headers */,
 				F00057563000629A000B3598 /* cckprng.h in Headers */,
 				F035FDF8303AD46200417505 /* cc_availability.h in Headers */,
@@ -1958,6 +2023,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4263BB7730580A010082E0A1 /* ccblowfish_ltc_common.h in Headers */,
 				42CBBEAA30444058006FA5BC /* ccmd2.h in Headers */,
 				F035FE29303C1D6300417505 /* ltc_des_common.h in Headers */,
 				F0B1CB943001E0D100AA7184 /* cc_lock.h in Headers */,
@@ -2107,6 +2173,7 @@
 				F035FE64303C5C5D00417505 /* ccrc4_eay.c in Sources */,
 				F035FE72303CF53300417505 /* ccchacha20.c in Sources */,
 				F01ACE642FFF65C4006ED2CE /* ccmd5_di.c in Sources */,
+				42857DA3305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c in Sources */,
 				F035FE42303C35D400417505 /* ccdes3_ltc_ecb_encrypt.c in Sources */,
 				42D6AB0D2FF2965800FAAD94 /* ccmode_factory_cbc_encrypt.c in Sources */,
 				42D6AB0E2FF2965800FAAD94 /* ccmode_factory_cbc_decrypt.c in Sources */,
@@ -2160,11 +2227,14 @@
 				42D6AB152FF2965800FAAD94 /* cccbc_one_shot.c in Sources */,
 				F000576F3000DA1B000B3598 /* ccctr_init.c in Sources */,
 				42D6AB162FF2965800FAAD94 /* cccbc_set_iv.c in Sources */,
+				4263BB7330580A010082E0A1 /* ccblowfish_ltc_common.c in Sources */,
 				42D6AB172FF2965800FAAD94 /* ccmode_cbc_decrypt.c in Sources */,
 				42D6AAF62FF2960E00FAAD94 /* cc_xor.c in Sources */,
 				42D6AAF72FF2960E00FAAD94 /* cc_copy.c in Sources */,
 				F01ACDEB2FF9D1A6006ED2CE /* aeskey.c in Sources */,
+				42857DA0305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */,
 				42CBBE9430441928006FA5BC /* ccmd4_ltc.c in Sources */,
+				4266914B3058A223003574B1 /* ccblowfish_factory_modes.c in Sources */,
 				42D6AAF82FF2960E00FAAD94 /* cc_try_abort.c in Sources */,
 				F01ACDF92FF9D1A6006ED2CE /* ccaes_gladman_cbc_decrypt.c in Sources */,
 				F000577F3000DA1B000B3598 /* ccmode_ctr_init.c in Sources */,
@@ -2230,6 +2300,7 @@
 				42D6AB372FF2981E00FAAD94 /* cc_clear.c in Sources */,
 				42583B0F2FFCD317000B167B /* ccsha512_256_ltc_di.c in Sources */,
 				F035FE4F303C371C00417505 /* ccdes3_ecb_decrypt_mode.c in Sources */,
+				42857DA2305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c in Sources */,
 				42583B102FFCD317000B167B /* ccsha512_ltc_di.c in Sources */,
 				42583B112FFCD317000B167B /* ccsha256_initial_state.c in Sources */,
 				42583B122FFCD317000B167B /* ccsha224_initial_state.c in Sources */,
@@ -2241,6 +2312,7 @@
 				42583B162FFCD317000B167B /* ccsha512_K.c in Sources */,
 				42583B172FFCD317000B167B /* ccsha512_ltc_compress.c in Sources */,
 				42583B182FFCD317000B167B /* ccsha512_224_ltc_di.c in Sources */,
+				426691493058A223003574B1 /* ccblowfish_factory_modes.c in Sources */,
 				42583B192FFCD317000B167B /* ccsha512_256_initial_state.c in Sources */,
 				42583B1A2FFCD317000B167B /* ccsha256_K.c in Sources */,
 				F00057803000DA1B000B3598 /* ccmode_ctr_init.c in Sources */,
@@ -2273,6 +2345,7 @@
 				F01ACDFE2FF9D1B0006ED2CE /* ccaes_cbc_encrypt_mode.c in Sources */,
 				F01ACE042FF9D257006ED2CE /* ccn_add.c in Sources */,
 				F035FE53303C376F00417505 /* ccdes_ecb_encrypt_mode.c in Sources */,
+				4263BB7430580A010082E0A1 /* ccblowfish_ltc_common.c in Sources */,
 				42D6AB572FF2987D00FAAD94 /* ccecb_update.c in Sources */,
 				42D6AB582FF2987D00FAAD94 /* ccecb_one_shot.c in Sources */,
 				F01ACDB32FF7C7BB006ED2CE /* cchmac_final.c in Sources */,
@@ -2298,6 +2371,7 @@
 				42D6AB612FF2987D00FAAD94 /* ccmode_cbc_decrypt.c in Sources */,
 				F00057933000DA79000B3598 /* ccpost_aes_ctr_validate.c in Sources */,
 				F00057823000DA1B000B3598 /* ccctr_one_shot.c in Sources */,
+				42857D9E305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */,
 				F035FE5B303C37D600417505 /* ccdes_factory_modes.c in Sources */,
 				F035FE3B303C334100417505 /* ccdes_ltc_ecb_encrypt.c in Sources */,
 				F035FE15303C175800417505 /* cckprng_generate.c in Sources */,
@@ -2368,6 +2442,7 @@
 				F035FE66303C5C5D00417505 /* ccrc4_eay.c in Sources */,
 				F035FE74303CF53300417505 /* ccchacha20.c in Sources */,
 				F01ACEB72FFF688D006ED2CE /* ccsha512_final.c in Sources */,
+				42857DA4305825EC00025F25 /* ccblowfish_ltc_ecb_decrypt.c in Sources */,
 				F035FE44303C35D400417505 /* ccdes3_ltc_ecb_encrypt.c in Sources */,
 				F01ACE792FFF688D006ED2CE /* ccaes_gladman_cbc_encrypt.c in Sources */,
 				F00057883000DA48000B3598 /* ccctr_block_size.c in Sources */,
@@ -2421,11 +2496,14 @@
 				F01ACE782FFF688D006ED2CE /* ccaes_gladman_cbc_decrypt.c in Sources */,
 				F00057863000DA34000B3598 /* ccaes_ctr_crypt_mode.c in Sources */,
 				F000578F3000DA48000B3598 /* ccmode_ctr_init.c in Sources */,
+				4263BB7630580A010082E0A1 /* ccblowfish_ltc_common.c in Sources */,
 				F01ACEA72FFF688D006ED2CE /* ccsha1_eay.c in Sources */,
 				F01ACE9E2FFF688D006ED2CE /* ccecb_context_size.c in Sources */,
 				F01ACEB82FFF688D006ED2CE /* ccsha512_initial_state.c in Sources */,
 				F01ACE972FFF688D006ED2CE /* cccbc_update.c in Sources */,
+				42857D9F305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */,
 				42CBBE9630441928006FA5BC /* ccmd4_ltc.c in Sources */,
+				4266914A3058A223003574B1 /* ccblowfish_factory_modes.c in Sources */,
 				F01ACE9A2FFF688D006ED2CE /* ccmode_cbc_init.c in Sources */,
 				F01ACE892FFF688D006ED2CE /* ccdigest_oid_equal.c in Sources */,
 				F01ACE762FFF688D006ED2CE /* aeskey.c in Sources */,

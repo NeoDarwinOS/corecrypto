@@ -11,6 +11,11 @@
 
 #include <corecrypto/cc.h>
 
+/*
+ * ChaCha20 (and the combination Poly1305 AEAD) were introduced to corecrypto to back IPsec
+ * beginning with macOS High Sierra, corecrypto's ChaCha20 routines are also used by CommonCrypto.
+ */
+
 #define CCCHACHA20_KEY_NBYTES   32
 #define CCCHACHA20_BLOCK_NBYTES 64
 #define CCCHACHA20_BLOCK_NBITS  (CCCHACHA20_BLOCK_NBYTES * 8)

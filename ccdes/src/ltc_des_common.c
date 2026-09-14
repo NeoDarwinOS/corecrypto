@@ -280,14 +280,14 @@ void cookey(const uint32_t *raw1, uint32_t *keyout)
     for(i=0; i < 16; i++, raw1++)
     {
         raw0 = raw1++;
-        *cook    = (*raw0 & 0x00fc0000L) << 6;
-        *cook   |= (*raw0 & 0x00000fc0L) << 10;
-        *cook   |= (*raw1 & 0x00fc0000L) >> 10;
-        *cook++ |= (*raw1 & 0x00000fc0L) >> 6;
-        *cook    = (*raw0 & 0x0003f000L) << 12;
-        *cook   |= (*raw0 & 0x0000003fL) << 16;
-        *cook   |= (*raw1 & 0x0003f000L) >> 4;
-        *cook++ |= (*raw1 & 0x0000003fL);
+        *cook    = (*raw0 & 0x00fc0000U) << 6;
+        *cook   |= (*raw0 & 0x00000fc0U) << 10;
+        *cook   |= (*raw1 & 0x00fc0000U) >> 10;
+        *cook++ |= (*raw1 & 0x00000fc0U) >> 6;
+        *cook    = (*raw0 & 0x0003f000U) << 12;
+        *cook   |= (*raw0 & 0x0000003fU) << 16;
+        *cook   |= (*raw1 & 0x0003f000U) >> 4;
+        *cook++ |= (*raw1 & 0x0000003fU);
     }
 
     cc_memcpy(keyout, dough, sizeof(dough));
@@ -301,24 +301,24 @@ void desfunc(uint32_t *block, const uint32_t *keys)
     leftt = block[0];
     right = block[1];
 
-    work = ((leftt >> 4)  ^ right) & 0x0f0f0f0fL;
+    work = ((leftt >> 4)  ^ right) & 0x0f0f0f0fU;
     right ^= work;
     leftt ^= (work << 4);
 
-    work = ((leftt >> 16) ^ right) & 0x0000ffffL;
+    work = ((leftt >> 16) ^ right) & 0x0000ffffU;
     right ^= work;
     leftt ^= (work << 16);
 
-    work = ((right >> 2)  ^ leftt) & 0x33333333L;
+    work = ((right >> 2)  ^ leftt) & 0x33333333U;
     leftt ^= work;
     right ^= (work << 2);
 
-    work = ((right >> 8)  ^ leftt) & 0x00ff00ffL;
+    work = ((right >> 8)  ^ leftt) & 0x00ff00ffU;
     leftt ^= work;
     right ^= (work << 8);
 
     right = cc_rolc(right, 1);
-    work = (leftt ^ right) & 0xaaaaaaaaL;
+    work = (leftt ^ right) & 0xaaaaaaaaU;
     
     leftt ^= work;
     right ^= work;

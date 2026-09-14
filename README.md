@@ -73,6 +73,9 @@ The following files make use of code from an earlier revision of LibTomCrypt:
 - ccaes_ltc_ecb_encrypt.c
 - ccaes_ltc_init.c
 - ccaes_ltc_tab.c
+- ccblowfish_ltc_common.c
+- ccblowfish_ltc_ecb_decrypt.c
+- ccblowfish_ltc_ecb_encrypt.c
 - ccdes_ltc_common.c
 - ltc_des_common.c
 - ccmd2_ltc.c

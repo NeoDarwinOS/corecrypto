@@ -40,14 +40,6 @@ static uint32_t setup_mix2(uint32_t temp)
 #endif
 #endif
 
-/**
- Initialize the AES (Rijndael) block cipher
- @param key The symmetric key you wish to pass
- @param keylen The key length in bytes
- @param num_rounds The number of rounds desired (0 for default)
- @param skey The key in as scheduled by this function.
- @return CRYPT_OK if successful
- */
 static cc_error_t ccaes_ltc_init(const unsigned char *key, int keylen, int num_rounds, ltc_rijndael_keysched *skey)
 {
     int i, j;

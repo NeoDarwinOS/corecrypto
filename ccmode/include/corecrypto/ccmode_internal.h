@@ -118,7 +118,7 @@ cc_error_t ccmode_ctr_crypt(ccctr_ctx *ctx,
 #define CCMODE_CTR_KEY_ECB_CTX(key)     (ccecb_ctx *)(&CCMODE_CTR_KEY(key)->u[ccn_nof_size(CCMODE_CTR_KEY_ECB(key)->block_size * 2)])
 
 /*
- * Default CTR implementation
+ * Default XTS implementation
  *
  * Since this defines the function interface too, we mark the struct as READ_ONLY_LATE for platforms
  * that use it.
@@ -140,7 +140,7 @@ struct _ccmode_xts_key {
     cc_unit u[];
 };
 
-#define CCMODE_XTS_TWEAK_MAX_BLOCKS_PROCESSED 0x100000
+#define CCMODE_XTS_TWEAK_MAX_BLOCKS_PROCESSED   0x100000
 
 #define CCMODE_XTS_KEY(key)                     ((struct _ccmode_xts_key *)key)
 #define CCMODE_XTS_KEY_ECB_CTX(key)             (ccecb_ctx *)&CCMODE_XTS_KEY(key)->u[0]

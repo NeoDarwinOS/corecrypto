@@ -172,7 +172,7 @@ cc_error_t ccaes_ltc_ecb_encrypt(const unsigned char *pt, unsigned char *ct, con
     return CCERR_OK;
 }
 
-int ccaes_ecb_encrypt(const ccecb_ctx *ctx, size_t nblocks, const void *in, void *out)
+cc_error_t ccaes_ecb_encrypt(const ccecb_ctx *ctx, size_t nblocks, const void *in, void *out)
 {
     cc_error_t err = CCERR_OK;
     const uint8_t *_pt = in;

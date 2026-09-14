@@ -19,6 +19,8 @@
  * to quickly verify that everything is fine and dandy on boot.
  *
  * This is a less comprehensive test than the ones provided in cctest, but should cover all bases.
+ *
+ * cc_boot_post as an executable should dlsym into this library rather than directly linking.
  */
 cc_error_t ccpost_validate(void);
 
