@@ -17,7 +17,7 @@ cc_unit ccn_add(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t)
     cc_dunit carry = 0;
 
     for (cc_size i = 0; i < n; i++) {
-        carry = s[i] + t[i];
+        carry += s[i] + t[i];
 
         r[i] = (cc_unit)carry;
 

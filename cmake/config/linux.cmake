@@ -2,10 +2,13 @@ set(CORECRYPTO_SHARED_COMPONENTS
     cc
     ccaes
     ccasn1
+    ccblowfish
     ccdes
     ccdigest
     ccdrbg
     cchmac
+    ccmd2
+    ccmd4
     ccmd5
     ccmode
     ccn

@@ -62,6 +62,9 @@ CC_BEGIN_DECLS
 CC_EXPORT
 cc_unit ccn_add(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t);
 
+CC_EXPORT
+cc_unit ccn_sub(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t);
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCN_H__  */
