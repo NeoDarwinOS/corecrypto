@@ -11,12 +11,14 @@
 #if !CC_PLATFORM_WINDOWS
 #define CCPOST_RUN_FUNCTION(x) ({            \
         cc_post_log(#x " BEGIN");            \
+        uint64_t start = cc_absolute_time(); \
         cc_error_t err = x();               \
+        uint64_t end = cc_absolute_time(); \
         if (err) {                          \
             cc_post_log(#x " FAIL");         \
             return err;                     \
         } else {                            \
-            cc_post_log(#x " PASS");         \
+            cc_post_log(#x " PASS (in %llu ms)", cc_absolute_time_msec(end - start));         \
         }                                   \
         err;                                \
     })

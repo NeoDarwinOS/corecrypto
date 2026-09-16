@@ -70,7 +70,7 @@ struct ccmode_ecb {
     /* On Apple corecrypto, this is cc_impl_t. We do not care.*/
     int pad2;
 
-    /* API NOTE: This is yet another extension */
+    /* API NOTE: This is yet another extension. I do believe this may be useful for debugging. */
     const char *impl_name;
 };
 

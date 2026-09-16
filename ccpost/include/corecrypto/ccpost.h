@@ -24,4 +24,14 @@
  */
 cc_error_t ccpost_validate(void);
 
+/*!
+ * @function ccpost_print_runtime
+ *
+ * @discussion
+ * This is a function that is primarily designed to diagnose environments where POSTs have failed.
+ *
+ * It will be able to quickly dump what digest and cipher implementations are being used.
+ */
+void ccpost_print_runtime(void);
+
 #endif /* __CORECRYPTO_CCPOST_H__ */

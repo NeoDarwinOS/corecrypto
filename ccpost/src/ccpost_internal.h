@@ -10,6 +10,7 @@
 #define __CORECRYPTO_CCPOST_INTERNAL_H__
 
 #include <corecrypto/cc.h>
+#include <corecrypto/cc_absolute_time.h>
 #include <corecrypto/cc_priv.h>
 #include <corecrypto/ccpost.h>
 
