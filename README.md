@@ -81,6 +81,9 @@ The following files make use of code from an earlier revision of LibTomCrypt:
 - ccmd2_ltc.c
 - ccmd4_ltc.c
 - ccmd5_ltc.c
+- ccrc2_ltc_common.c
+- ccrc2_ltc_ecb_decrypt.c
+- ccrc2_ltc_ecb_encrypt.c
 - ccsha1_ltc.c
 - ccsha224_initial_state.c
 - ccsha256_initial_state.c
@@ -97,4 +100,10 @@ The following files make use of code by Brian Gladman:
 - aestab.c
     
 The following files make use of code by Eric Young:
+- c_enc.c
+- c_skey.c
+- cast.h
+- cast_lcl.h
+- cast_s.h
+- ccrc4_eay.c
 - ccsha1_eay.c
