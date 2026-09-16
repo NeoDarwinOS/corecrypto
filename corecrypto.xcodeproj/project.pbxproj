@@ -53,6 +53,9 @@
 		42474E38305AC5C80066F883 /* cccast_eay_ecb_encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E37305AC5C80066F883 /* cccast_eay_ecb_encrypt.c */; };
 		42474E39305AC5C80066F883 /* cccast_eay_ecb_encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E37305AC5C80066F883 /* cccast_eay_ecb_encrypt.c */; };
 		42474E3A305AC5C80066F883 /* cccast_eay_ecb_encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E37305AC5C80066F883 /* cccast_eay_ecb_encrypt.c */; };
+		42474E3C305AC6DA0066F883 /* cccast_factory_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E3B305AC6DA0066F883 /* cccast_factory_modes.c */; };
+		42474E3D305AC6DA0066F883 /* cccast_factory_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E3B305AC6DA0066F883 /* cccast_factory_modes.c */; };
+		42474E3E305AC6DA0066F883 /* cccast_factory_modes.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E3B305AC6DA0066F883 /* cccast_factory_modes.c */; };
 		42583AFB2FFCD317000B167B /* ccsha2_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 42583AE62FFCD317000B167B /* ccsha2_internal.h */; };
 		42583AFC2FFCD317000B167B /* ccsha2.h in Headers */ = {isa = PBXBuildFile; fileRef = 42583AE32FFCD317000B167B /* ccsha2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42583AFD2FFCD317000B167B /* ccsha512_256_ltc_di.c in Sources */ = {isa = PBXBuildFile; fileRef = 42583AF32FFCD317000B167B /* ccsha512_256_ltc_di.c */; };
@@ -560,6 +563,7 @@
 		42474E2F305AC3F80066F883 /* cccast_setup.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cccast_setup.c; sourceTree = "<group>"; };
 		42474E33305AC4670066F883 /* cccast_eay_ecb_decrypt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cccast_eay_ecb_decrypt.c; sourceTree = "<group>"; };
 		42474E37305AC5C80066F883 /* cccast_eay_ecb_encrypt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cccast_eay_ecb_encrypt.c; sourceTree = "<group>"; };
+		42474E3B305AC6DA0066F883 /* cccast_factory_modes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cccast_factory_modes.c; sourceTree = "<group>"; };
 		42583AE32FFCD317000B167B /* ccsha2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccsha2.h; sourceTree = "<group>"; };
 		42583AE62FFCD317000B167B /* ccsha2_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccsha2_internal.h; sourceTree = "<group>"; };
 		42583AE72FFCD317000B167B /* ccsha2_selectors.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccsha2_selectors.c; sourceTree = "<group>"; };
@@ -911,6 +915,7 @@
 				42474E2F305AC3F80066F883 /* cccast_setup.c */,
 				42474E33305AC4670066F883 /* cccast_eay_ecb_decrypt.c */,
 				42474E37305AC5C80066F883 /* cccast_eay_ecb_encrypt.c */,
+				42474E3B305AC6DA0066F883 /* cccast_factory_modes.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -2414,6 +2419,7 @@
 				42D6AAFE2FF2961D00FAAD94 /* ccaes_ltc_init.c in Sources */,
 				42D6AB1F2FF2969400FAAD94 /* ccoid_equal.c in Sources */,
 				42D6AB202FF2969400FAAD94 /* ccoid_size.c in Sources */,
+				42474E3E305AC6DA0066F883 /* cccast_factory_modes.c in Sources */,
 				F00057753000DA1B000B3598 /* ccmode_factory_ctr_crypt.c in Sources */,
 				42D6AAFF2FF2961D00FAAD94 /* ccaes_ltc_ecb_encrypt.c in Sources */,
 				42D6AB002FF2961D00FAAD94 /* ccaes_ltc_tab.c in Sources */,
@@ -2474,6 +2480,7 @@
 				42583B152FFCD317000B167B /* ccsha384_ltc_di.c in Sources */,
 				F0B1CB8F3001DE4D00AA7184 /* ccrng_crypto_rng.c in Sources */,
 				42583B162FFCD317000B167B /* ccsha512_K.c in Sources */,
+				42474E3C305AC6DA0066F883 /* cccast_factory_modes.c in Sources */,
 				42583B172FFCD317000B167B /* ccsha512_ltc_compress.c in Sources */,
 				42583B182FFCD317000B167B /* ccsha512_224_ltc_di.c in Sources */,
 				426691493058A223003574B1 /* ccblowfish_factory_modes.c in Sources */,
@@ -2701,6 +2708,7 @@
 				F01ACE722FFF688D006ED2CE /* cc_copy.c in Sources */,
 				F01ACE922FFF688D006ED2CE /* cccbc_block_size.c in Sources */,
 				F01ACE992FFF688D006ED2CE /* ccmode_cbc_encrypt.c in Sources */,
+				42474E3D305AC6DA0066F883 /* cccast_factory_modes.c in Sources */,
 				F01ACEAD2FFF688D006ED2CE /* ccsha256_initial_state.c in Sources */,
 				F01ACE8A2FFF688D006ED2CE /* ccdigest_oid_lookup.c in Sources */,
 				F01ACE802FFF688D006ED2CE /* ccaes_ecb_decrypt_mode.c in Sources */,
