@@ -145,11 +145,11 @@ void cc_kernel_populate_registration(void)
     corecrypto_registration_if.ccrc4_info = ccrc4();
 #endif  // __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_10, __MAC_11_0)
 
-
-    /* MISSING COMPONENTS: cccast_ecb_[encrypt, decrypt]  */
 #if __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_10, __MAC_11_0)
     corecrypto_registration_if.ccblowfish_ecb_encrypt == ccblowfish_ecb_encrypt_mode();
     corecrypto_registration_if.ccblowfish_ecb_decrypt == ccblowfish_ecb_decrypt_mode();
+    corecrypto_registration_if.cccast_ecb_encrypt == cccast_ecb_encrypt_mode();
+    corecrypto_registration_if.cccast_ecb_decrypt == cccast_ecb_decrypt_mode();
 #endif
 
     corecrypto_registration_if.ccdes_key_is_weak_fn = (ccdes_key_is_weak_fn_t)&ccdes_key_is_weak;
