@@ -106,6 +106,9 @@ cc_error_t ccdrbg_df_bc_derive_keys(const ccdrbg_df_ctx_t *ctx,
                      &left,
                      prefix,
                      sizeof(prefix));
+        if (err) {
+            return err;
+        }
 
         for (size_t j = 0; j < nvec; j++) {
             err = ccdrbg_df_bc_update_bcc_chain(df_ctx,
@@ -115,6 +118,9 @@ cc_error_t ccdrbg_df_bc_derive_keys(const ccdrbg_df_ctx_t *ctx,
                      &left,
                      iovecs[j].base,
                      iovecs[j].nbytes);
+            if (err) {
+                return err;
+            }
         }
 
         err = ccdrbg_df_bc_update_bcc_chain(df_ctx,
@@ -124,8 +130,11 @@ cc_error_t ccdrbg_df_bc_derive_keys(const ccdrbg_df_ctx_t *ctx,
                      &left,
                      suffix,
                      suffix_nbytes);
+        if (err) {
+            return err;
+        }
 
-        i += 1;
+        i++;
         temp_nbytes += cccbc_block_size(df_ctx->cbc);
     }
 
