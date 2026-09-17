@@ -31,22 +31,68 @@ CC_EXPORT const struct ccmode_cbc ccaes_gladman_cbc_encrypt_mode;
 /*
  * Runtime selectors go here.
  */
+
+/*!
+ * @function ccaes_ecb_decrypt_mode
+ * Queries corecrypto for it's preferred implementation of the AES decryption algorithm
+ * in the ECB mode of operation according to the system's capabilities.
+ *
+ * @abstract    Gets the preferred AES decryption implementation.
+ *
+ * @result      Returns the preferred or more optimised implementation for the system.
+ */
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ecb *ccaes_ecb_decrypt_mode(void);
 
+/*!
+ * @function ccaes_ecb_encrypt_mode
+ * Queries corecrypto for it's preferred implementation of the AES encryption algorithm
+ * in the ECB mode of operation according to the system's capabilities.
+ *
+ * @abstract    Gets the preferred AES encryption implementation.
+ *
+ * @result      Returns the preferred or more optimised implementation for the system.
+ */
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ecb *ccaes_ecb_encrypt_mode(void);
 
+/*!
+ * @function ccaes_cbc_decrypt_mode
+ * Queries corecrypto for it's preferred implementation of the AES decryption algorithm
+ * in the CBC mode of operation according to the system's capabilities.
+ *
+ * @abstract    Gets the preferred AES decryption implementation.
+ *
+ * @result      Returns the preferred or more optimised implementation for the system.
+ */
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_cbc *ccaes_cbc_decrypt_mode(void);
 
+/*!
+ * @function ccaes_cbc_encrypt_mode
+ * Queries corecrypto for it's preferred implementation of the AES encryption algorithm
+ * in the CBC mode of operation according to the system's capabilities.
+ *
+ * @abstract    Gets the preferred AES encryption implementation.
+ *
+ * @result      Returns the preferred or more optimised implementation for the system.
+ */
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_cbc *ccaes_cbc_encrypt_mode(void);
 
+/*!
+ * @function ccaes_ctr_crypt_mode
+ * Queries corecrypto for it's preferred implementation of the AES algorithm
+ * in the CTR mode of operation according to the system's capabilities.
+ *
+ * @abstract    Gets the preferred AES-CTR implementation.
+ *
+ * @result      Returns the preferred or more optimised implementation for the system.
+ */
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_2012
 const struct ccmode_ctr *ccaes_ctr_crypt_mode(void);

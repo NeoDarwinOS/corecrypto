@@ -39,10 +39,21 @@
         return (nanosec / NSEC_PER_MSEC);
     }
 #elif CC_PLATFORM_LINUX
+    #include <time.h>
 
-//
-// big fat todo here for later.
-//
+
+    CC_INLINE uint64_t cc_absolute_time(void) {
+        struct timespec ts;
+        clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+        return (ts.tv_sec * 1000000000) + ts.tv_nsec;
+    }
+
+    //
+    // we already use nanosecond precision in cc_absolute_time. we can just convert here.
+    //
+    CC_INLINE uint64_t cc_absolute_time_msec(uint64_t abs) {
+        return (abs / 1000000);
+    }
 
 #elif CC_PLATFORM_WINDOWS
     #include <windows.h>

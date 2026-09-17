@@ -13,12 +13,48 @@
 
 CC_BEGIN_DECLS
 
+/*!
+ * @function ccmode_factory_cbc_decrypt
+ * Initialises a ccmode_cbc structure using an ECB implementation, in the decryption mode.
+ *
+ * @param       cbc
+ *              The structure to initialise
+ *
+ * @param       ecb
+ *              The underlying ECB cipher to use.
+ *
+ * @result      Returns a non-zero error code if the operation failed.
+ */
 void ccmode_factory_cbc_decrypt(struct ccmode_cbc *cbc,
                                 const struct ccmode_ecb *ecb);
 
+/*!
+ * @function ccmode_factory_cbc_encrypt
+ * Initialises a ccmode_cbc structure using an ECB implementation, in the encryption mode.
+ *
+ * @param       cbc
+ *              The structure to initialise
+ *
+ * @param       ecb
+ *              The underlying ECB cipher to use.
+ *
+ * @result      Returns a non-zero error code if the operation failed.
+ */
 void ccmode_factory_cbc_encrypt(struct ccmode_cbc *cbc,
                                 const struct ccmode_ecb *ecb);
 
+/*!
+ * @function ccmode_factory_ctr_crypt
+ * Initialises a ccmode_ctr structure using an ECB implementation.
+ *
+ * @param       cbc
+ *              The structure to initialise
+ *
+ * @param       ecb
+ *              The underlying ECB cipher to use.
+ *
+ * @result      Returns a non-zero error code if the operation failed.
+ */
 void ccmode_factory_ctr_crypt(struct ccmode_ctr *cbc,
                               const struct ccmode_ecb *ecb);
 

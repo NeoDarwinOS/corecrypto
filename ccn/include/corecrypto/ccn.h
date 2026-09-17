@@ -46,6 +46,9 @@ CC_BEGIN_DECLS
 
 /* Basic operations */
 
+/*
+ */
+
 /*!
  * @function ccn_add
  *
@@ -62,6 +65,19 @@ CC_BEGIN_DECLS
 CC_EXPORT
 cc_unit ccn_add(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t);
 
+/*!
+ * @function ccn_sub
+ *
+ * @param   n   The number of units in both s and t
+ *
+ * @param   r   The result of the operation
+ *
+ * @param   s   First operand
+ *
+ * @param   t   Second operand
+ *
+ * @result  The returned cc_unit is the borrow from the last add of cc_units
+ */
 CC_EXPORT
 cc_unit ccn_sub(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t);
 
