@@ -23,7 +23,7 @@ CC_BEGIN_DECLS
  * @param       ecb
  *              The underlying ECB cipher to use.
  *
- * @result      Returns a non-zero error code if the operation failed.
+ * @result      CBC structure is filled out.
  */
 void ccmode_factory_cbc_decrypt(struct ccmode_cbc *cbc,
                                 const struct ccmode_ecb *ecb);
@@ -38,7 +38,7 @@ void ccmode_factory_cbc_decrypt(struct ccmode_cbc *cbc,
  * @param       ecb
  *              The underlying ECB cipher to use.
  *
- * @result      Returns a non-zero error code if the operation failed.
+ * @result      CBC structure is filled out.
  */
 void ccmode_factory_cbc_encrypt(struct ccmode_cbc *cbc,
                                 const struct ccmode_ecb *ecb);
@@ -53,7 +53,7 @@ void ccmode_factory_cbc_encrypt(struct ccmode_cbc *cbc,
  * @param       ecb
  *              The underlying ECB cipher to use.
  *
- * @result      Returns a non-zero error code if the operation failed.
+ * @result      CTR structure is filled out.
  */
 void ccmode_factory_ctr_crypt(struct ccmode_ctr *cbc,
                               const struct ccmode_ecb *ecb);

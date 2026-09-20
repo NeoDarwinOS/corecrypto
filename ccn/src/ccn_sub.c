@@ -14,18 +14,18 @@ cc_unit ccn_sub(cc_size n, cc_unit *r, const cc_unit *s, const cc_unit *t)
 
 /* On 64-bit without double units, it gets hard. */
 #if CC_UNIT_ALLOW_UINT128_DUNIT || (CC_UNIT_SIZE == 4)
-    cc_dunit carry = 0;
+    cc_dunit borrow = 0;
 
     for (cc_size i = 0; i < n; i++) {
-        carry = s[i] - t[i] - carry;
+        borrow = (cc_dunit)(s[i] - t[i]) - borrow;
 
-        r[i] = (cc_unit)carry;
+        r[i] = (cc_unit)borrow;
 
-        carry >>= ((CC_UNIT_BITS * 2) - 1);
+        borrow >>= ((CC_UNIT_BITS * 2) - 1);
     }
 #else
-    #error ccn_add has been left without an impl
+    #error ccn_sub has been left without an impl
 #endif
 
-    return (cc_unit)carry;
+    return (cc_unit)borrow;
 }

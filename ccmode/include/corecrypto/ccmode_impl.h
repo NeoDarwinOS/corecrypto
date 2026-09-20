@@ -13,7 +13,7 @@
 
 CC_BEGIN_DECLS
 
-/*
+/*!
  * API NOTES:
  *
  * Each of the 'custom' entries in a cipher mode structure is an additional structure, which can be entirely arbitrary
@@ -38,16 +38,51 @@ CC_BEGIN_DECLS
  *  XTS mode is an IEEE thing, the documentation is most likely not freely available.
  */
 
-/*
- * ECB - 'Electronic Codebook'
+/*!
+ * @group ccmode_ecb
+ * The ECB mode of operation boils down to the underlying cipher, with data segmented into 'blocks' according to the cipher's
+ * processing capabilties. For example, AES has a block size of 128 bits, or 16 bytes.
  *
- * ECB mode boils down to the underlying cipher, however the input data is split into blocks.
- * These blocks are then ran through said cipher, producing the encrypted output.
+ * It is unwise to use ECB mode raw, and- within corecrypto, is commonly used to facilitate other types of cipher modes, such as
+ * CBC.
+ */
+
+/*!
+ * @typedef  ccecb_ctx
+ * This is an opaque structure, and implementations of ciphers shall specify their specific size in ccmode_ecb
  *
- * Arguably, this is the most simple one to implement, given we just need the cipher.
+ * @abstract Cipher ECB mode context
  */
 cc_aligned_struct(16) ccecb_ctx;
 
+/*!
+ * @struct  ccmode_ecb
+ * This structure faciliates an interface to utilise varying kinds of ciphers.
+ *
+ * @field   size
+ *          The size of the ECB context used by the cipher.
+ *
+ * @field   block_size
+ *          The block size of the cipher.
+ *
+ * @field   init
+ *          The function pointer to initialise a context.
+ *
+ * @field   ecb
+ *          The function pointer to either encrypt or decrypt blocks of
+ *          data.
+ *
+ * @field   pad
+ *          This is a compatibility padding to not break anything in case this field is used.
+ *
+ * @field   pad2
+ *          This is a compatibility padding to not break anything in case this field is used.
+ * 
+ * @field   impl_name
+ *          A null terminated ASCII string with the shortname of an implementation 
+ *
+ * @abstract Cipher ECB mode
+ */
 struct ccmode_ecb {
     size_t size;
     size_t block_size;
@@ -60,35 +95,58 @@ struct ccmode_ecb {
     cc_error_t (*ecb)(const ccecb_ctx *ctx, size_t nblocks, const void *in,
                       void *out);
 
-    /* 
-     * These fields are ones we really don't care about- they aren't used anywhere in Security or other frameworks. 
-     *
-     * Below, is the round_key function pointer on modern Darwin.
-     */
     void *pad;
-
-    /* On Apple corecrypto, this is cc_impl_t. We do not care.*/
     int pad2;
-
-    /* API NOTE: This is yet another extension. I do believe this may be useful for debugging. */
     const char *impl_name;
 };
 
-/*
- * CBC - 'Cipher Block Chaining'
+/*!
+ * @group ccmode_cbc
+ * The CBC mode of operation centres around the concept of an Initialisation Vector, being used and XORed with the first set of ciphertext, thus
+ * initialising a chain of encryption created by subsequent blocks processed.
+ */
+
+/*!
+ * @typedef  cccbc_ctx
+ * This is an opaque structure, and implementations of ciphers shall specify their specific size in ccmode_cbc
  *
- * CBC itself is rather simple really. The sequence of encrypted blocks becomes XOR'd with the last processed block.
- * The IV is what starts the XORing chain, adding more randomness to the overall encrypted product.
- *
- * This one is a rather easy mode, and has historial use in BitLocker as a former FDE option.
- *
- * Apple also uses AES in CBC mode for encrypting their firmware payloads.
- *
- * Nowadays, we just use XTS in either AES-128 or AES-256 for FDE.
+ * @abstract Cipher CBC mode context
  */
 cc_aligned_struct(16) cccbc_ctx;
+
+/*!
+ * @typedef  cccbc_iv
+ * This is an opaque structure, and normally is handled by cccbc_set_iv
+ *
+ * @abstract Cipher CBC IV context
+ */
 cc_aligned_struct(16) cccbc_iv;
 
+/*!
+ * @struct  ccmode_cbc
+ * This structure faciliates an interface to utilise varying kinds of ciphers.
+ *
+ * @field   size
+ *          The size of the CBC context used by the cipher.
+ *
+ * @field   block_size
+ *          The block size of the cipher.
+ *
+ * @field   init
+ *          The function pointer to initialise a context.
+ *
+ * @field   cbc
+ *          The function pointer to either encrypt or decrypt blocks of
+ *          data.
+ *
+ * @field   custom
+ *          This is an extra field for an implementation to use at runtime.
+ * 
+ * @field   impl_name
+ *          A null terminated ASCII string with the shortname of an implementation 
+ *
+ * @abstract Cipher CBC mode
+ */
 struct ccmode_cbc {
     size_t size;
     size_t block_size;

@@ -20,6 +20,16 @@ CC_BEGIN_DECLS
  * @discussion
  * The ccmode set of APIs are facilitators for ciphers in various modes of operations, as specified under NIST SP800-38 and it's series of
  * documents, SP800-30A, SP800-30C, and SP800-30D.
+ *
+ * You can locate these documents here:
+ *      NIST SP800-38A, Recommendation for Block Cipher Modes of Operation,
+ *                      https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-38a.pdf
+ *
+ *      NIST SP800-38C, Recommendation for Block Cipher Modes of Operation: The CCM Mode for Authentication and Confidentiality,
+ *                      https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-38c.pdf
+ *
+ *      NIST SP800-38D, Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC,
+ *                      https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-38d.pdf
  * 
  * These APIs enable cross-platform cipher support, with a low-overhead and straightforward interface.
  */
@@ -27,11 +37,20 @@ CC_BEGIN_DECLS
 /* Currently 16 for AES. Change when required. */
 #define CCMODE_MAX_BLOCK_SIZE   16
 
-
 /*
  * ECB mode declarations
  */
+
+/*!
+ * @defined     ccecb_ctx_decl
+ *              Declare an ECB context with a given name.
+ */
 #define ccecb_ctx_decl(size, name) cc_ctx_decl(ccecb_ctx, size, name)
+
+/*!
+ * @defined     ccecb_ctx_clear
+ *              Clear an ECB context with a given name.
+ */
 #define ccecb_ctx_clear(size, name) cc_clear(size, name)
 
 /*!
