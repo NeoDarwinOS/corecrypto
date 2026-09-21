@@ -20,6 +20,10 @@
 #define cc_internal_crash(cond, msg) if (!!(cond)) { cc_abort("BUG IN CORECRYPTO: " msg); }
 #define cc_client_crash(cond, msg) if (!!(cond)) { cc_abort("BUG IN CLIENT OF CORECRYPTO: " msg); }
 
+//
+//  NOW IN EFFECT:  libcorecrypto_debug.dylib will crash at any given opportunity, the normal dylib will gracefully return an error.
+//                  Debugging can be done via DYLD_INSERT_LIBRARIES=/usr/lib/system/libcorecrypto_debug.dylib
+//
 #if CORECRYPTO_DEBUG
     #define cc_debug_abort(cond, msg, code) cc_internal_crash(cond, msg)
     #define cc_debug_client_abort(cond, msg, code) cc_client_crash(cond, msg)

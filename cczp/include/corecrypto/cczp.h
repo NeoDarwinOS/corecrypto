@@ -19,6 +19,7 @@ typedef const struct cczp *cczp_const_t;
 /* This is actually not a public thing. "Reality can be whatever I want." */
 typedef const struct cczp_funcs *cczp_funcs_t;
 
+// ERRATA: cczp is inconsistent across Apple corecrypto. Do we /actually/ care about that though?
 struct cczp {
     cc_size n;
     cc_unit bitlen;

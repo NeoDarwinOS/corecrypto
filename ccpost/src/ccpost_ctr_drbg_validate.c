@@ -324,6 +324,7 @@ cc_error_t ccpost_ctr_drbg_validate_df_pr(void)
     return CCERR_OK;
 }
 
+// ERRATA: This actually fails on non-POSIX platforms. What the fuck?
 cc_error_t ccpost_ctr_drbg_validate(void)
 {
     cc_error_t err = 0;

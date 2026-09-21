@@ -85,8 +85,8 @@ bool cc_lock_try_lock(cc_lock_t *lock)
 void cc_lock_init(cc_lock_t *lock, const char *group_name)
 {
     lock->mtx = CreateMutex(NULL,
-    FALSE,
-NULL);
+                            FALSE,
+                            NULL);
 }
 
 

@@ -433,6 +433,9 @@
 		F03383A1306099B300B7FFB4 /* ccpoly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A0306099B300B7FFB4 /* ccpoly1305.c */; };
 		F03383A2306099B300B7FFB4 /* ccpoly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A0306099B300B7FFB4 /* ccpoly1305.c */; };
 		F03383A3306099B300B7FFB4 /* ccpoly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A0306099B300B7FFB4 /* ccpoly1305.c */; };
+		F03383A63060F0A700B7FFB4 /* ccn_sub.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A53060F0A700B7FFB4 /* ccn_sub.c */; };
+		F03383A73060F0A700B7FFB4 /* ccn_sub.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A53060F0A700B7FFB4 /* ccn_sub.c */; };
+		F03383A83060F0A700B7FFB4 /* ccn_sub.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A53060F0A700B7FFB4 /* ccn_sub.c */; };
 		F035FDF7303AD46200417505 /* cc_availability.h in Headers */ = {isa = PBXBuildFile; fileRef = F035FDF6303AD46200417505 /* cc_availability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F035FDF8303AD46200417505 /* cc_availability.h in Headers */ = {isa = PBXBuildFile; fileRef = F035FDF6303AD46200417505 /* cc_availability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F035FDFA303AD49200417505 /* ccchacha20poly1305_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = F035FDF9303AD49200417505 /* ccchacha20poly1305_priv.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -742,6 +745,7 @@
 		F01ACE6A2FFF6817006ED2CE /* libcorecrypto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcorecrypto.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F03383A0306099B300B7FFB4 /* ccpoly1305.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccpoly1305.c; sourceTree = "<group>"; };
 		F03383A43060A83E00B7FFB4 /* libcorecrypto.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = libcorecrypto.xcconfig; sourceTree = "<group>"; };
+		F03383A53060F0A700B7FFB4 /* ccn_sub.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccn_sub.c; sourceTree = "<group>"; };
 		F035FDF6303AD46200417505 /* cc_availability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc_availability.h; sourceTree = "<group>"; };
 		F035FDF9303AD49200417505 /* ccchacha20poly1305_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccchacha20poly1305_priv.h; sourceTree = "<group>"; };
 		F035FDFC303AD4A800417505 /* ccdrbg_df_bc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccdrbg_df_bc.c; sourceTree = "<group>"; };
@@ -1735,6 +1739,7 @@
 			isa = PBXGroup;
 			children = (
 				F01ACE022FF9D257006ED2CE /* ccn_add.c */,
+				F03383A53060F0A700B7FFB4 /* ccn_sub.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -2359,6 +2364,7 @@
 				F035FE3A303C334100417505 /* ccdes_ltc_ecb_encrypt.c in Sources */,
 				F035FE4A303C36DF00417505 /* ccdes3_ecb_encrypt_mode.c in Sources */,
 				42CBBEA43044404B006FA5BC /* ccmd2_ltc.c in Sources */,
+				F03383A63060F0A700B7FFB4 /* ccn_sub.c in Sources */,
 				42583AFE2FFCD317000B167B /* ccsha512_ltc_di.c in Sources */,
 				42583AFF2FFCD317000B167B /* ccsha256_initial_state.c in Sources */,
 				F035FE46303C361700417505 /* ccdes3_ltc_ecb_decrypt.c in Sources */,
@@ -2502,6 +2508,7 @@
 				42583B1C2FFCD317000B167B /* ccsha224_ltc_di.c in Sources */,
 				42583B1D2FFCD317000B167B /* ccsha512_224_initial_state.c in Sources */,
 				42583B1E2FFCD317000B167B /* ccsha2_selectors.c in Sources */,
+				F03383A73060F0A700B7FFB4 /* ccn_sub.c in Sources */,
 				42CBBEA53044404B006FA5BC /* ccmd2_ltc.c in Sources */,
 				F000577A3000DA1B000B3598 /* ccctr_setctr.c in Sources */,
 				42583B1F2FFCD317000B167B /* ccsha512_initial_state.c in Sources */,
@@ -2650,6 +2657,7 @@
 				F035FE3C303C334100417505 /* ccdes_ltc_ecb_encrypt.c in Sources */,
 				F035FE4C303C36DF00417505 /* ccdes3_ecb_encrypt_mode.c in Sources */,
 				42CBBEA63044404B006FA5BC /* ccmd2_ltc.c in Sources */,
+				F03383A83060F0A700B7FFB4 /* ccn_sub.c in Sources */,
 				F01ACEB92FFF688E006ED2CE /* ccsha512_K.c in Sources */,
 				F01ACEB12FFF688D006ED2CE /* ccsha384_initial_state.c in Sources */,
 				F035FE48303C361700417505 /* ccdes3_ltc_ecb_decrypt.c in Sources */,

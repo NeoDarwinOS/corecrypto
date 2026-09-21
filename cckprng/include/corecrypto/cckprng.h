@@ -16,24 +16,35 @@
 CC_BEGIN_DECLS
 
 //
-// For kernel SPI, we need to export this header ourself.
+//  ACCUMULATING ENTROPY IN AN ENVIRONMENT THAT REALLY HATES YOU: The Darwin Kernel
+//      Entropy in the XNU kernel overtime has been collected in various ways.
 //
-// Make sure that corecrypto_kext in the Xcode project exports this.
+//      Prior to the overhaul done in 2021 and 2020, entropy was largely managed by the corecrypto library
+//      itself. This, obviously, is annoying as hell, and if we lack entropy, it becomes a nightmare to fetch more
+//      if there isn't any fresh entropy to use.
 //
-// The kernel PRNG's speed is relative to the speed of the underlying cryptographic implementations.
+//      Previously, Apple has used Yarrow and Fortuna constructions, Fortuna lasting under 2 years before being gutted for
+//      a DRBG construction to back /dev/random instead.
 //
-// In the future, the PRNG is likely to be able to be sped up via parallel block processing and
-// instruction-accelerated assembly
+//      Hardware entropy is nice, but what happens when we're in a low-entropy state and interrupts- for whatever reason-
+//      are disabled entirely? And- what if- we don't have access to RDRAND or RDSEED? We can't create entropy from thin air, can we?
+//
+//      The Fortuna algorithm, is actually insanely versatile. It's worthy of note that under non-RDRAND or RDSEED environments, EfiBoot
+//      resorts to using the TSC as a form of entropy rather than relying on RDRAND or RDSEED, xor'ing itself to provide pseudo-random
+//      timestamps to generate the KASLR slide. We can reuse this trick ourselves, to create a phony entropy source for Fortuna to use.
 //
 
-//-------------------------------------------------
-// OS-related configuration goes here
-//-------------------------------------------------
+//-------------------------------------------------------
+//      !!! KPRNG AND KERNEL CONTRACT CONFIG    !!!
+//-------------------------------------------------------
 
 //
 // Controls whether or not the function pointers are NATIVE to cckprng.
 //
 // Darwin 18 defines the KPI contract in <prng/random.h>
+//
+// You know what it also does? Defines the KPRNG's context structure. And holds it statically.
+// ... we could just reference ourself tbqh.
 //
 #define CCKPRNG_OS_USES_BUILTIN_FUNCTION_POINTERS __CC_DEPLOYMENT_IS_IN_RANGE(__MAC_10_15, __MAC_28_0)
 
@@ -65,6 +76,9 @@ CC_BEGIN_DECLS
 //  - There are 32 pools, however each generator context has two keys: a live and an inactive key
 //
 // It's worthy of note that later revisions of Darwin switched to using the Fortuna PRNG as source of entropy for a CTR DRBG.
+//
+// ^ ADDENDUM: We don't care anymore. It's a DRBG construction no matter what. This is a glorified SP800-90C construction now.
+//             The scheduler for RNG reseeds and entropy accumulation needs to be created, same with a Fortuna PRNG.
 //
 
 #define CCKPRNG_NPOOLS          32

@@ -20,6 +20,9 @@ CC_BEGIN_DECLS
  * A "unit" translates to the common term of "limb", and "n" is just the limb count.
  *
  * Anyways, said units are arranged in a least-significant to most significant in order.
+ *
+ * The difference is that ccn operates under the assumption that the number of units is known and expected at any given time, without
+ * the need for automatic growth of a memory pool. That's what ccz is for.
  */
 
 #define ccn_sizeof_n(n)         (sizeof(cc_unit) * (n))

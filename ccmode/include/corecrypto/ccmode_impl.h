@@ -276,6 +276,9 @@ struct ccmode_ctr {
  */
 cc_aligned_struct(16) ccgcm_ctx;
 
+// this is actually a really important mode for ipsec.
+// like, im largely sure secuity, ipsec in the kernel and coretls use this endpoint. i mean, so does commoncrypto.
+
 #define CCMODE_GCM_DECRYPTOR 78647
 #define CCMODE_GCM_ENCRYPTOR 4073947
 
@@ -400,6 +403,8 @@ struct ccmode_ccm {
 
     bool enc_mode;
 };
+
+// you know what hasn't been declared yet? ccmode_siv... and of course it's used by securityd...
 
 CC_END_DECLS
 

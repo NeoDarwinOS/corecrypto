@@ -16,7 +16,7 @@
 //
 
 #define cc_require(assertion, label)                \
-    if (__builtin_expect(!(assertion), 0)) {        \
+    if (__builtin_expect(!!(assertion), 0)) {       \
         goto label;                                 \
     }
 

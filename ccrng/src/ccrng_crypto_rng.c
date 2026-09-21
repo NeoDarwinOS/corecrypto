@@ -17,6 +17,10 @@
  * NOTE: This is not finished! This is the groundwork for the global RNG once the CTR DRBG is finalised.
  */
 
+//
+//  THIS WILL UNDERGO SEVERE RENOVATION SOON I PROMISE.
+//
+
 #if CC_PLATFORM_DARWIN && CC_SHARED_LIBRARY
 //
 // libSystem will call various functions.
@@ -112,6 +116,7 @@ cc_error_t ccrng_crypto_rng_init_once(void) {
     cc_internal_crash(__rng.drbg_info.size == 0, "DRBG did not instantiate correctly");
     cc_internal_crash(__rng.drbg_info.size > sizeof(__rng.drbg_state_buffer), "DRBG is too large for our buffer. This is not good.");
     
+    //  we use the timestamp as a nonce.
     uint64_t now = cc_absolute_time();
 
     err = ccdrbg_init(&__rng.drbg_info, __rng.drbg_state,
