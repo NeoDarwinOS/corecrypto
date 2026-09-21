@@ -377,6 +377,46 @@ cc_error_t ccctr_one_shot(const struct ccmode_ctr *ctr,
                           const void *in,
                           void *out) CORECRYPTO_API_AVAILABLE_2012;
 
+
+#define ccxts_ctx_decl(size, name) cc_ctx_decl(ccxts_ctx, size, name)
+#define ccxts_ctx_clear(size, name) cc_clear(size, name)
+
+#define ccxts_tweak_decl(size, name) cc_ctx_decl(ccxts_tweak, size, name)
+#define ccxts_tweak_clear(size, name) cc_clear(size, name)
+
+CC_EXPORT
+size_t ccxts_context_size(const struct ccmode_xts *xts) CORECRYPTO_API_AVAILABLE_2012;
+
+CC_EXPORT
+size_t ccxts_block_size(const struct ccmode_xts *xts) CORECRYPTO_API_AVAILABLE_2012;
+
+CC_EXPORT
+cc_error_t ccxts_init(const struct ccmode_xts *xts,
+                      ccxts_ctx *ctx,
+                      size_t key_size,
+                      const void *data_key,
+                      const void *tweak_key);
+
+CC_EXPORT
+cc_error_t ccxts_set_tweak(const struct ccmode_xts *xts,
+                           ccxts_ctx *ctx,
+                           ccxts_tweak *tweak,
+                           const void *iv);
+
+CC_EXPORT
+void *ccxts_update(const struct ccmode_xts *xts,
+                   ccxts_ctx *ctx,
+                   ccxts_tweak *tweak,
+                   size_t nblocks,
+                   const void *in,
+                   void *out);
+
+
+#define ccgcm_ctx_decl(size, name) cc_ctx_decl(ccgcm_ctx, size, name)
+#define ccgcm_ctx_clear(size, name) cc_clear(size, name)
+
+// ccgcm needs to be done for kernel and aead... don't forget ecies... and ecc in general ngl. 
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCMODE_H__ */

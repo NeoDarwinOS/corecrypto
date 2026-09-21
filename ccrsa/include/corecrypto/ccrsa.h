@@ -65,4 +65,24 @@ struct ccrsa_full_ctx {
 
 typedef struct ccrsa_full_ctx *ccrsa_full_ctx_t;
 
+//
+// Takes the exponent and modulus to form a public key.
+//
+// byte order is big endian.
+//
+CC_EXPORT
+cc_error_t ccrsa_make_pub(ccrsa_pub_ctx_t pub,
+                          size_t exp_size, const uint8_t *exp,
+                          size_t mod_size, const uint8_t *mod);
+
+// sig validation. defs need this.
+CC_EXPORT
+cc_error_t ccrsa_verify_pkcs1v15(ccrsa_pub_ctx_t pub,
+                                 const uint8_t *oid,
+                                 size_t digest_size,
+                                 const uint8_t *digest,
+                                 size_t sig_size,
+                                 const uint8_t *sig,
+                                 bool *valid);
+
 #endif /* __CORECRYPTO_CCRSA_H__ */

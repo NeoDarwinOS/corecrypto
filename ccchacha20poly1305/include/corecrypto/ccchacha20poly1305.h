@@ -62,4 +62,12 @@ typedef struct ccchacha20poly1305_ctx {
     uint8_t state;
 } ccchacha20poly1305_ctx;
 
+CC_EXPORT
+const struct ccchacha20poly1305_info *ccchacha20poly1305_info(void);
+
+CC_EXPORT
+cc_error_t ccchacha20poly1305_init(const struct ccchacha20poly1305_info *info,
+                                   ccchacha20poly1305_ctx *ctx,
+                                   const uint8_t *key);
+
 #endif /* __CORECRYPTO_CCCHACHA20POLY1305_H__  */
