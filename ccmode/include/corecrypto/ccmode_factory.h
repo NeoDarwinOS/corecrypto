@@ -52,6 +52,36 @@ void ccmode_factory_cbc_encrypt(struct ccmode_cbc *cbc,
 void ccmode_factory_ctr_crypt(struct ccmode_ctr *cbc,
                               const struct ccmode_ecb *ecb);
 
+
+/*!
+ * @function ccmode_factory_xts_decrypt
+ * Initialises a ccmode_xts structure using an ECB implementation, in the decryption mode.
+ *
+ * @param       xts
+ *              The structure to initialise
+ *
+ * @param       ecb
+ *              The underlying ECB cipher to use.
+ */
+void ccmode_factory_xts_decrypt(struct ccmode_xts *xts,
+                                const struct ccmode_ecb *ecb,
+                                const struct ccmode_ecb *ecb_encrypt);
+
+/*!
+ * @function ccmode_factory_xts_encrypt
+ * Initialises a ccmode_xts structure using an ECB implementation, in the encryption mode.
+ *
+ * @param       xts
+ *              The structure to initialise
+ *
+ * @param       ecb
+ *              The underlying ECB cipher to use.
+ */
+void ccmode_factory_xts_encrypt(struct ccmode_xts *xts,
+                                const struct ccmode_ecb *ecb,
+                                const struct ccmode_ecb *ecb_encrypt);
+
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCMODE_FACTORY_H__ */

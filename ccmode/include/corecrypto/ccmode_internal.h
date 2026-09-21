@@ -123,14 +123,14 @@ cc_error_t ccmode_ctr_crypt(ccctr_ctx *ctx,
  * Since this defines the function interface too, we mark the struct as READ_ONLY_LATE for platforms
  * that use it.
  */
-#define CCMODE_XTS_FACTORY(cipher, encdec)                                  \
-    static CC_READ_ONLY_LATE(struct ccmode_xts) xts_##cipher##_##encdec;    \
-                                                                            \
-    const struct ccmode_xts *cc##cipher##_xts_##encdec##_mode(void) {       \
-        const struct ccmode_ecb *ecb=cc##cipher##_ecb_##encdec##_mode();    \
-        const struct ccmode_ecb *ecb_enc=cc##cipher##_ecb_encrypt_mode();   \
-        ccmode_factory_xts_##encdec(&ctr_##cipher, ecb, ecb_enc);           \
-        return &xts_##cipher##_##encdec;                                    \
+#define CCMODE_XTS_FACTORY(cipher, encdec)                                      \
+    static CC_READ_ONLY_LATE(struct ccmode_xts) xts_##cipher##_##encdec;        \
+                                                                                \
+    const struct ccmode_xts *cc##cipher##_xts_##encdec##_mode(void) {           \
+        const struct ccmode_ecb *ecb=cc##cipher##_ecb_##encdec##_mode();        \
+        const struct ccmode_ecb *ecb_enc=cc##cipher##_ecb_encrypt_mode();       \
+        ccmode_factory_xts_##encdec(&xts_##cipher##_##encdec, ecb, ecb_enc);    \
+        return &xts_##cipher##_##encdec;                                        \
     }
 
 struct _ccmode_xts_key {
@@ -140,11 +140,44 @@ struct _ccmode_xts_key {
     cc_unit u[];
 };
 
+struct _ccmode_xts_tweak {
+    size_t blocks_processed;
+    cc_unit u[];
+};
+
 #define CCMODE_XTS_TWEAK_MAX_BLOCKS_PROCESSED   0x100000
 
 #define CCMODE_XTS_KEY(key)                     ((struct _ccmode_xts_key *)key)
-#define CCMODE_XTS_KEY_ECB_CTX(key)             (ccecb_ctx *)&CCMODE_XTS_KEY(key)->u[0]
-#define CCMODE_XTS_KEY_ECB_ENCRYPT_CTX(key)     (ccecb_ctx *)(&CCMODE_XTS_KEY(key)->u[ccn_nof_size(xkey->ecb->size)])
+#define CCMODE_XTS_KEY_ECB_MODE(key)            CCMODE_XTS_KEY(key)->ecb
+#define CCMODE_XTS_KEY_ECB_CTX(key)             (ccecb_ctx *)&(CCMODE_XTS_KEY(key)->u[0])
+#define CCMODE_XTS_KEY_ECB_ENCRYPT_CTX(key)     (ccecb_ctx *)&(CCMODE_XTS_KEY(key)->u[ccn_nof_size(CCMODE_XTS_KEY_ECB_MODE(key)->size)])
+#define CCMODE_XTS_KEY_ECB_ENCRYPT_MODE(key)    CCMODE_XTS_KEY(key)->ecb_encrypt
+
+#define CCMODE_XTS_TWEAK(tweak)                     ((struct _ccmode_xts_tweak *)tweak)
+#define CCMODE_XTS_TWEAK_BLOCKS_PROCESSED(tweak)    CCMODE_XTS_TWEAK(tweak)->blocks_processed
+#define CCMODE_XTS_TWEAK_BUFFER(tweak)              &(CCMODE_XTS_TWEAK(tweak)->u[0])
+
+cc_error_t ccmode_xts_init(const struct ccmode_xts *xts,
+                           ccxts_ctx *ctx,
+                           size_t key_size,
+                           const void *data_key,
+                           const void *tweak_key);
+
+cc_error_t ccmode_xts_key_sched(const struct ccmode_xts *xts,
+                                ccxts_ctx *ctx,
+                                size_t key_size,
+                                const void *data_key,
+                                const void *tweak_key);
+
+cc_error_t ccmode_xts_set_tweak(const ccxts_ctx *ctx,
+                                ccxts_tweak *tweak,
+                                const void *iv);
+
+void *ccmode_xts_crypt(const ccxts_ctx *ctx,
+                       ccxts_tweak *tweak,
+                       size_t nblocks,
+                       const void *in,
+                       void *out);
 
 CC_END_DECLS
 
