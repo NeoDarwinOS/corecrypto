@@ -87,7 +87,7 @@ cc_error_t ltc_rc2_ecb_decrypt(const ccecb_ctx *ctx,
     return CCERR_OK;
 }
 
-const struct ccmode_ecb ccrc2_ltc_decrypt_mode = {
+const struct ccmode_ecb ccrc2_ltc_ecb_decrypt_mode = {
     .size = ccn_sizeof_size(sizeof(ltc_rc2_key)),
     .block_size = CCRC2_BLOCK_SIZE,
     .init = &ccrc2_ltc_setup,

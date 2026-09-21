@@ -98,6 +98,7 @@ cc_error_t ccchacha20_update(ccchacha20_ctx *ctx, size_t nbytes, const void *in,
     uint8_t *o = (uint8_t *)out;
     uint32_t *buffer = (uint32_t *)ctx->buffer;
     
+    // need to write unit tests for this.
     while (nbytes) {
         if (ctx->leftover) {
             size_t nb = (CCCHACHA20_BLOCK_NBYTES - ctx->leftover);

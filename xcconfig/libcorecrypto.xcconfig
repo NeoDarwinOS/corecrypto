@@ -1,0 +1,67 @@
+//
+// Copyright (C) 2026, Samuel Zormeister.
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+//
+
+#include "corecrypto.xcconfig"
+
+//
+// LOAD ORDER:
+//  libdyld
+//  libcompiler_rt
+//  libsystem_kernel
+//  libsystem_platform
+//  libsystem_malloc
+//  libsystem_c
+//  libsystem_blocks
+//  libsystem_pthread
+//  libmacho
+//
+
+BUILD_VARIANTS = normal noasm debug
+
+GCC_PREPROCESSOR_DEFINITIONS = $(GCC_PREPROCESSOR_DEFINITIONS_$(CURRENT_VARIANT))
+GCC_PREPROCESSOR_DEFINITIONS_normal = CC_SHARED_LIBRARY=1 DEBUG=0
+GCC_PREPROCESSOR_DEFINITIONS_noasm  = CC_SHARED_LIBRARY=1 CC_USE_ASM=0 DEBUG=0
+GCC_PREPROCESSOR_DEFINITIONS_debug = DEBUG=1
+
+LINK_WITH_STANDARD_LIBRARIES = NO
+DYLIB_CURRENT_VERSION = $(CURRENT_PROJECT_VERSION)
+
+EXECUTABLE_PREFIX = lib
+
+SIM_SUFFIX[sdk=*simulator*] = _sim
+
+LIBCOMPILER_RT_LDFLAGS = -lcompiler_rt
+LIBMALLOC_LDFLAGS = -lsystem_malloc
+LIBPLATFORM_LDFLAGS = -lsystem$(SIM_SUFFIX)_platform
+LIBPTHREAD_LDFLAGS = -lsystem$(SIM_SUFFIX)_pthread
+LIBSYSCALL_LDFLAGS = -lsystem$(SIM_SUFFIX)_kernel
+LIBDYLD_LDFLAGS = -ldyld
+LIBC_LDFLAGS = -lsystem_c
+LIBBLOCKS_LDFLAGS = -lsystem_blocks
+LIBMACHO_LDFLAGS = -lmacho
+
+// ensure sdk compatibility...
+IS_ZIPPERED = YES
+
+OTHER_LDFLAGS = -all_load -umbrella System -L/usr/lib/system $(LIBDYLD_LDFLAGS) $(LIBCOMPILER_RT_LDFLAGS) $(LIBSYSCALL_LDFLAGS) $(LIBPLATFORM_LDFLAGS) $(LIBMALLOC_LDFLAGS) $(LIBC_LDFLAGS) $(LIBBLOCKS_LDFLAGS) $(LIBPTHREAD_LDFLAGS) $(LIBMACHO_LDFLAGS)
+
+SDK_INSTALL_VARIANT = $(SDK_INSTALL_VARIANT_$(DRIVERKIT))
+SDK_INSTALL_VARIANT_1 = driverkit
+SDK_INSTALL_VARIANT_ = default
+SDK_INSTALL_ROOT = $(SDK_INSTALL_ROOT_$(SDK_INSTALL_VARIANT))
+SDK_INSTALL_ROOT_driverkit = $(DRIVERKITROOT)
+SDK_INSTALL_HEADERS_ROOT = $(SDK_INSTALL_HEADERS_ROOT_$(SDK_INSTALL_VARIANT))
+SDK_INSTALL_HEADERS_ROOT_driverkit = $(SDK_INSTALL_ROOT)/$(SDK_RUNTIME_HEADERS_PREFIX)
+SDK_RUNTIME_HEADERS_PREFIX = Runtime
+
+SYSTEM_FRAMEWORK_HEADERS = $(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/System/Library/Frameworks/System.framework/PrivateHeaders
+SYSTEM_HEADER_SEARCH_PATHS = $(TOOLCHAIN_DIR)/usr/lib/clang/*/include
+
+INSTALL_PATH = $(SDK_INSTALL_ROOT)/usr/lib/system
+
+SKIP_INSTALL = NO

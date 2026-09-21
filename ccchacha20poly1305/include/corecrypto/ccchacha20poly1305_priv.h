@@ -18,20 +18,16 @@
 //
 
 CC_EXPORT
-CORECRYPTO_API_AVAILABLE_FALL_2017
-cc_error_t ccchacha20_init(ccchacha20_ctx *ctx, const void *key);
+cc_error_t ccchacha20_init(ccchacha20_ctx *ctx, const void *key) CORECRYPTO_API_AVAILABLE_FALL_2017;
 
 CC_EXPORT
-CORECRYPTO_API_AVAILABLE_FALL_2017
-cc_error_t ccchacha20_setcounter(ccchacha20_ctx *ctx, uint32_t counter);
+cc_error_t ccchacha20_setcounter(ccchacha20_ctx *ctx, uint32_t counter) CORECRYPTO_API_AVAILABLE_FALL_2017;
 
 CC_EXPORT
-CORECRYPTO_API_AVAILABLE_FALL_2017
-cc_error_t ccchacha20_setnonce(ccchacha20_ctx *ctx, const void *nonce);
+cc_error_t ccchacha20_setnonce(ccchacha20_ctx *ctx, const void *nonce) CORECRYPTO_API_AVAILABLE_FALL_2017;
 
 CC_EXPORT
-CORECRYPTO_API_AVAILABLE_FALL_2017
-cc_error_t ccchacha20_update(ccchacha20_ctx *ctx, size_t nbytes, const void *in, void *out);
+cc_error_t ccchacha20_update(ccchacha20_ctx *ctx, size_t nbytes, const void *in, void *out) CORECRYPTO_API_AVAILABLE_FALL_2017;
 
 CC_EXPORT
 CORECRYPTO_API_AVAILABLE_FALL_2017

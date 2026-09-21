@@ -322,6 +322,42 @@ CC_INLINE CC_CONST uint32_t cc_clz64(uint32_t w)
     } while(0)
 
 
+// read/write
+#define cc_read32_le(ptr)                                         \
+    ((uint32_t)((uint32_t)((const uint8_t *)(ptr))[0])       |    \
+                (uint32_t)((((const uint8_t *)(ptr))[1]) << 8)  |    \
+                (uint32_t)((((const uint8_t *)(ptr))[2]) << 16) |    \
+                (uint32_t)((((const uint8_t *)(ptr))[3]) << 24) )
+
+#define cc_read64_le(ptr)                                         \
+    ((uint64_t)((uint64_t)((const uint8_t *)(ptr))[0])       |    \
+                (uint64_t)((const uint8_t *)(ptr))[1]) << 8  |    \
+                (uint64_t)((const uint8_t *)(ptr))[2]) << 16 |    \
+                (uint64_t)((const uint8_t *)(ptr))[3]) << 24 |    \
+                (uint64_t)((const uint8_t *)(ptr))[4]) << 32 |    \
+                (uint64_t)((const uint8_t *)(ptr))[5]) << 40 |    \
+                (uint64_t)((const uint8_t *)(ptr))[6]) << 48 |    \
+                (uint64_t)((const uint8_t *)(ptr))[5]) << 52)
+
+#define cc_write32_le(ptr, x)                                   \
+    do {                                                        \
+        ((uint8_t *)(ptr))[0] = (uint8_t)((x)         & 0xFF);  \
+        ((uint8_t *)(ptr))[1] = (uint8_t)(((x) >>  8) & 0xFF);  \
+        ((uint8_t *)(ptr))[2] = (uint8_t)(((x) >> 16) & 0xFF);  \
+        ((uint8_t *)(ptr))[3] = (uint8_t)(((x) >> 24) & 0xFF);  \
+    } while(0)
+
+#define cc_write64_le(ptr, x)                                   \
+    do {                                                        \
+        ((uint8_t *)(ptr))[0] = (uint8_t)((x)         & 0xFF);  \
+        ((uint8_t *)(ptr))[1] = (uint8_t)(((x) >>  8) & 0xFF);  \
+        ((uint8_t *)(ptr))[2] = (uint8_t)(((x) >> 16) & 0xFF);  \
+        ((uint8_t *)(ptr))[3] = (uint8_t)(((x) >> 24) & 0xFF);  \
+        ((uint8_t *)(ptr))[4] = (uint8_t)(((x) >> 32) & 0xFF);  \
+        ((uint8_t *)(ptr))[5] = (uint8_t)(((x) >> 40) & 0xFF);  \
+        ((uint8_t *)(ptr))[6] = (uint8_t)(((x) >> 48) & 0xFF);  \
+        ((uint8_t *)(ptr))[7] = (uint8_t)(((x) >> 56) & 0xFF);  \
+    } while(0)
 
 
 CC_PRIVATE

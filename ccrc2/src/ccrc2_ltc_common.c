@@ -61,6 +61,10 @@ cc_error_t ccrc2_ltc_setup(const struct ccmode_ecb *ecb,
     uint32_t T8, TM;
     size_t bits;
     
+    for (size_t i = 0; i < keylen; i++) {
+        tmp[i] = ((const uint8_t *)(key))[i] & 255;
+    }
+    
     /* Phase 1: Expand input key to 128 bytes */
     if (keylen < 128) {
         for (size_t i = keylen, j = 0; i < 128; i++, j++) {

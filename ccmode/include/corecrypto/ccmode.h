@@ -150,9 +150,6 @@ cc_error_t ccecb_update(const struct ccmode_ecb *ecb,
  * @param       ecb
  *              The ECB implementation.
  *
- * @param       ctx
- *              The ECB context.
- *
  * @param       key_size
  *              The size of the symmetric key.
  *
@@ -172,7 +169,7 @@ cc_error_t ccecb_update(const struct ccmode_ecb *ecb,
  */
 CC_EXPORT
 cc_error_t ccecb_one_shot(const struct ccmode_ecb *ecb,
-                          size_t key_length,
+                          size_t key_size,
                           const void *key,
                           size_t nblocks,
                           const void *in,

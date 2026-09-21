@@ -52,32 +52,59 @@
             tvos(10.0)                      \
         )
 
-#define CORECRYPTO_API_AVAILABLE_FALL_2017  \
-        API_AVAILABLE(                      \
-            macos(10.13),                   \
-            ios(11.0),                      \
-            watchos(4.0),                   \
-            tvos(11.0),                     \
-            bridgeos(2.0)                   \
-        )
+    //! guess what i just remembered, Apple's shipped Xcode can't target bridgeOS.
+    #if (!defined (TARGET_OS_BRIDGE) || (TARGET_OS_BRIDGE == 0))
+        #define CORECRYPTO_API_AVAILABLE_FALL_2017  \
+                API_AVAILABLE(                      \
+                    macos(10.13),                   \
+                    ios(11.0),                      \
+                    watchos(4.0),                   \
+                    tvos(11.0)                      \
+                )
 
-#define CORECRYPTO_API_AVAILABLE_FALL_2018  \
-        API_AVAILABLE(                      \
-            macos(10.14),                   \
-            ios(12.0),                      \
-            watchos(5.0),                   \
-            tvos(12.0),                     \
-            bridgeos(3.0),                  \
-        )
+        #define CORECRYPTO_API_AVAILABLE_FALL_2018  \
+            API_AVAILABLE(                      \
+                macos(10.14),                   \
+                ios(12.0),                      \
+                watchos(5.0),                   \
+                tvos(12.0)                      \
+            )
 
-#define CORECRYPTO_API_AVAILABLE_FALL_2019  \
-        API_AVAILABLE(                      \
-            macos(10.15),                   \
-            ios(13.0),                      \
-            watchos(6.0),                   \
-            tvos(13.0),                     \
-            bridgeos(4.0)                   \
-        )
+        #define CORECRYPTO_API_AVAILABLE_FALL_2019  \
+            API_AVAILABLE(                      \
+                macos(10.15),                   \
+                ios(13.0),                      \
+                watchos(6.0),                   \
+                tvos(13.0)                      \
+            )
+    #else
+        #define CORECRYPTO_API_AVAILABLE_FALL_2017  \
+                API_AVAILABLE(                      \
+                    macos(10.13),                   \
+                    ios(11.0),                      \
+                    watchos(4.0),                   \
+                    tvos(11.0),                     \
+                    bridgeos(2.0)                   \
+                )
+
+        #define CORECRYPTO_API_AVAILABLE_FALL_2018  \
+            API_AVAILABLE(                      \
+                macos(10.14),                   \
+                ios(12.0),                      \
+                watchos(5.0),                   \
+                tvos(12.0),                     \
+                bridgeos(3.0),                  \
+            )
+
+        #define CORECRYPTO_API_AVAILABLE_FALL_2019  \
+            API_AVAILABLE(                      \
+                macos(10.15),                   \
+                ios(13.0),                      \
+                watchos(6.0),                   \
+                tvos(13.0),                     \
+                bridgeos(4.0)                   \
+            )
+    #endif
 #else
     #define CORECRYPTO_API_AVAILABLE_2012
     #define CORECRYPTO_API_AVAILABLE_2013

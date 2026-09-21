@@ -42,8 +42,8 @@
 		42474E28305AC0C50066F883 /* c_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E26305AC0C50066F883 /* c_enc.c */; };
 		42474E29305AC0C50066F883 /* c_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E26305AC0C50066F883 /* c_enc.c */; };
 		42474E2C305AC28B0066F883 /* cccast.h in Headers */ = {isa = PBXBuildFile; fileRef = 42474E2B305AC28B0066F883 /* cccast.h */; };
-		42474E2D305AC28B0066F883 /* cccast.h in Headers */ = {isa = PBXBuildFile; fileRef = 42474E2B305AC28B0066F883 /* cccast.h */; };
-		42474E2E305AC28B0066F883 /* cccast.h in Headers */ = {isa = PBXBuildFile; fileRef = 42474E2B305AC28B0066F883 /* cccast.h */; };
+		42474E2D305AC28B0066F883 /* cccast.h in Headers */ = {isa = PBXBuildFile; fileRef = 42474E2B305AC28B0066F883 /* cccast.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42474E2E305AC28B0066F883 /* cccast.h in Headers */ = {isa = PBXBuildFile; fileRef = 42474E2B305AC28B0066F883 /* cccast.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42474E30305AC3F80066F883 /* cccast_setup.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E2F305AC3F80066F883 /* cccast_setup.c */; };
 		42474E31305AC3F80066F883 /* cccast_setup.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E2F305AC3F80066F883 /* cccast_setup.c */; };
 		42474E32305AC3F80066F883 /* cccast_setup.c in Sources */ = {isa = PBXBuildFile; fileRef = 42474E2F305AC3F80066F883 /* cccast_setup.c */; };
@@ -430,6 +430,9 @@
 		F01ACEBA2FFF688E006ED2CE /* ccsha512_ltc_compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 42583AF72FFCD317000B167B /* ccsha512_ltc_compress.c */; };
 		F01ACEBB2FFF688E006ED2CE /* ccsha512_ltc_di.c in Sources */ = {isa = PBXBuildFile; fileRef = 42583AF82FFCD317000B167B /* ccsha512_ltc_di.c */; };
 		F01ACEBC2FFF68AA006ED2CE /* libcorecrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F01ACE6A2FFF6817006ED2CE /* libcorecrypto.a */; };
+		F03383A1306099B300B7FFB4 /* ccpoly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A0306099B300B7FFB4 /* ccpoly1305.c */; };
+		F03383A2306099B300B7FFB4 /* ccpoly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A0306099B300B7FFB4 /* ccpoly1305.c */; };
+		F03383A3306099B300B7FFB4 /* ccpoly1305.c in Sources */ = {isa = PBXBuildFile; fileRef = F03383A0306099B300B7FFB4 /* ccpoly1305.c */; };
 		F035FDF7303AD46200417505 /* cc_availability.h in Headers */ = {isa = PBXBuildFile; fileRef = F035FDF6303AD46200417505 /* cc_availability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F035FDF8303AD46200417505 /* cc_availability.h in Headers */ = {isa = PBXBuildFile; fileRef = F035FDF6303AD46200417505 /* cc_availability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F035FDFA303AD49200417505 /* ccchacha20poly1305_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = F035FDF9303AD49200417505 /* ccchacha20poly1305_priv.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -737,6 +740,8 @@
 		F01ACE5D2FFF61DD006ED2CE /* ccmd5_ltc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccmd5_ltc.c; sourceTree = "<group>"; };
 		F01ACE632FFF65C4006ED2CE /* ccmd5_di.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccmd5_di.c; sourceTree = "<group>"; };
 		F01ACE6A2FFF6817006ED2CE /* libcorecrypto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcorecrypto.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F03383A0306099B300B7FFB4 /* ccpoly1305.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ccpoly1305.c; sourceTree = "<group>"; };
+		F03383A43060A83E00B7FFB4 /* libcorecrypto.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = libcorecrypto.xcconfig; sourceTree = "<group>"; };
 		F035FDF6303AD46200417505 /* cc_availability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc_availability.h; sourceTree = "<group>"; };
 		F035FDF9303AD49200417505 /* ccchacha20poly1305_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccchacha20poly1305_priv.h; sourceTree = "<group>"; };
 		F035FDFC303AD4A800417505 /* ccdrbg_df_bc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccdrbg_df_bc.c; sourceTree = "<group>"; };
@@ -1142,6 +1147,7 @@
 		42D6AA5C2FEF35CC00FAAD94 /* xcconfig */ = {
 			isa = PBXGroup;
 			children = (
+				F03383A43060A83E00B7FFB4 /* libcorecrypto.xcconfig */,
 				42D6AA5D2FEF35E500FAAD94 /* corecrypto.xcconfig */,
 				42D6AB732FF29CD500FAAD94 /* corecrypto_kext.xcconfig */,
 			);
@@ -1987,6 +1993,7 @@
 			isa = PBXGroup;
 			children = (
 				F035FE71303CF53300417505 /* ccchacha20.c */,
+				F03383A0306099B300B7FFB4 /* ccpoly1305.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -2399,6 +2406,7 @@
 				42D6AAF72FF2960E00FAAD94 /* cc_copy.c in Sources */,
 				F01ACDEB2FF9D1A6006ED2CE /* aeskey.c in Sources */,
 				42857DA0305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */,
+				F03383A1306099B300B7FFB4 /* ccpoly1305.c in Sources */,
 				42CBBE9430441928006FA5BC /* ccmd4_ltc.c in Sources */,
 				4266914B3058A223003574B1 /* ccblowfish_factory_modes.c in Sources */,
 				42D6AAF82FF2960E00FAAD94 /* cc_try_abort.c in Sources */,
@@ -2550,6 +2558,7 @@
 				42857D9E305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */,
 				F035FE5B303C37D600417505 /* ccdes_factory_modes.c in Sources */,
 				F035FE3B303C334100417505 /* ccdes_ltc_ecb_encrypt.c in Sources */,
+				F03383A2306099B300B7FFB4 /* ccpoly1305.c in Sources */,
 				F035FE15303C175800417505 /* cckprng_generate.c in Sources */,
 				42D6AB622FF2987D00FAAD94 /* ccecb_context_size.c in Sources */,
 				F01ACDF82FF9D1A6006ED2CE /* aestab.c in Sources */,
@@ -2688,6 +2697,7 @@
 				F01ACEB82FFF688D006ED2CE /* ccsha512_initial_state.c in Sources */,
 				F01ACE972FFF688D006ED2CE /* cccbc_update.c in Sources */,
 				42857D9F305825DE00025F25 /* ccblowfish_ltc_ecb_encrypt.c in Sources */,
+				F03383A3306099B300B7FFB4 /* ccpoly1305.c in Sources */,
 				42CBBE9630441928006FA5BC /* ccmd4_ltc.c in Sources */,
 				4266914A3058A223003574B1 /* ccblowfish_factory_modes.c in Sources */,
 				F01ACE9A2FFF688D006ED2CE /* ccmode_cbc_init.c in Sources */,
@@ -2760,7 +2770,7 @@
 /* Begin XCBuildConfiguration section */
 		42D6AA532FEEA2C100FAAD94 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42D6AA5D2FEF35E500FAAD94 /* corecrypto.xcconfig */;
+			baseConfigurationReference = F03383A43060A83E00B7FFB4 /* libcorecrypto.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -2813,7 +2823,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -2822,13 +2835,13 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = corecrypto;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		42D6AA542FEEA2C100FAAD94 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42D6AA5D2FEF35E500FAAD94 /* corecrypto.xcconfig */;
+			baseConfigurationReference = F03383A43060A83E00B7FFB4 /* libcorecrypto.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -2875,7 +2888,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
@@ -2883,7 +2899,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = corecrypto;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -3211,7 +3227,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = corecrypto;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -3266,7 +3282,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = corecrypto;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
