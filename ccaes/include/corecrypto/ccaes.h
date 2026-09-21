@@ -92,6 +92,28 @@ CC_EXPORT const struct ccmode_cbc *ccaes_cbc_encrypt_mode(void) CORECRYPTO_API_A
  */
 CC_EXPORT const struct ccmode_ctr *ccaes_ctr_crypt_mode(void) CORECRYPTO_API_AVAILABLE_2012;
 
+/*!
+ * @function ccaes_xts_decrypt_mode
+ * Queries corecrypto for it's preferred implementation of the AES decryption algorithm
+ * in the XTS mode of operation according to the system's capabilities.
+ *
+ * @abstract    Gets the preferred AES-XTS implementation.
+ *
+ * @result      Returns the preferred or more optimised implementation for the system.
+ */
+CC_EXPORT const struct ccmode_xts *ccaes_xts_decrypt_mode(void) CORECRYPTO_API_AVAILABLE_2012;
+
+/*!
+ * @function ccaes_xts_encrypt_mode
+ * Queries corecrypto for it's preferred implementation of the AES encryption algorithm
+ * in the XTS mode of operation according to the system's capabilities.
+ *
+ * @abstract    Gets the preferred AES-XTS implementation.
+ *
+ * @result      Returns the preferred or more optimised implementation for the system.
+ */
+CC_EXPORT const struct ccmode_xts *ccaes_xts_encrypt_mode(void) CORECRYPTO_API_AVAILABLE_2012;
+
 CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCAES_H__  */
