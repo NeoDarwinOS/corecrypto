@@ -62,6 +62,9 @@ void ccmode_factory_ctr_crypt(struct ccmode_ctr *cbc,
  *
  * @param       ecb
  *              The underlying ECB cipher to use.
+ *
+ * @param       ecb_encrypt
+ *              The underlying ECB (encryption) cipher to use.
  */
 void ccmode_factory_xts_decrypt(struct ccmode_xts *xts,
                                 const struct ccmode_ecb *ecb,
@@ -76,6 +79,9 @@ void ccmode_factory_xts_decrypt(struct ccmode_xts *xts,
  *
  * @param       ecb
  *              The underlying ECB cipher to use.
+ *
+ * @param       ecb_encrypt
+ *              The underlying ECB (encryption) cipher to use.
  */
 void ccmode_factory_xts_encrypt(struct ccmode_xts *xts,
                                 const struct ccmode_ecb *ecb,

@@ -17,8 +17,8 @@ void cchmac_final(const struct ccdigest_info *di,
     ccdigest_final(di, cchmac_digest_ctx(di, ctx), cchmac_data(di, ctx));
     
     /* Reset the digest context to the state that opad was in. */
-    cchmac_num(di, ctx) = (uint32_t)di->block_size;
-    cchmac_nbits(di, ctx) = (di->block_size << 3);
+    cchmac_num(di, ctx) = (uint32_t)di->output_size;
+    cchmac_nbits(di, ctx) = (di->output_size << 3);
     
     ccdigest_copy_state(di, cchmac_istate(di, ctx), cchmac_ostate(di, ctx));
     ccdigest_final(di, cchmac_digest_ctx(di, ctx), mac);

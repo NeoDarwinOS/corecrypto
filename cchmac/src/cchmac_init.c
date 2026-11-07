@@ -21,19 +21,20 @@ void cchmac_init(const struct ccdigest_info *di,
         ccdigest_init(di, cchmac_digest_ctx(di, ctx));
         ccdigest_update(di, cchmac_digest_ctx(di, ctx), key_length, key);
         ccdigest_final(di, cchmac_digest_ctx(di, ctx), cchmac_data(di, ctx));
+        key_length = di->output_size;
     } else {
         cc_memcpy(cchmac_data(di, ctx), _key, key_length);
-        
-        /* Zero-fill the rest of the bytes */
-        for (size_t i = di->block_size; i > key_length; i--) {
-            cchmac_data(di, ctx)[i] = 0x00;
-        }
     }
     
     // preconstruct? who let connor detroit in here
     /* After having done the above, we should be able to preconstruct parts of the opad state early. */
-    for (size_t i = 0; i < di->block_size; i++) {
+    for (size_t i = 0; i < key_length; i++) {
         cchmac_data(di, ctx)[i] ^= 0x5C;
+    }
+
+    /* Make sure we've filled out any remaining cchmac_data leftovers... */
+    if (di->block_size > key_length) {
+        cc_memset(cchmac_data(di, ctx)+key_length, 0x5C, (di->block_size - key_length));
     }
     
     /* Copy initial state to both istate and ostate */

@@ -48,7 +48,7 @@ cc_error_t ccchacha20_init(ccchacha20_ctx *ctx, const void *key) {
     cc_load32_le(ctx->state[8], _key+16);
     cc_load32_le(ctx->state[9], _key+20);
     cc_load32_le(ctx->state[10], _key+24);
-    cc_load32_le(ctx->state[11], _key+24);
+    cc_load32_le(ctx->state[11], _key+28);
     
     return CCERR_OK;
 }
@@ -70,9 +70,9 @@ cc_error_t ccchacha20_setnonce(ccchacha20_ctx *ctx, const void *nonce) {
 }
 
 cc_error_t _ccchacha20_block(ccchacha20_ctx *ctx) {
-    uint32_t *buffer = (uint32_t *)ctx->buffer;
+    uint32_t buffer[16];
     
-    cc_copy(CCCHACHA20_BLOCK_NBYTES, ctx->buffer, ctx->state);
+    cc_copy(CCCHACHA20_BLOCK_NBYTES, buffer, ctx->state);
     
     for (int r = 20; r > 0; r -= 2) {
         CHACHA_QROUND(buffer, 0, 4, 8, 12);
@@ -86,7 +86,7 @@ cc_error_t _ccchacha20_block(ccchacha20_ctx *ctx) {
     }
     
     for (int s = 0; s < 16; s++) {
-        buffer[s] += ctx->state[s];
+        ctx->state[s] = (buffer[s] + ctx->state[s]);
     }
     
     return CCERR_OK;

@@ -18,6 +18,8 @@ void ccmode_factory_xts_decrypt(struct ccmode_xts *xts,
     
     xts->tweak_size = ccn_sizeof_size(sizeof(struct _ccmode_xts_tweak)) +
                       ccn_sizeof_size(ecb_encrypt->block_size);
+
+    xts->block_size = ecb->block_size;
     
     xts->init = &ccmode_xts_init;
     xts->key_sched = &ccmode_xts_key_sched;

@@ -34,7 +34,7 @@ void ccdigest_final_64le(const struct ccdigest_info *di, ccdigest_ctx_t ctx, voi
     cc_store64_le(ccdigest_nbits(di, ctx), ccdigest_data(di, ctx));
     di->compress(ccdigest_state(di, ctx), 1, ccdigest_data(di, ctx));
 
-    for (size_t i = 0; i < di->block_size / 4; i++) {
+    for (size_t i = 0; i < di->output_size / 4; i++) {
         cc_store32_le(ccdigest_state_u32(di, ctx)[i], out + (4 * i));
     }
 }

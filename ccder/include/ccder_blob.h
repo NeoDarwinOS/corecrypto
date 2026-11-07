@@ -11,6 +11,11 @@
 
 #include <corecrypto/ccasn1.h>
 
+///
+/// ccder_blob:
+///     Starting from Apple's 2021 OSes, ccder transitioned to a 'blob' encode/decode model.
+///
+
 #define CCDER_MULTIBYTE_TAGS    1
 
 #if CCDER_MULTIBYTE_TAGS

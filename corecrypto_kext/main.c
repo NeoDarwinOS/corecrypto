@@ -123,7 +123,7 @@ void cc_kernel_populate_registration(void)
     corecrypto_registration_if.ccaes_ecb_encrypt = ccaes_ecb_encrypt_mode();
     corecrypto_registration_if.ccaes_ecb_decrypt = ccaes_ecb_decrypt_mode();
     corecrypto_registration_if.ccaes_cbc_encrypt = ccaes_cbc_encrypt_mode();
-    corecrypto_registration_if.ccaes_cbc_decrypt = ccaes_cbc_encrypt_mode();
+    corecrypto_registration_if.ccaes_cbc_decrypt = ccaes_cbc_decrypt_mode();
     corecrypto_registration_if.ccaes_ctr_crypt = ccaes_ctr_crypt_mode();
     corecrypto_registration_if.ccaes_xts_encrypt = ccaes_xts_encrypt_mode();
     corecrypto_registration_if.ccaes_xts_decrypt = ccaes_xts_decrypt_mode();

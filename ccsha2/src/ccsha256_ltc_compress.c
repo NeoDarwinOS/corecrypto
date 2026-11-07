@@ -49,7 +49,7 @@ void ccsha256_ltc_compress(ccdigest_state_t state, size_t nblocks, const void *d
 
         /* copy the state into 512-bits into W[0..15] */
         for (i = 0; i < 16; i++) {
-            cc_load32_le(W[i], buf + (4*i));
+            cc_load32_be(W[i], buf + (4*i));
         }
 
         /* fill W[16..63] */
@@ -150,5 +150,7 @@ void ccsha256_ltc_compress(ccdigest_state_t state, size_t nblocks, const void *d
         for (i = 0; i < 8; i++) {
             ccdigest_u32(state)[i] += S[i];
         }
+
+        buf += CCSHA256_BLOCK_SIZE;
     }
 }

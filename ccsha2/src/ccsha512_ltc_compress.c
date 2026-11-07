@@ -46,7 +46,7 @@ void ccsha512_ltc_compress(ccdigest_state_t state, size_t nblocks, const void *d
 
         /* copy the state into 1024-bits into W[0..15] */
         for (i = 0; i < 16; i++) {
-            cc_load64_le(W[i], buf + (8*i));
+            cc_load64_be(W[i], buf + (8*i));
         }
 
         /* fill W[16..79] */
@@ -91,5 +91,7 @@ void ccsha512_ltc_compress(ccdigest_state_t state, size_t nblocks, const void *d
         for (i = 0; i < 8; i++) {
             ccdigest_u64(state)[i] += S[i];
         }
+
+        buf += CCSHA512_BLOCK_SIZE;
     }
 }

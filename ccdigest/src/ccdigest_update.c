@@ -31,6 +31,7 @@ void ccdigest_update(const struct ccdigest_info *di, ccdigest_ctx_t ctx, size_t 
             }
 
             cc_copy(leftover, (ccdigest_data(di, ctx) + ccdigest_num(di, ctx)), data);
+            ccdigest_num(di, ctx) += leftover;
             length -= leftover;
             ptr += leftover;
 

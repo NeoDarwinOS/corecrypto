@@ -257,10 +257,10 @@ CC_INLINE CC_CONST uint32_t cc_clz64(uint32_t w)
     } while(0)
 
 #define cc_load32_be(x, y) do {             \
-        x = (((uint8_t *)y)[0] << 24) |     \
-            (((uint8_t *)y)[1] << 16) |     \
-            (((uint8_t *)y)[2] << 8) |      \
-            (((uint8_t *)y)[3]);            \
+        x = ((uint32_t)(((uint8_t *)y)[0]) << 24) |     \
+            ((uint32_t)(((uint8_t *)y)[1]) << 16) |     \
+            ((uint32_t)(((uint8_t *)y)[2]) << 8) |      \
+            ((uint32_t)(((uint8_t *)y)[3]));            \
     } while(0)
 
 #define cc_store64_be(x, y) do {                                \
@@ -275,14 +275,14 @@ CC_INLINE CC_CONST uint32_t cc_clz64(uint32_t w)
     } while(0)
 
 #define cc_load64_be(x, y) do {             \
-        x = (((uint8_t *)y)[0] << 56) |     \
-            (((uint8_t *)y)[1] << 48) |     \
-            (((uint8_t *)y)[2] << 40) |     \
-            (((uint8_t *)y)[3] << 32) |     \
-            (((uint8_t *)y)[4] << 24) |     \
-            (((uint8_t *)y)[5] << 16) |     \
-            (((uint8_t *)y)[6] << 8) |      \
-            (((uint8_t *)y)[7]);            \
+        x = ((uint64_t)(((uint8_t *)y)[0]) << 56) |     \
+            ((uint64_t)(((uint8_t *)y)[1]) << 48) |     \
+            ((uint64_t)(((uint8_t *)y)[2]) << 40) |     \
+            ((uint64_t)(((uint8_t *)y)[3]) << 32) |     \
+            ((uint64_t)(((uint8_t *)y)[4]) << 24) |     \
+            ((uint64_t)(((uint8_t *)y)[5]) << 16) |     \
+            ((uint64_t)(((uint8_t *)y)[6]) << 8) |      \
+            ((uint64_t)(((uint8_t *)y)[7]));            \
     } while(0)
 
 #define cc_store32_le(x, y) do {                            \

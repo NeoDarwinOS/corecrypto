@@ -12,6 +12,10 @@
 #include <corecrypto/cc.h>
 #include <corecrypto/ccdigest.h>
 
+//
+// Modelled after Darwin 24. We want a robust entropy facility here.
+//
+
 typedef struct ccentropy_ctx *ccentropy_ctx_t;
 
 struct ccentropy_info {
@@ -42,6 +46,12 @@ struct ccentropy_digest_ctx {
     ccdigest_ctx_decl_vla(CCDIGEST_MAX_STATE_SIZE,
                           CCDIGEST_MAX_BLOCK_SIZE,
                           digest);
+    uint32_t seed_required_nsamples;
+    uint32_t cur_nsamples;
 };
+
+cc_error_t ccentropy_digest_init(struct ccentropy_digest_ctx *ctx,
+                                 const struct ccdigest_info *di,
+                                 uint32_t required_samples);
 
 #endif /* __CORECRYPTO_CCENTROPY_H__ */

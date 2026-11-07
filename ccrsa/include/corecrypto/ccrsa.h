@@ -12,6 +12,8 @@
 
 #include <corecrypto/cczp.h>
 
+CC_BEGIN_DECLS
+
 /*
  * Layout of ccrsa_xxx_ctx:
  *
@@ -84,5 +86,7 @@ cc_error_t ccrsa_verify_pkcs1v15(ccrsa_pub_ctx_t pub,
                                  size_t sig_size,
                                  const uint8_t *sig,
                                  bool *valid);
+
+CC_END_DECLS
 
 #endif /* __CORECRYPTO_CCRSA_H__ */
